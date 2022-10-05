@@ -1,0 +1,25 @@
+.wd-color-sage {
+    color: rgb(124 164 66);
+}
+
+.wd-background-sage {
+    background-color: rgb(124 164 66);
+}
+
+a {
+    color: rgb(124 164 66);
+}
+
+.wd-rounded-border {
+    border: 4px solid rgb(124 164 66);
+    border-radius: 40px;
+}
+
+.form-control:focus {
+    border-color: rgb(124 164 66);
+    box-shadow: 0 0 0 0.25rem rgb(124 164 66 / 25%);
+}
+
+.btn:focus {
+    box-shadow: 0 0 0 0.25rem rgb(124 164 66 / 25%);
+}
