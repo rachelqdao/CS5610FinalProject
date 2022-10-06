@@ -1,6 +1,5 @@
-# Netlify Links
-Main branch: https://dreamy-llama-7c444b.netlify.app/ <br>
-Current branch: https://rd-pagedesign--dreamy-llama-7c444b.netlify.app/
+# Netlify Link
+https://dreamy-llama-7c444b.netlify.app/ <br>
 
 <br><br>
 
