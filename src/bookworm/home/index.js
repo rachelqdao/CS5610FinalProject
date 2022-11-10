@@ -1,12 +1,22 @@
 import React from "react";
-import NavigationBar from "../navigation";
 
-const HomeScreen = () => {
+const HomeComponent = () => {
     return (
         <>
-            <h4>Home</h4>
-            <NavigationBar/>
+            <h1>Home</h1>
+
+            <div>
+                Popular Books
+            </div>
+
+            <div>
+                Recently Added Books
+            </div>
+
+            <div>
+                Recent Reviews
+            </div>
         </>
     )
 };
-export default HomeScreen;
+export default HomeComponent;

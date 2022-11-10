@@ -8,11 +8,13 @@ const NavigationBar = () => {
 
     return (
         <>
-            <div className="row">
+            <div className="row rounded">
                 <div className="col-6">
                     <ul className="nav nav-pills">
 
-                        <h4>Nav Bar Test <i className="bi bi-book-half"></i></h4>
+                        <Link to={"/"}>
+                            <h2 className={"pe-3"}>Bookworm <i className="bi bi-book-half"></i></h2>
+                        </Link>
 
                         <li className="nav-item">
                             <Link to={"/"}
