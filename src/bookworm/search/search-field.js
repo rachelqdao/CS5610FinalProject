@@ -12,7 +12,7 @@ const SearchFieldComponent = () => {
     return(
         <div>
             <div className={"pb-2"}>
-                <label htmlFor="username" className="form-label"><h4>Search for a book</h4></label>
+                <label htmlFor="username" className="form-label"><h3>Search for a book</h3></label>
                 <div className={"input-group input-group-lg"}>
                     <input
                         type="text"
@@ -44,7 +44,26 @@ const SearchFieldComponent = () => {
                 }
                 {
                     books && books.map((book =>
-                        <li key={book.id} className="list-group-item"> {book.volumeInfo.title}
+                        <li key={book.id} className="list-group-item">
+                            <div className={"d-flex d-inline-block"}>
+                                <img src=
+                                    {book.volumeInfo.imageLinks === undefined
+                                        ? ""
+                                        : `${book.volumeInfo.imageLinks.thumbnail}`}
+                                     alt={"Thumbnail"}
+                                     className={"h-100 me-3"}
+                                />
+                                <div>
+                                    <h5>{book.volumeInfo.title}</h5>
+                                    <p>{book.volumeInfo.authors}</p>
+                                    <p>
+                                        {`${book.volumeInfo.description}`.length > 250
+                                            ? `${book.volumeInfo.description}`.substring(0, 250).concat("...")
+                                            : `${book.volumeInfo.description}`
+                                        }</p>
+                                </div>
+                            </div>
+                            <hr/>
                         </li>))
                 }
             </ul>
