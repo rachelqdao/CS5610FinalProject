@@ -40,6 +40,9 @@ const SearchFieldComponent = () => {
 
             <ul>
                 {
+                    loading && <li>Loading...</li>
+                }
+                {
                     books && books.map((book =>
                         <li key={book.id} className="list-group-item"> {book.volumeInfo.title}
                         </li>))
