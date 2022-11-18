@@ -43,11 +43,18 @@ const RegistrationComponent = () => {
                         </div>
 
                         <div>
-                            <input type={"radio"} name={"user"}/>
+                            <input type={"radio"} name={"user"} id={"userRadio"} className={"me-1"}/>
+                            <label htmlFor="userRadio"> {"I am a user"}</label>
                         </div>
 
                         <div>
-                            <input type={"radio"} name={"user"}/>
+                            <input type={"radio"} name={"user"} id={"authorRadio"} className={"me-1"}/>
+                            <label htmlFor="authorRadio"> {"I am an author"}</label>
+                        </div>
+
+                        <div>
+                            <input type={"radio"} name={"user"} id={"adminRadio"} className={"me-1"}/>
+                            <label htmlFor="authorRadio"> {"I am an admin"}</label>
                         </div>
                     </div>
 
@@ -56,7 +63,6 @@ const RegistrationComponent = () => {
                             <span className="text-white">Sign Up</span>
                         </button>
                     </div>
-
                 </div>
 
                 <hr/>
@@ -65,7 +71,6 @@ const RegistrationComponent = () => {
                     {"Already have an account? "}
                     <Link to={"/login"}>Log in here!</Link>
                 </span>
-
             </div>
         </div>
 

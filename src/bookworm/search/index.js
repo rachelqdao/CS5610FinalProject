@@ -1,12 +1,14 @@
 import React from "react";
+import ResultsComponent from "./results"
+import SearchFieldComponent from "./search-field";
 
 const SearchComponent = () => {
     return (
         <div className={"px-3"}>
-            <div className={"pb-5 justify-content-center"}>
-                <label htmlFor="username" className="form-label"><h2>Search for a book</h2></label>
-                <input type="text" id="username" className="form-control form-control-lg rounded-pill"
-                       placeholder="The Great Gatsby"/>
+            <SearchFieldComponent/>
+            <div>
+                <ResultsComponent/>
+
             </div>
 
 
