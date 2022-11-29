@@ -17,7 +17,7 @@ const SearchFieldComponent = () => {
     return(
         <div>
             <div className={"pb-2"}>
-                <label htmlFor="username" className="form-label"><h3 className={"fw-bold"}>Search for a book</h3></label>
+                <label htmlFor="username" className="form-label"><h3>Search for a book</h3></label>
                 <div className={"input-group input-group-lg mb-4"}>
                     <input
                         type="text"
