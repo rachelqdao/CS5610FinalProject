@@ -1,19 +1,24 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {findBookBySearchTermThunk} from "../../services/bookworm-thunks";
+import {findBookBySearchTermThunk} from "./services/search-thunks";
+import SearchItemComponent from "./search-item";
+import {useSearchParams} from "react-router-dom";
 
 const SearchFieldComponent = () => {
-
-    const [searchTerms, setSearchTerms] = useState('')
     const {books, loading} = useSelector((state) => state.books)
-
+    const [searchTerms, setSearchTerms] = useState('')
+    const [searchParams, setSearchParams] = useSearchParams({criteria: ''})
     const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(findBookBySearchTermThunk(searchParams.get('criteria')))
+        setSearchTerms(searchParams.get('criteria'))
+    }, [searchParams, dispatch])
 
     return(
         <div>
             <div className={"pb-2"}>
-                <label htmlFor="username" className="form-label"><h3>Search for a book</h3></label>
-                <div className={"input-group input-group-lg"}>
+                <label htmlFor="username" className="form-label"><h3 className={"fw-bold"}>Search for a book</h3></label>
+                <div className={"input-group input-group-lg mb-4"}>
                     <input
                         type="text"
                         id="username"
@@ -23,14 +28,14 @@ const SearchFieldComponent = () => {
                         }
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                                dispatch(findBookBySearchTermThunk(searchTerms))
+                                setSearchParams({'criteria': searchTerms})
                             }
                         }}
                         placeholder="The Great Gatsby"/>
                     <button
                         className="btn btn-primary"
                         onClick={() => {
-                                dispatch(findBookBySearchTermThunk(searchTerms))
+                                setSearchParams({'criteria': searchTerms})
                             }
                         }>
                         <i className="bi bi-search"></i>
@@ -40,35 +45,16 @@ const SearchFieldComponent = () => {
 
             <ul>
                 {
-                    loading && <li>Loading...</li>
-                }
-                {
-                    books && books.map((book =>
-                        <li key={book.id} className="list-group-item">
-                            <div className={"d-flex d-inline-block"}>
-                                <img src=
-                                    {book.volumeInfo.imageLinks === undefined
-                                        ? ""
-                                        : `${book.volumeInfo.imageLinks.thumbnail}`}
-                                     alt={"Thumbnail"}
-                                     className={"h-100 me-3"}
-                                />
-                                <div>
-                                    <h5>{book.volumeInfo.title}</h5>
-                                    <p>{book.volumeInfo.authors}</p>
-                                    <p>
-                                        {`${book.volumeInfo.description}`.length > 250
-                                            ? `${book.volumeInfo.description}`.substring(0, 250).concat("...")
-                                            : `${book.volumeInfo.description}`
-                                        }</p>
-                                </div>
-                            </div>
-                            <hr/>
-                        </li>))
+                    loading === true ?
+                        <h6>Loading...</h6> :
+                        (books === false ?
+                                null :
+                                books &&
+                                books.map((book => SearchItemComponent(book)))
+                        )
                 }
             </ul>
         </div>
     )
-
 }
 export default SearchFieldComponent

@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {findBookBySearchTermThunk} from "../../services/bookworm-thunks"
+import {findBookBySearchTermThunk} from "./services/search-thunks"
 
 const initialState = {
     books: [],
@@ -13,13 +13,12 @@ const searchReducer = createSlice({
         [findBookBySearchTermThunk.pending]: (state, action) => {
             state.loading = true
         },
-
         [findBookBySearchTermThunk.fulfilled]: (state, action) => {
-                state.loading = false
-                state.books = action.payload
-            }
+            state.loading = false
+            state.books = action.payload
         }
     }
+}
 )
 
 export default searchReducer.reducer

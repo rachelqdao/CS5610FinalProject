@@ -1,16 +1,10 @@
 import React from "react";
-import ResultsComponent from "./results"
 import SearchFieldComponent from "./search-field";
 
 const SearchComponent = () => {
     return (
         <div className={"px-3"}>
             <SearchFieldComponent/>
-            <div>
-                <ResultsComponent/>
-
-            </div>
-
 
             <div>
                 <h3 className={"text-secondary pb-3"}>
