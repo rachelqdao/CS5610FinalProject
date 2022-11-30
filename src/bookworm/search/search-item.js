@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 
 const SearchItemComponent = (book) => {
     return (
-
             <li key={book.id} className="list-group-item">
                 <Link to={`/details?identifier=${book.id}`}>
                     <div className={"d-flex d-inline-block"}>
