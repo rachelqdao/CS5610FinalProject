@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {findBookBySearchTermThunk} from "./services/search-thunks";
-import SearchItemComponent from "./search-item";
 import {useSearchParams} from "react-router-dom";
+import ResultsComponent from "./results";
 
 const SearchFieldComponent = () => {
-    const {books, loading} = useSelector((state) => state.books)
     const [searchTerms, setSearchTerms] = useState('')
     const [searchParams, setSearchParams] = useSearchParams({criteria: ''})
     const dispatch = useDispatch()
@@ -42,18 +41,7 @@ const SearchFieldComponent = () => {
                     </button>
                 </div>
             </div>
-
-            <ul>
-                {
-                    loading === true ?
-                        <h6>Loading...</h6> :
-                        (books === false ?
-                                null :
-                                books &&
-                                books.map((book => SearchItemComponent(book)))
-                        )
-                }
-            </ul>
+            <ResultsComponent/>
         </div>
     )
 }
