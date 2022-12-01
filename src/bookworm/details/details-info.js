@@ -25,8 +25,7 @@ const DetailsInfoComponent = () => {
                             </div>
 
                             <div className={"mb-3"}>
-                                {/*// eslint-disable-next-line*/}
-                                <div className={"text-secondary"}>Published by: {bookDetails.volumeInfo.publisher} on {new Date(bookDetails.volumeInfo.publishedDate.replace(/-/g, '\/')).toLocaleDateString('en-us', {year:"numeric", month:"long", day:"numeric"})}</div>
+                                <div className={"text-secondary"}>Published by: {bookDetails.volumeInfo.publisher} on {bookDetails.volumeInfo.publishedDate}</div>
                                 <div className={"text-secondary"}>ISBN: {bookDetails.volumeInfo.industryIdentifiers[0].identifier}</div>
                                 <div className={"text-secondary"}>Page Count: {bookDetails.volumeInfo.pageCount}</div>
                             </div>
