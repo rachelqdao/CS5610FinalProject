@@ -9,6 +9,7 @@ const ReviewsComponent = () => {
             </div>
 
             <div className={"d-flex d-inline-block"}>
+
                 {/*icon*/}
                 <div className={"me-3"}>
                     <img
@@ -22,11 +23,14 @@ const ReviewsComponent = () => {
                 {/*comment content*/}
                 <div className={"bg-light rounded mb-4"}>
                     <div className={"py-3 px-4"}>
+
+                        {/*user information*/}
                         <div className={"mb-3"}>
                             <div className={"fw-bold"}>Username</div>
                             <div>123 Reviews</div>
                         </div>
 
+                        {/*user rating*/}
                         <div>
                             <i className="bi bi-star-fill text-warning"></i>
                             <i className="bi bi-star-fill text-warning"></i>
@@ -34,6 +38,8 @@ const ReviewsComponent = () => {
                             <i className="bi bi-star text-warning"></i>
                             <i className="bi bi-star text-warning"></i>
                         </div>
+
+                        {/*user review*/}
                         <p>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                             dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -41,6 +47,30 @@ const ReviewsComponent = () => {
                             fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
                             mollit anim id est laborum.
                         </p>
+
+                        {/*reactions*/}
+                        <button className={"btn btn-primary"}>
+                            Like
+                        </button>
+
+                        <button className={"btn btn-primary"}>
+                            Love
+                        </button>
+
+                        <button className={"btn btn-primary"}>
+                            Interesting
+                        </button>
+
+                        <button className={"btn btn-primary"}>
+                            Helpful
+                        </button>
+
+                        <button className={"btn btn-primary"}>
+                            Cool
+                        </button>
+
+
+
                     </div>
                 </div>
             </div>
