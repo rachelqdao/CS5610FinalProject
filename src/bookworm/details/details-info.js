@@ -6,18 +6,26 @@ const DetailsInfoComponent = () => {
 
     return (
         <>
+            <div className={"row"}>
+                <div className="d-block d-sm-none fa-2x">XS</div>
+                <div className="d-none d-sm-block d-md-none fa-2x">S</div>
+                <div className="d-none d-md-block d-lg-none fa-2x">M</div>
+                <div className="d-none d-lg-block d-xl-none fa-2x">L</div>
+                <div className="d-none d-xl-block d-xxl-none fa-2x">XL</div>
+                <div className="d-none d-xxl-block fa-2x">XXL</div>
+            </div>
+
             {
                 loading === true
                     ? <h1>Loading...</h1>
                     : bookDetails &&
-                        <div className={"d-flex d-inline-block mb-5"}>
-
+                        <div className={"d-block d-md-flex mb-5"}>
                             {/*book cover*/}
                             {
                                 bookDetails.volumeInfo.imageLinks
                                     ? <img
                                         src={bookDetails.volumeInfo.imageLinks.thumbnail}
-                                        className={"me-4 h-100 w-50"}
+                                        className={"me-4 mb-4 h-100 w-50"}
                                         alt={"Cover Thumbnail"}
                                       />
                                     : null
@@ -73,20 +81,23 @@ const DetailsInfoComponent = () => {
                                 </div>
 
                                 {/*buttons*/}
-                                <button className={"btn btn-primary me-3"}>
-                                    <i className="bi bi-star"> </i>
-                                    Add to Favorites
-                                </button>
 
-                                <button className={"btn btn-primary me-3"}>
-                                    <i className="bi bi-bookmark-plus"> </i>
-                                    Add to Reading List
-                                </button>
+                                <div>
+                                    <button className={"btn btn-primary me-2 mb-sm-2 d-block d-md-inline-block"}>
+                                        <i className="bi bi-star"> </i>
+                                        Add to Favorites
+                                    </button>
 
-                                <button className={"btn btn-primary"}>
-                                    <i className="bi bi-chat-square-text"> </i>
-                                    Leave a Review
-                                </button>
+                                    <button className={"btn btn-primary me-2 mb-sm-2 d-block d-md-inline-block"}>
+                                        <i className="bi bi-bookmark-plus"> </i>
+                                        Add to Reading List
+                                    </button>
+
+                                    <button className={"btn btn-primary me-2 mb-sm-2 d-block d-md-inline-block"}>
+                                        <i className="bi bi-chat-square-text"> </i>
+                                        Leave a Review
+                                    </button>
+                                </div>
                             </div>
                         </div>
             }
