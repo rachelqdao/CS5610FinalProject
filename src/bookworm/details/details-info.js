@@ -83,17 +83,17 @@ const DetailsInfoComponent = () => {
                                 {/*buttons*/}
 
                                 <div>
-                                    <button className={"btn btn-primary me-2 mb-sm-2 d-block d-md-inline-block"}>
+                                    <button className={"btn btn-primary me-2 mb-2 d-block d-md-inline-block"}>
                                         <i className="bi bi-star"> </i>
                                         Add to Favorites
                                     </button>
 
-                                    <button className={"btn btn-primary me-2 mb-sm-2 d-block d-md-inline-block"}>
+                                    <button className={"btn btn-primary me-2 mb-2 d-block d-md-inline-block"}>
                                         <i className="bi bi-bookmark-plus"> </i>
                                         Add to Reading List
                                     </button>
 
-                                    <button className={"btn btn-primary me-2 mb-sm-2 d-block d-md-inline-block"}>
+                                    <button className={"btn btn-primary me-2 mb-2 d-block d-md-inline-block"}>
                                         <i className="bi bi-chat-square-text"> </i>
                                         Leave a Review
                                     </button>
