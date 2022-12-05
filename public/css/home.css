@@ -1,0 +1,56 @@
+.home-sec {
+  width: 100%;
+  height: auto;
+
+  background: linear-gradient(0deg, #f8fafb8a, #f8fafb8a),
+    url("../image/PurpleBG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-right img {
+  width: 80%;
+  height: auto;
+}
+
+.fav-book {
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  margin-top: 60px;
+}
+
+.fav-book .head {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fav-book .head p {
+  font-weight: 500;
+  font-size: 18px;
+  color: black;
+}
+
+.fav-book .head button {
+  width: 120px;
+  height: 35px;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 500;
+  border: none;
+}
+
+.fav-book .head p span {
+  color: #221a5e;
+}
+
+.fav-book img {
+  width: auto;
+  height: 270px;
+  border-radius: 4px;
+}

@@ -1,0 +1,98 @@
+.details-sec {
+  width: 100%;
+  height: auto;
+  background: linear-gradient(0deg, #f8fafb8a, #f8fafb8a),
+    url("../image/PurpleBG.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.path {
+  color: black;
+  font-weight: 500;
+}
+
+.path a {
+  color: #695ccb;
+}
+
+.book-d-image {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.book-details .book-title {
+  font-family: "Segoe UI";
+  font-weight: 700;
+  color: #261e5e;
+  text-transform: uppercase;
+}
+.book-details .series {
+  font-size: 14px;
+  line-height: 10px;
+  color: #261e5e;
+}
+
+.book-details .auther {
+  color: #7b6fd4;
+}
+
+.book-details .rating-box i {
+  color: gold;
+  margin-top: 20px;
+}
+
+.book-details .summery {
+  font-size: 14px;
+  width: 80%;
+  display: inline !important;
+}
+
+.read-more {
+  font-weight: bold;
+  color: #695ccb;
+}
+
+.book-detail-table p {
+  margin: 0;
+  margin-bottom: 7px;
+}
+
+.book-detail-table .title-dt {
+  font-weight: bold;
+}
+
+.user-review-wrapper {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-item {
+  width: 60%;
+  height: auto;
+  border-radius: 10px;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: white;
+}
+
+.review-item h6 {
+  color: #695ccb;
+  display: inline;
+}
+
+.review-item p {
+  font-size: 14px;
+}
+
+.review-item .rating-box {
+  display: inline;
+  font-size: 14px;
+  color: gold;
+  margin-left: 20px;
+}

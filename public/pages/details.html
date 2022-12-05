@@ -1,10 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-</body>
+    <!--  Md bootstrap  cdn -->
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Link css file -->
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/details.css">
+
+    <!-- add owl carousel -->
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" />
+
+    <title>Bookworm</title>
+  </head>
+  <body>
+    <section class="details-sec pb-5 ">
+      <nav>
+        <h4><i class="fa-solid fa-book-open"></i></h4>
+
+        <div class="mid-nav">
+          <ul id="hide-mob">
+            <li><a href="#" class="active">Book</a></li >
+          </ul>
+
+          <input type="search" name="" id="" placeholder="Search Books" />
+        </div>
+
+        <i class="fa-solid fa-bars menu-mob-icon" id="hide"></i>
+
+<!--        <div class="menu-mob shadow-3">-->
+<!--          <ul>-->
+<!--            <li style="border-bottom: 1px #b8b8b8 solid;"><a href="#">Log In</a></li>-->
+<!--            <li><a href="#">Sign Up</a></li>-->
+<!--          </ul>-->
+<!--        </div>-->
+        <div class="log-reg-wrapper" id="hide-mob">
+
+          <!-- log and register -->
+
+          <a href="#">Log In |</a>
+          <a href="#">Sign Up </a>
+        </div>
+      </nav>
+
+      <div class="search-box">
+        <div class="book-result">
+            <img src="../image/book/outliers.jpeg" alt="book result">
+            <div class="wrapper">
+                <h6>Outliers</h6>
+                <p>Malcolm Gladwell</p>
+            </div>
+        </div>
+      </div>
+      
+      <div class="row p-3 w-100 details-wrapper">
+        <p class="path"> <a href="home.html">Home / </a>Mockingjay </p>
+        <div class="col-12 col-md-5  mt-5 book-d-image " >
+          <a href="##" class="ripple">
+            <img src="../image/book/Mocking.png" alt="book" class="shadow-5 ">
+          </a>
+          
+        </div>
+        <div class="col-12 col-md-7  mt-5 book-details">
+            <h3 class="book-title">Mockingjay</h3>
+            <p class="series">The Hunger Games #3</p>
+              <h6 class="author"><i class="fa-solid fa-pen-nib"></i></i> Suzanne Collins</h6>
+
+              <div class="rating-box">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star-half-stroke"></i>
+
+                (56)
+              </div>
+
+              <div class="summary-box mt-4">
+                <p class="summary ">Against all odds, Katniss Everdeen has survived the Hunger Games twice. But now that she's made it out of the bloody arena alive, she's still not safe. The Capitol is angry. The Capitol wants revenge. Who do they think should pay for the unrest? Katniss. And what's worse, President Snow has made it clear that no one else is safe either. Not Katniss's family, not her friends, not the people of District 12.
+                  Powerful and haunting, this thrilling final installment of Suzanne Collins's groundbreaking The Hunger Games trilogy promises to be one of the most talked about books of the year.</p> <span class="read-more">Read more</span>
+              </div>
+              
+              <table class="mt-4 book-detail-table">
+                <tr>
+                  <td> <p class="title-dt">Publication date</p> </td>
+                  <td><p class="ms-5">July 2010</p></td>
+                </tr>
+                <tr>
+                  <td> <p class="title-dt">Edition number</p> </td>
+                  <td><p class="ms-5">7th edition</p></td>
+                </tr>
+                <tr>
+                  <td> <p class="title-dt">ISBN</p> </td>
+                  <td><p class="ms-5">978-35-56265-25-6</p></td>
+                </tr>
+                <tr>
+                  <td> <p class="title-dt">Language</p> </td>
+                  <td><p class="ms-5">English</p></td>
+                </tr>
+                <tr>
+                  <td> <p class="title-dt">Pages</p> </td>
+                  <td><p class="ms-5">356</p></td>
+                </tr>
+              </table>
+           
+        </div>
+
+        <div class="user-review-wrapper mt-5">
+          <h5 class="text-dark">Reviews</h5>
+
+          <div class="review-item shadow-3">
+            <h6>Booklover's review</h6>
+
+            <div class="rating-box">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i>3.0</i>
+            </div>
+            <hr>
+            <p>One word to describe this book... Unsatisfying. <br>
+
+              The only reason I didn't give it 3 stars is because I Loved the first 2 books. Don;t get me wrong I didn't expect this one to be as good but I was still disappointed.</p>
+          </div>
+
+          <div class="review-item shadow-3">
+            <h6>John Doe's review</h6>
+
+            <div class="rating-box">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i>4.0</i>
+            </div>
+            <hr>
+            <p>Fun and super quick. Perfect to alternate from all my grad school reading.</p>
+          </div>
+
+          <div class="review-item shadow-3">
+            <h6>Mawuli's review</h6>
+
+            <div class="rating-box">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i>3.0</i>
+            </div>
+            <hr>
+            <p>The Hunger Games was a fantastic series. But after the first book, they all kinda seemed the same. There was no light at the end of the tunnel.</p>
+          </div>
+
+          <div class="review-item shadow-3">
+            <h6>booksandboba's review</h6>
+
+            <div class="rating-box">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i>5.0</i>
+            </div>
+            <hr>
+            <p>I can't help it, I like 'pie' at the end. I didn't get it. I felt like everyone involved got the short end of the stick. Now, if the book was the real world it probably would have ended this way so if you don't mind a real world ending, which definitely isn't pie, have at it. <br> <br>
+
+
+              By the same token, there was much to like about the world and many characters and I will definitely watch the movies.</p>
+          </div>
+        </div>
+      </div>
+
+      
+    </section>
+
+
+    <!-- add jquery plugin -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <!-- md bootstrap cdn -->
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.3.0/mdb.min.js"
+    ></script>
+
+    <!-- owl carosole -->
+    <script src="./src/javascript/owl.carousel.js"></script>
+    <script src="./src/javascript/owl.carousel.min.js"></script>
+    <script src="./src/javascript/index.js"></script>
+  </body>
 </html>
