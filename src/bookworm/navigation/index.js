@@ -40,6 +40,14 @@ const NavigationBar = () => {
                                 Users
                             </Link>
                         </li>
+
+                        {/*profile -- CHANGE LATER*/}
+                        <li className="nav-item">
+                            <Link to={"/profile"}
+                                  className={`nav-link ${active === 'profile' ? 'active fw-bold' : ''}`}>
+                                Profile
+                            </Link>
+                        </li>
                     </ul>
                 </div>
 
