@@ -1,18 +1,27 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "../users/users-thunks";
 
 const LoginComponent = () => {
+    const {currentUser} = useSelector((state) => state.users)
+
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [error, setError] = useState(null)
+    const [error, setError] = useState('')
 
     const dispatch = useDispatch()
     const handleLoginBtn = () => {
-        setError(null)
-        const loginUser = {username, password}
-        dispatch(loginThunk(loginUser))
+        /* handle empty input fields */
+        if (username === '' || password === '') {
+            setError('Please fill in all fields')
+        } else {
+            /* attempt to login */
+            const loginUser = {username, password}
+            dispatch(loginThunk(loginUser))
+
+            console.log(currentUser)
+        }
     }
 
     return (

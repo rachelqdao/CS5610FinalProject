@@ -22,6 +22,7 @@ const usersReducer = createSlice({
 
         [registerThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
+            console.log(state.currentUser)
         },
         [registerThunk.rejected]: (state, action) => {
             state.error = action.payload
@@ -29,9 +30,11 @@ const usersReducer = createSlice({
         },
 
         [loginThunk.fulfilled]: (state, action) => {
+            console.log('IN FULFILLED THUNK')
             state.currentUser = action.payload
         },
         [loginThunk.rejected]: (state, action) => {
+            console.log('IN REJECTED THUNK')
             state.error = action.payload
             state.currentUser = null
         },

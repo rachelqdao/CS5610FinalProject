@@ -19,6 +19,13 @@ export const register = async (user) => {
 export const login = async (user) => {
     const response = await axios.post(`${BASE_URL}/login`, user)
     return response.data
+
+/*    try {
+        const response = await axios.post(`${BASE_URL}/login`, user)
+        return response.data
+    } catch (err) {
+        console.log(err.response.data)
+    }*/
 }
 
 export const profile = async () => {
@@ -30,8 +37,6 @@ export const logout = async () => {
     const response = await axios.post(`${BASE_URL}/logout`)
     return response.data
 }
-
-
 
 export const deleteUser = async (uid) => {
 

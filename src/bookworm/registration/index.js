@@ -10,7 +10,7 @@ const RegistrationComponent = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [validatePassword, setValidatePassword] = useState('')
-    const [userType, setUserType] = useState(1)
+    const [userType, setUserType] = useState('USER')
     const [error, setError] = useState(null)
 
     const handleUserType = (typeNumber) => {
@@ -42,6 +42,8 @@ const RegistrationComponent = () => {
             password,
             userType
         }
+
+        console.log(newUser)
         dispatch(registerThunk(newUser))
     }
 
@@ -104,6 +106,7 @@ const RegistrationComponent = () => {
                                 className="form-control form-control-lg"
                                 placeholder="hello@website.com"
                                 onChange={(e) => setEmail(e.target.value)}
+
                             />
                         </div>
 
@@ -156,7 +159,9 @@ const RegistrationComponent = () => {
                                     name={"user"}
                                     id={"userRadio"}
                                     className={"me-1"}
-                                    onChange={(e) => handleUserType(1)}
+                                    value={"USER"}
+                                    checked={userType === "USER"}
+                                    onChange={(e) => handleUserType('USER')}
                                 />
                                 <label htmlFor="userRadio"> {"I am a user"}</label>
                             </div>
@@ -167,8 +172,9 @@ const RegistrationComponent = () => {
                                     name={"user"}
                                     id={"authorRadio"}
                                     className={"me-1"}
-                                    value={2}
-                                    onChange={(e) => handleUserType(2)}
+                                    value={"AUTHOR"}
+                                    checked={userType === "AUTHOR"}
+                                    onChange={(e) => handleUserType('AUTHOR')}
                                 />
                                 <label htmlFor="authorRadio"> {"I am an author"}</label>
                             </div>
@@ -179,7 +185,9 @@ const RegistrationComponent = () => {
                                     name={"user"}
                                     id={"adminRadio"}
                                     className={"me-1"}
-                                    onChange={(e) => handleUserType(3)}
+                                    value={"ADMIN"}
+                                    checked={userType === "ADMIN"}
+                                    onChange={(e) => handleUserType('ADMIN')}
                                 />
                                 <label htmlFor="adminRadio"> {"I am an admin"}</label>
                             </div>
