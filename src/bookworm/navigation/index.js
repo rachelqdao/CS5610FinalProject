@@ -67,29 +67,6 @@ const NavigationBar = () => {
                                 </li>
                             </>
                     }
-                    {/*profile -- CHANGE LATER
-                    <li className="nav-item">
-                        <Link to={"/profile"}
-                              className={`nav-link ${active === 'profile' ? 'active fw-bold' : ''}`}>
-                            Profile
-                        </Link>
-                    </li>
-
-                    login
-                    <li className="nav-item">
-                        <Link to={"/login"}
-                              className={`nav-link ${active === 'login' ? 'active fw-bold' : ''}`}>
-                            Log In
-                        </Link>
-                    </li>
-
-                    registration
-                    <li className="nav-item">
-                        <Link to={"/registration"}
-                              className={`nav-link ${active === 'registration' ? 'active fw-bold' : ''}`}>
-                            Sign Up
-                        </Link>
-                    </li>*/}
                 </ul>
             </div>
         </>
