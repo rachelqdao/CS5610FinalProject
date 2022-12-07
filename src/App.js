@@ -7,7 +7,8 @@ import RegistrationComponent from "./bookworm/registration";
 import SearchComponent from "./bookworm/search";
 import DetailsComponent from "./bookworm/details";
 import UsersComponent from "./bookworm/users";
-import ProfileComponent from "./bookworm/profile";
+import ProfileComponent from "./bookworm/profile/index.js";
+import ProtectedRoute from "./bookworm/profile/protected-route";
 
 import {Provider} from "react-redux"
 import {configureStore} from "@reduxjs/toolkit";
@@ -40,7 +41,11 @@ function App() {
                                 <Route path={'search'} element={<SearchComponent/>}/>
                                 <Route path={'details'} element = {<DetailsComponent/>}/>
                                 <Route path={'users'} element = {<UsersComponent/>}/>
-                                <Route path={'profile'} element = {<ProfileComponent/>}/>
+                                <Route path={'profile'} element = {
+                                    <ProtectedRoute>
+                                        <ProfileComponent/>
+                                    </ProtectedRoute>
+                                }/>
                             </Routes>
                     </BrowserRouter>
                 </CurrentUser>

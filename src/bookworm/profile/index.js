@@ -22,6 +22,7 @@ const ProfileComponent = () => {
                     <h5>Username: {currentUser.username}</h5>
                     <h5>Email: {currentUser.email}</h5>
                     <h5>User Type: {currentUser.userType}</h5>
+                    <h5>Date Joined: {currentUser.dateJoined}</h5>
                 </>
             }
             <button className="btn btn-danger" onClick={handleLogout}>

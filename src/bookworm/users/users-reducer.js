@@ -31,10 +31,10 @@ const usersReducer = createSlice({
 
         [loginThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
-            state.loading = true
         },
+
         [loginThunk.rejected]: (state, action) => {
-            state.currentUser = action.payload
+            state.error = action.payload
             state.currentUser = null
         },
 

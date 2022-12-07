@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "../users/users-thunks";
 
 const LoginComponent = () => {
-    const {currentUser, loading} = useSelector((state) => state.users)
+    const {currentUser} = useSelector((state) => state.users)
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
@@ -12,27 +12,31 @@ const LoginComponent = () => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const handleLoginBtn = () => {
-        /* handle empty input fields */
-        if (username === '' || password === '') {
-            setError('Please fill in all fields')
-            return
-        } else {
-            /* attempt to login */
-            const loginUser = {username, password}
-            dispatch(loginThunk(loginUser))
-
-            setError('Invalid Username or Password')
-        }
-    }
-
     useEffect(() => {
         if (currentUser) {
-            setError(null)
-            navigate('/')
+            navigate('/profile')
         }
-    }, [currentUser, navigate])
+    }, [currentUser])
 
+    /*    const {currentUser} = useSelector((state) => state.users)
+
+        const [username, setUsername] = useState('')
+        const [password, setPassword] = useState('')
+        const [error, setError] = useState('')
+
+        const dispatch = useDispatch()
+        const handleLoginBtn = () => {
+            /!* handle empty input fields *!/
+            if (username === '' || password === '') {
+                setError('Please fill in all fields')
+            } else {
+                /!* attempt to login *!/
+                const loginUser = {username, password}
+                dispatch(loginThunk(loginUser))
+
+                console.log(currentUser)
+            }
+        }*/
 
     return (
         <div className={"col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3"}>
@@ -45,7 +49,7 @@ const LoginComponent = () => {
 
             {/*error*/}
             {
-                error && !loading &&
+                error &&
                 <div className={"alert alert-danger"}>
                     {error}
                 </div>
@@ -83,7 +87,11 @@ const LoginComponent = () => {
                 <div className="pt-4 pb-3">
                     <button
                         className="btn btn-primary w-100 wd-background-purple rounded-pill px-3 py-2"
-                        onClick={handleLoginBtn}
+                        onClick={() => {
+                            const loginUser = {username, password}
+                            dispatch(loginThunk(loginUser))
+                            setError('Invalid Username or Password')
+                        }}
                     >
                         <span className="text-white">Login</span>
                     </button>

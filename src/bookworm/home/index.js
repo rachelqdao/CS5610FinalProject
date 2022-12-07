@@ -1,14 +1,8 @@
-import React, {useEffect} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {profileThunk} from "../users/users-thunks";
+import React from "react";
+import {useSelector} from "react-redux";
 
 const HomeComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
-
-    const dispatch = useDispatch()
-    useEffect(() => {
-        dispatch(profileThunk())
-    })
 
     return (
         <>
