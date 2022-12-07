@@ -17,7 +17,12 @@ const ProfileComponent = () => {
             <h1>Profile</h1>
             {
                 currentUser &&
-                <h2>Welcome {currentUser.username}</h2>
+                <>
+                    <h2>Welcome {currentUser.firstName} {currentUser.lastName}</h2>
+                    <h5>Username: {currentUser.username}</h5>
+                    <h5>Email: {currentUser.email}</h5>
+                    <h5>User Type: {currentUser.userType}</h5>
+                </>
             }
             <button className="btn btn-danger" onClick={handleLogout}>
                 Logout

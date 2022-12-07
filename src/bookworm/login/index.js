@@ -1,28 +1,38 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import React, {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {loginThunk} from "../users/users-thunks";
 
 const LoginComponent = () => {
-    const {currentUser} = useSelector((state) => state.users)
+    const {currentUser, loading} = useSelector((state) => state.users)
 
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleLoginBtn = () => {
         /* handle empty input fields */
         if (username === '' || password === '') {
             setError('Please fill in all fields')
+            return
         } else {
             /* attempt to login */
             const loginUser = {username, password}
             dispatch(loginThunk(loginUser))
 
-            console.log(currentUser)
+            setError('Invalid Username or Password')
         }
     }
+
+    useEffect(() => {
+        if (currentUser) {
+            setError(null)
+            navigate('/')
+        }
+    }, [currentUser, navigate])
+
 
     return (
         <div className={"col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3"}>
@@ -35,7 +45,7 @@ const LoginComponent = () => {
 
             {/*error*/}
             {
-                error &&
+                error && !loading &&
                 <div className={"alert alert-danger"}>
                     {error}
                 </div>
@@ -89,4 +99,5 @@ const LoginComponent = () => {
         </div>
     )
 }
+
 export default LoginComponent

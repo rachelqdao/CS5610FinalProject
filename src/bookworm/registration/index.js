@@ -1,9 +1,11 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import React, {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../users/users-thunks";
 
 const RegistrationComponent = () => {
+    const {currentUser, loading} = useSelector((state) => state.users)
+
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -13,17 +15,20 @@ const RegistrationComponent = () => {
     const [userType, setUserType] = useState('USER')
     const [error, setError] = useState(null)
 
-    const handleUserType = (typeNumber) => {
-        setUserType(typeNumber)
+    const handleUserType = (type) => {
+        setUserType(type)
     }
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleRegisterBtn = () => {
+        /* validate password */
         if (password !== validatePassword) {
             setError('Passwords must match')
             return
         }
 
+        /* handle empty input fields */
         if ((firstName === '')
             || (lastName === '')
             || (email === '')
@@ -33,19 +38,29 @@ const RegistrationComponent = () => {
             setError('Please fill in all fields')
             return
         }
-        setError(null)
+
         const newUser = {
             firstName,
             lastName,
             email,
             username,
             password,
-            userType
+            userType,
+            dateJoined: new Date()
         }
 
         console.log(newUser)
         dispatch(registerThunk(newUser))
+
+        setError('Username has already been taken')
     }
+
+    useEffect(() => {
+        if (currentUser) {
+            setError(null)
+            navigate('/')
+        }
+    }, [currentUser, navigate])
 
     return (
         <div className={"col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3"}>
@@ -59,7 +74,7 @@ const RegistrationComponent = () => {
 
                 {/*error*/}
                 {
-                    error &&
+                    error && !loading &&
                     <div className={"alert alert-danger"}>
                         {error}
                     </div>
