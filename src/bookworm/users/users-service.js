@@ -30,12 +30,12 @@ export const login = async (user) => {
 }
 
 export const profile = async () => {
-    const response = await axios.post(`${BASE_URL}/profile`)
+    const response = await api.post(`${BASE_URL}/profile`)
     return response.data
 }
 
 export const logout = async () => {
-    const response = await axios.post(`${BASE_URL}/logout`)
+    const response = await api.post(`${BASE_URL}/logout`)
     return response.data
 }
 
