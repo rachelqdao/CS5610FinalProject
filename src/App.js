@@ -27,13 +27,12 @@ const store = configureStore({
 
 function App() {
     return (
-        <div className={'container'}>
+        <div>
             <Provider store={store}>
                 <CurrentUser>
                     <BrowserRouter>
-                            <NavigationBar/>
-                            <hr/>
-
+                        <NavigationBar/>
+                        <div className={'container'}>
                             <Routes>
                                 <Route index element={<HomeComponent/>}/>
                                 <Route path={'login'} element={<LoginComponent/>}/>
@@ -47,6 +46,7 @@ function App() {
                                     </ProtectedRoute>
                                 }/>
                             </Routes>
+                        </div>
                     </BrowserRouter>
                 </CurrentUser>
             </Provider>

@@ -64,11 +64,10 @@ const RegistrationComponent = () => {
 
     return (
         <div className={"col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3"}>
-            <div className={""}>
-
+            <div className={"bg-white rounded border border-dark border-opacity-25 border-2 p-5 m-4"}>
                 {/*welcome*/}
                 <div className={"pb-4"}>
-                    <h2>Welcome! <i className="fa fa-book"></i></h2>
+                    <h2 className={'fw-bold'}>Welcome! <i className="fa fa-book"></i></h2>
                     <h5 className={"text-secondary"}>Create an account to continue</h5>
                 </div>
 
@@ -173,7 +172,7 @@ const RegistrationComponent = () => {
                                     type={"radio"}
                                     name={"user"}
                                     id={"userRadio"}
-                                    className={"me-1"}
+                                    className={"me-1 form-check-input"}
                                     value={"USER"}
                                     checked={userType === "USER"}
                                     onChange={(e) => handleUserType('USER')}
@@ -186,7 +185,7 @@ const RegistrationComponent = () => {
                                     type={"radio"}
                                     name={"user"}
                                     id={"authorRadio"}
-                                    className={"me-1"}
+                                    className={"me-1 form-check-input"}
                                     value={"AUTHOR"}
                                     checked={userType === "AUTHOR"}
                                     onChange={(e) => handleUserType('AUTHOR')}
@@ -199,7 +198,7 @@ const RegistrationComponent = () => {
                                     type={"radio"}
                                     name={"user"}
                                     id={"adminRadio"}
-                                    className={"me-1"}
+                                    className={"me-1 form-check-input"}
                                     value={"ADMIN"}
                                     checked={userType === "ADMIN"}
                                     onChange={(e) => handleUserType('ADMIN')}
@@ -211,7 +210,7 @@ const RegistrationComponent = () => {
 
                     <div className="pt-4 pb-3">
                         <button
-                            className="btn btn-primary w-100 wd-background-purple rounded-pill px-3 py-2"
+                            className="btn btn-primary w-100 rounded px-3 py-2"
                             onClick={handleRegisterBtn}
                         >
                             <span className="text-white">Sign Up</span>
