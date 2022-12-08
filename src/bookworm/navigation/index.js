@@ -13,7 +13,7 @@ const NavigationBar = () => {
         <nav className="navbar navbar-expand-lg bg-light sticky-top p-3">
             <div className="container-fluid">
                 <Link to={"/"}>
-                    <h2 className={"navbar-brand wd-green"}>Bookworm <i className="bi bi-book-fill"></i></h2>
+                    <h2 className={"navbar-brand fw-bold wd-green"}>Bookworm <i className="bi bi-book-fill"></i></h2>
                 </Link>
 
                 <button
