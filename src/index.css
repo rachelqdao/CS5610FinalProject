@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(250, 250, 250)
 }
 
 code {
@@ -12,45 +13,52 @@ code {
     monospace;
 }
 
+.wd-green {
+  color: rgb(20, 145, 155);
+}
+
 a {
   text-decoration: none;
-  color: inherit;
+  color: rgb(20, 145, 155);
 }
 
-/*
-
-.wd-color-purple {
-  color: rgb(106, 90, 205);
+a:hover {
+  color: rgb(17, 121, 130);
 }
 
-.wd-background-purple {
-  background-color: rgb(106, 90, 205);
+
+.btn, .btn-primary, .btn-primary:active, .btn-primary:visited, .btn-primary:focus {
+  background-color: rgb(20, 145, 155) !important;
+  border-color: rgb(20, 145, 155) !important;
 }
 
-a {
-  color: rgb(106, 90, 205);
+.btn-primary:hover {
+  background-color: rgb(17, 121, 130) !important;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
 }
 
-.wd-rounded-border {
-  border: 4px solid rgb(106, 90, 205);
-  border-radius: 40px;
+.form-check-input:focus {
+  border-color: rgb(20, 145, 155);
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(20 145 155 / 25%)
+}
+
+.form-check-input:checked {
+  background-color: rgb(20, 145, 155);
+  border-color: rgb(20, 145, 155);
 }
 
 .form-control:focus {
-  border-color: rgb(106 90 205);
-  box-shadow: 0 0 0 0.25rem rgb(106 90 205 / 25%);
+  border-color: rgb(20, 145, 155);
+  box-shadow: 0 0 0 0.25rem rgb(20 145 155 / 25%);
 }
 
-.btn:focus {
-  box-shadow: 0 0 0 0.25rem rgb(106 90 205 / 25%);
+.navbar {
+  -webkit-box-shadow: 0 5px 6px -6px rgb(33, 37, 41);
+  -moz-box-shadow: 0 5px 6px -6px #999;
+  box-shadow: 0 5px 6px -6px #999;
 }
-
-.btn {
-  background-color: rgb(106, 90, 205);
-}
-
-nav .navbar-nav li a {
-  color: rgb(106, 90, 205);
-}
-
-*/
