@@ -47,30 +47,6 @@ const ReviewsComponent = () => {
                             fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
                             mollit anim id est laborum.
                         </p>
-
-                        {/*reactions*/}
-                        <button className={"btn btn-primary"}>
-                            Like
-                        </button>
-
-                        <button className={"btn btn-primary"}>
-                            Love
-                        </button>
-
-                        <button className={"btn btn-primary"}>
-                            Interesting
-                        </button>
-
-                        <button className={"btn btn-primary"}>
-                            Helpful
-                        </button>
-
-                        <button className={"btn btn-primary"}>
-                            Cool
-                        </button>
-
-
-
                     </div>
                 </div>
             </div>

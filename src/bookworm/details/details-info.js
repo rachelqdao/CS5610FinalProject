@@ -1,5 +1,6 @@
 import React from "react";
 import {useSelector} from "react-redux";
+import ReviewsComponent from "./reviews";
 
 const DetailsInfoComponent = () => {
     const {bookDetails, loading} = useSelector((state) => state.bookDetails)
@@ -19,7 +20,7 @@ const DetailsInfoComponent = () => {
                 loading === true
                     ? <h1>Loading...</h1>
                     : bookDetails &&
-
+                        <>
                         <div className={"row mb-5"}>
 
                             <div className={"d-none d-xl-flex col-1"}></div>
@@ -112,11 +113,6 @@ const DetailsInfoComponent = () => {
 
                                     <div>
                                         <button className={"btn btn-primary me-2 mb-2 d-block d-md-inline-block"}>
-                                            <i className="bi bi-star"> </i>
-                                            Add to Favorites
-                                        </button>
-
-                                        <button className={"btn btn-primary me-2 mb-2 d-block d-md-inline-block"}>
                                             <i className="bi bi-bookmark-plus"> </i>
                                             Add to Reading List
                                         </button>
@@ -132,6 +128,15 @@ const DetailsInfoComponent = () => {
                             </div>
                             <div className={"d-none d-xl-flex col-1"}></div>
                         </div>
+
+                            <div className={"row mb-5"}>
+                                <div className={"d-none d-xl-flex col-1"}></div>
+                                <div className={"d-flex col-12 col-xl-10"}>
+                                    <ReviewsComponent/>
+                                </div>
+                                <div className={"d-none d-xl-flex col-1"}></div>
+                            </div>
+                        </>
             }
         </>
     )

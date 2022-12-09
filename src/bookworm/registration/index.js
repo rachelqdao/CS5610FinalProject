@@ -186,11 +186,11 @@ const RegistrationComponent = () => {
                                     name={"user"}
                                     id={"authorRadio"}
                                     className={"me-1 form-check-input"}
-                                    value={"AUTHOR"}
-                                    checked={userType === "AUTHOR"}
-                                    onChange={(e) => handleUserType('AUTHOR')}
+                                    value={"ADMIN"}
+                                    checked={userType === "ADMIN"}
+                                    onChange={(e) => handleUserType('ADMIN')}
                                 />
-                                <label htmlFor="authorRadio"> {"I am an author"}</label>
+                                <label htmlFor="authorRadio"> {"I am an admin"}</label>
                             </div>
 
                             <div>
@@ -199,11 +199,11 @@ const RegistrationComponent = () => {
                                     name={"user"}
                                     id={"adminRadio"}
                                     className={"me-1 form-check-input"}
-                                    value={"ADMIN"}
-                                    checked={userType === "ADMIN"}
-                                    onChange={(e) => handleUserType('ADMIN')}
+                                    value={"BOOK CLUB OWNER"}
+                                    checked={userType === "BOOK CLUB OWNER"}
+                                    onChange={(e) => handleUserType('BOOK CLUB OWNER')}
                                 />
-                                <label htmlFor="adminRadio"> {"I am an admin"}</label>
+                                <label htmlFor="adminRadio"> {"I am a Book Club owner"}</label>
                             </div>
                         </div>
                     </div>

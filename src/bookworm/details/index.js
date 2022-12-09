@@ -3,7 +3,6 @@ import {useSearchParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {findBookByIDThunk} from "./services/details-thunks";
 import DetailsInfoComponent from "./details-info";
-import ReviewsComponent from "./reviews";
 
 const DetailsComponent = () => {
     const [searchParams] = useSearchParams({identifier: ''})
@@ -15,7 +14,6 @@ const DetailsComponent = () => {
     return (
         <>
             <DetailsInfoComponent/>
-            <ReviewsComponent/>
         </>
     )
 
