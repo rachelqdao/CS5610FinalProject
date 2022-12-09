@@ -1,6 +1,6 @@
 import React from "react";
 import {useSelector} from "react-redux";
-import ReviewsComponent from "./reviews";
+import ReviewsComponent from "../reviews";
 
 const DetailsInfoComponent = () => {
     const {bookDetails, loading} = useSelector((state) => state.bookDetails)
@@ -35,9 +35,8 @@ const DetailsInfoComponent = () => {
                             </div>
 
                             {/*book details*/}
-                            <div className={"col-12 col-lg-8 col-xl-6"}>
-                                <div className={"bg-white border border-2 border-dark border-opacity-25 p-4 rounded"}>
-
+                            <div className={"col-12 col-lg-8 col-xl-7"}>
+                                <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
                                     <div className={"row d-lg-none d-lg-block mb-3"}>
                                         <div className={"col-4"}></div>
                                         <div className={"col-4"}>
@@ -52,38 +51,28 @@ const DetailsInfoComponent = () => {
                                     </div>
 
                                     {/*title and authors*/}
-                                    <div className={"d-none d-lg-block mb-4"}>
+                                    <div className={"d-none d-lg-block mb-3"}>
                                         <h3 className={"fw-bolder"}>{bookDetails.volumeInfo.title}</h3>
                                         {
                                             bookDetails.volumeInfo.authors
-                                                ? <h4 className={"text-secondary fw-bold"}>{bookDetails.volumeInfo.authors.join(', ')}</h4>
-                                                : <h4 className={"text-secondary fw-bold"}>No authors available</h4>
+                                                ? <h5 className={"text-secondary fw-bold"}>{bookDetails.volumeInfo.authors.join(', ')}</h5>
+                                                : <h5 className={"text-secondary fw-bold"}>No authors available</h5>
                                         }
                                     </div>
 
-                                    <div className={"d-lg-none mb-4"}>
+                                    <div className={"d-lg-none mb-3"}>
                                         <h3 className={"d-flex justify-content-center fw-bolder"}>{bookDetails.volumeInfo.title}</h3>
                                         {
                                             bookDetails.volumeInfo.authors
-                                                ? <h4 className={"d-flex justify-content-center text-secondary fw-bold"}>{bookDetails.volumeInfo.authors.join(', ')}</h4>
-                                                : <h4 className={"d-flex justify-content-center text-secondary fw-bold"}>No authors available</h4>
-                                        }
-                                    </div>
-
-                                    {/*description*/}
-                                    <div>
-                                        <span className={"fw-bold wd-green"}>Description</span>
-                                        {
-                                            bookDetails.volumeInfo.description
-                                                ? <div className={"mt-1 mb-3"}
-                                                       dangerouslySetInnerHTML={{__html: bookDetails.volumeInfo.description}}>
-                                                </div>
-                                                : <div className={"mt-1 mb-3"}>No description available</div>
+                                                ? <h5 className={"d-flex justify-content-center text-secondary fw-bold"}>{bookDetails.volumeInfo.authors.join(', ')}</h5>
+                                                : <h5 className={"d-flex justify-content-center text-secondary fw-bold"}>No authors available</h5>
                                         }
                                     </div>
 
                                     {/*other information*/}
                                     <div className={"mb-3"}>
+
+                                        <span className={"fw-bold"}>Details:</span>
                                         {
                                             bookDetails.volumeInfo.publisher
                                                 ? <div className={"text-secondary"}>
@@ -110,32 +99,35 @@ const DetailsInfoComponent = () => {
                                     </div>
 
                                     {/*buttons*/}
-
                                     <div>
-                                        <button className={"btn btn-primary me-2 mb-2 d-block d-md-inline-block"}>
+                                        <div className={"wd-pink mb-3"}>
+                                            This book is in <span className={"fw-bold"}>10 reading lists</span> and <span className={"fw-bold"}>10 Book Clubs</span>!
+                                        </div>
+
+                                        <button className={"btn btn-lg btn-primary me-2 mb-2 d-block d-md-inline-block"}>
                                             <i className="bi bi-bookmark-plus"> </i>
                                             Add to Reading List
                                         </button>
-
-                                        <button className={"btn btn-primary me-2 mb-2 d-block d-md-inline-block"}>
-                                            <i className="bi bi-chat-square-text"> </i>
-                                            Leave a Review
-                                        </button>
                                     </div>
+                                </div>
 
-
+                                <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded"}>
+                                    {/*description*/}
+                                    <div>
+                                        <span className={"fw-bold wd-green"}>Description</span>
+                                        {
+                                            bookDetails.volumeInfo.description
+                                                ? <div className={"mt-1 mb-3"}
+                                                       dangerouslySetInnerHTML={{__html: bookDetails.volumeInfo.description}}>
+                                                </div>
+                                                : <div className={"mt-1 mb-3"}>No description available</div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                             <div className={"d-none d-xl-flex col-1"}></div>
                         </div>
-
-                            <div className={"row mb-5"}>
-                                <div className={"d-none d-xl-flex col-1"}></div>
-                                <div className={"d-flex col-12 col-xl-10"}>
-                                    <ReviewsComponent/>
-                                </div>
-                                <div className={"d-none d-xl-flex col-1"}></div>
-                            </div>
+                        <ReviewsComponent/>
                         </>
             }
         </>

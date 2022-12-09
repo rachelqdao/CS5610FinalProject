@@ -4,7 +4,7 @@ import "./index.css"
 
 const ResultsItemComponent = (book) => {
     return (
-        <li key={book.id} className="list-group-item bg-white border border-dark border-2 border-opacity-25 rounded mb-3 p-4">
+        <li key={book.id} className="list-group-item bg-white border border-dark border-2 border-opacity-10 rounded mb-3 p-4">
             <Link to={`/details?identifier=${book.id}`} className={"wd-link-color"}>
                 <div className={"row"}>
 
