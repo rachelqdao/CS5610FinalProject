@@ -6,6 +6,7 @@ import ReviewsComponent from "../reviews";
 
 const DetailsComponent = () => {
     const {bookDetails, loading} = useSelector((state) => state.bookDetails)
+
     const [searchParams] = useSearchParams({identifier: ''})
     const [readMore, setReadMore] = useState(false)
 
@@ -173,7 +174,6 @@ const DetailsComponent = () => {
                                 </div>
 
                                 <hr/>
-
                                 <ReviewsComponent/>
                             </div>
 
