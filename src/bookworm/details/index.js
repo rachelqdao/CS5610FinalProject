@@ -118,12 +118,19 @@ const DetailsComponent = () => {
                                     </div>
 
                                     {/*buttons*/}
-                                    <div>
-                                        <button className={"btn btn-primary me-2 mb-2 d-block d-md-inline-block"}>
-                                            <i className="bi bi-bookmark-plus"> </i>
-                                            Add to Reading List
-                                        </button>
+                                    <div className="input-group col-12 col-lg-6">
+                                        <select className="form-select" id="inputGroupSelect03"
+                                                aria-label="Example select with button addon">
+                                            <option selected>Choose a Reading List</option>
+                                            <option value="1">Fiction</option>
+                                            <option value="2">Nonfiction</option>
+                                            <option value="3">Fantasy</option>
+                                        </select>
+
+                                        <button className="btn btn-primary" type="button"><i className="bi bi-bookmark-plus"> </i>
+                                            Add to Reading List</button>
                                     </div>
+
                                 </div>
 
                                 {/*description box*/}
