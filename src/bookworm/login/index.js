@@ -90,6 +90,7 @@ const LoginComponent = () => {
                             onClick={() => {
                                 const loginUser = {username, password}
                                 dispatch(loginThunk(loginUser))
+
                                 setError('Invalid Username or Password')
                             }}
                         >
