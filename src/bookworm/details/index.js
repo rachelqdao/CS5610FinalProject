@@ -130,7 +130,6 @@ const DetailsComponent = () => {
                                         <button className="btn btn-primary" type="button"><i className="bi bi-bookmark-plus"> </i>
                                             Add to Reading List</button>
                                     </div>
-
                                 </div>
 
                                 {/*description box*/}
