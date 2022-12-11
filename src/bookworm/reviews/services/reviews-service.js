@@ -20,3 +20,9 @@ export const findReviewsByUserID = async (userID) => {
     const response = await api.get(`${USER_REVIEWS_API}/${userID}`)
     return response.data
 }
+
+export const deleteReview = async (reviewID) => {
+    console.log(reviewID)
+    const response = await api.delete(`${REVIEW_API}/${reviewID}`)
+    return response.data
+}

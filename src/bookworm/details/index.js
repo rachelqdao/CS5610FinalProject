@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findBookByIDThunk} from "./services/details-thunks";
@@ -6,19 +6,7 @@ import ReviewsComponent from "../reviews";
 
 const DetailsComponent = () => {
     const {bookDetails, loading} = useSelector((state) => state.bookDetails)
-
     const [searchParams] = useSearchParams({identifier: ''})
-    const [readMore, setReadMore] = useState(false)
-
-    const handleReadMore = () => {
-        if (readMore) {
-            setReadMore(false)
-            console.log(readMore)
-        } else {
-            setReadMore(true)
-            console.log(readMore)
-        }
-    }
 
     const dispatch = useDispatch()
     useEffect(() => {
@@ -149,27 +137,6 @@ const DetailsComponent = () => {
                                                 </div>
                                                 : <div className={"mt-1 mb-3"}>No description available</div>
                                         }
-
-                                        {
-                                            readMore &&
-                                            <button
-                                                className={"btn btn-primary"}
-                                                onClick={handleReadMore}
-                                            >
-                                                Read Less
-                                            </button>
-                                        }
-
-                                        {
-                                            !readMore &&
-                                            <button
-                                                className={"btn btn-primary"}
-                                                onClick={handleReadMore}
-                                            >
-                                                Read More
-                                            </button>
-                                        }
-
                                     </div>
                                 </div>
 

@@ -1,6 +1,9 @@
 import React from "react";
+import {Link} from "react-router-dom";
+import {deleteReviewThunk} from "./services/reviews-thunk";
 
-const ReviewItemComponent = (review) => {
+const ReviewItemComponent = (review, currentUser, dispatch) => {
+
     return (
         <>
             <div className={"mb-3"}>
@@ -15,7 +18,9 @@ const ReviewItemComponent = (review) => {
                     <div>
                         <div className={"mb-3"}>
                             {/*username*/}
-                            <h5 className={"fw-bold wd-green m-1 ms-0"}>{review.userID.username}</h5>
+                            <Link to={`/profile/${review.userID._id}`}>
+                                <h5 className={"fw-bold wd-green m-1 ms-0"}>{review.userID.username}</h5>
+                            </Link>
 
                             {/*user rating*/}
                             <div>
@@ -53,6 +58,26 @@ const ReviewItemComponent = (review) => {
                                 {review.reviewText}
                             </p>
                         }
+
+                        <div className={"row"}>
+                            {
+                                currentUser && currentUser.userType === 'ADMIN' &&
+                                <div>
+
+                                    {/*TODO: fix styling so button isn't green :(*/}
+                                    <button
+                                        className="btn btn-primary float-end"
+                                        onClick={() => {
+                                            console.log(review._id)
+                                            dispatch(deleteReviewThunk(review._id))
+                                        }}
+                                    >
+                                        Remove
+                                    </button>
+                                </div>
+                            }
+                        </div>
+
                     </div>
                 </div>
             </div>

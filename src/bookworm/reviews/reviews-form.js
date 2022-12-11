@@ -6,6 +6,7 @@ import {useNavigate, useSearchParams} from "react-router-dom";
 
 const ReviewsFormComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
+    const {reviews} = useSelector((state) => state.reviews)
     const [bookID] = useSearchParams({identifier: ''})
 
     const [canLeaveReview, setCanLeaveReview] = useState(false)
@@ -31,7 +32,7 @@ const ReviewsFormComponent = () => {
     return (
         <div>
             {/*show 'leave review' button if not clicked yet, disappear on click if user is logged in*/}
-            {    !canLeaveReview &&
+            {   (currentUser === null || currentUser.userType !== 'ADMIN') && !canLeaveReview &&
                 <>
                     <button
                         className={"btn btn-primary me-2 mb-2 float-end"}
@@ -46,7 +47,8 @@ const ReviewsFormComponent = () => {
             {/*header and number of reviews*/}
             <div className={"mb-4"}>
                 <h3 className={"mb-1 fw-bold"}>User Reviews</h3>
-                <h5 className={"text-secondary"}>123 Reviews</h5>
+                <h5 className={"text-secondary"}>{reviews.length} Reviews</h5>
+
             </div>
 
             {/*show form if button clicked and user is logged in, disappear if user submits and successfully
@@ -96,8 +98,8 @@ const ReviewsFormComponent = () => {
                         <button
                             className={"btn btn-primary float-end"}
                             onClick={() => {
-                                console.log(review)
                                 dispatch(createReviewThunk(review))
+                                setCanLeaveReview(false)
                             }
                             }
                         >
