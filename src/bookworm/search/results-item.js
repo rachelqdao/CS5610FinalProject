@@ -3,25 +3,20 @@ import {Link} from "react-router-dom";
 import "./index.css"
 
 const ResultsItemComponent = (book) => {
+/*
+    console.log(book)
+*/
+
     return (
         <li key={book.id} className="list-group-item bg-white border border-dark border-2 border-opacity-10 rounded mb-3 p-4">
             <Link to={`/details?identifier=${book.id}`} className={"wd-link-color"}>
                 <div className={"row"}>
-
-
                     <div className={"d-none d-sm-block col-lg-2 col-md-3 col-sm-4"}>
                         <img
-                            src={`https://books.google.com/books/publisher/content/images/frontcover/${book.id}?fife=w400-h600&source=gbs_api`}
+                            src={book.bookCover}
                             className={"img-fluid w-100 rounded"}
                             alt={"Book Cover"}
                         />
-
-        {/*                <img src=
-                                 {book.volumeInfo.imageLinks
-                                     ? `${book.volumeInfo.imageLinks.thumbnail}`
-                                     : ''}
-                             alt={'Book Cover'}
-                        />*/}
                     </div>
                     <div className={"col-lg-10 col-md-9 col-sm-8"}>
                         <h5 className={"fw-bold"}>{book.volumeInfo.title}</h5>

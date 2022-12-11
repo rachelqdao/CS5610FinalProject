@@ -9,5 +9,11 @@ export const findBookByID = async (identifier) => {
 
     const response = await axios.get(`${SEARCH_URL}${identifier}`)
 
-    return response.data
+    const BOOK_COVER_URL =
+        `https://books.google.com/books/publisher/content/images/frontcover/${response.data.id}?fife=w400-h600&source=gbs_api`
+
+    const responseWithCover = {...response.data, 'bookCover': BOOK_COVER_URL}
+    console.log(responseWithCover)
+
+    return responseWithCover
 }
