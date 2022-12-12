@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createReadingListThunk} from "./services/reading-lists-thunks";
+import {createReadingListThunk, findReadingListsByUserIDThunk} from "./services/reading-lists-thunks";
 
 const readingListsReducer = createSlice({
     name: 'readingLists',
@@ -9,6 +9,9 @@ const readingListsReducer = createSlice({
     extraReducers: {
         [createReadingListThunk.fulfilled]: (state, action) => {
             state.readingLists.push(action.payload)
+        },
+        [findReadingListsByUserIDThunk.fulfilled]: (state, action) => {
+            state.readingLists = action.payload
         }
     }
 })

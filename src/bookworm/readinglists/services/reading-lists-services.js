@@ -11,3 +11,9 @@ export const createReadingList = async (readingList) => {
     return response.data
 }
 
+export const findReadingListsByUserID = async (userID) => {
+    const response = await api.get(`${READING_LIST_API}/${userID}`)
+    console.log(response)
+    return response.data
+}
+

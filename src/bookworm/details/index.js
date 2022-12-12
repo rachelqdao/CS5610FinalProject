@@ -3,15 +3,23 @@ import {useSearchParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findBookByIDThunk} from "./services/details-thunks";
 import ReviewsComponent from "../reviews";
+import {findReadingListsByUserIDThunk} from "../readinglists/services/reading-lists-thunks";
 
 const DetailsComponent = () => {
+    const {currentUser} = useSelector((state) => state.users)
     const {bookDetails, loading} = useSelector((state) => state.bookDetails)
+    const {readingLists} = useSelector((state) => state.readingLists)
     const [searchParams] = useSearchParams({identifier: ''})
 
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findBookByIDThunk(searchParams.get('identifier')))
-    }, [searchParams, dispatch])
+
+        if (currentUser) {
+            dispatch(findReadingListsByUserIDThunk(currentUser._id))
+        }
+
+    }, [searchParams, dispatch, currentUser])
 
     return (
         <>
@@ -119,16 +127,25 @@ const DetailsComponent = () => {
 
                                     {/*buttons*/}
                                     <div className="input-group col-12 col-lg-6">
-                                        <select className="form-select" id="inputGroupSelect03"
-                                                aria-label="Example select with button addon">
-                                            <option selected>Choose a Reading List</option>
-                                            <option value="1">Fiction</option>
-                                            <option value="2">Nonfiction</option>
-                                            <option value="3">Fantasy</option>
+                                        <select className="form-select">
+                                            <option>Select a Reading List</option>
+                                            {
+                                                readingLists &&
+                                                readingLists.map(readingList => <option value={readingList._id}>{readingList.listName}</option>)
+                                            }
                                         </select>
 
-                                        <button className="btn btn-primary" type="button"><i className="bi bi-bookmark-plus"> </i>
-                                            Add to Reading List</button>
+                                        <button
+                                            className="btn btn-primary"
+                                            type="button"
+                                            onClick={() => {
+                                                console.log(readingLists)
+                                            }
+                                            }
+                                        >
+                                            <i className="bi bi-bookmark-plus"> </i>
+                                            Add to Reading List
+                                        </button>
                                     </div>
                                 </div>
 
