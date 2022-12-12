@@ -21,6 +21,8 @@ import reviewsReducer from "./bookworm/reviews/reviews-reducer";
 const store = configureStore({
     reducer: {
         books: SearchReducer,
+        booksByAuthor: SearchReducer,
+        booksByKeyword: SearchReducer,
         bookDetails: DetailsReducer,
         users: UsersReducer,
         reviews: reviewsReducer
