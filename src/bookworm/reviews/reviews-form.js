@@ -2,6 +2,7 @@ import {createReviewThunk} from "./services/reviews-thunk";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useSearchParams} from "react-router-dom";
+import ReviewItemComponent from "./review-item";
 
 
 const ReviewsFormComponent = () => {
@@ -29,7 +30,7 @@ const ReviewsFormComponent = () => {
         }, [rating, reviewText, bookID]
     )
 
-    return (
+    return (<>
         <div>
             {/*show 'leave review' button if not clicked yet, disappear on click if user is logged in*/}
             {   (currentUser === null || currentUser.userType !== 'ADMIN') && !canLeaveReview &&
@@ -109,6 +110,7 @@ const ReviewsFormComponent = () => {
                 </div>
             }
         </div>
+        </>
     )
 }
 

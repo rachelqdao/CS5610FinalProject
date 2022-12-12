@@ -1,8 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
 import {deleteReviewThunk} from "./services/reviews-thunk";
+import {useDispatch, useSelector} from "react-redux";
 
-const ReviewItemComponent = (review, currentUser, dispatch) => {
+const ReviewItemComponent = (review, dispatch) => {
+    const {currentUser} = useSelector((state) => state.users)
 
     return (
         <>
@@ -68,7 +70,6 @@ const ReviewItemComponent = (review, currentUser, dispatch) => {
                                     <button
                                         className="btn btn-primary float-end"
                                         onClick={() => {
-                                            console.log(review._id)
                                             dispatch(deleteReviewThunk(review._id))
                                         }}
                                     >

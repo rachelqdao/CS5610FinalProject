@@ -1,5 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createReadingListThunk, findReadingListsByUserIDThunk} from "./services/reading-lists-thunks";
+import {
+    addBookToReadingListThunk,
+    createReadingListThunk, deleteReadingListThunk,
+    findReadingListsByUserIDThunk
+} from "./services/reading-lists-thunks";
 
 const readingListsReducer = createSlice({
     name: 'readingLists',
@@ -12,6 +16,12 @@ const readingListsReducer = createSlice({
         },
         [findReadingListsByUserIDThunk.fulfilled]: (state, action) => {
             state.readingLists = action.payload
+        },
+        [deleteReadingListThunk.fulfilled]: (state, action) => {
+
+        },
+        [addBookToReadingListThunk.fulfilled]: (state, action) => {
+
         }
     }
 })
