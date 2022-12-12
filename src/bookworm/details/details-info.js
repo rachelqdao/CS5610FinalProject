@@ -98,6 +98,8 @@ const DetailsInfoComponent = () => {
                     type="button"
                     onClick={() => {
 
+                        console.log(bookDetails)
+
                         const update = {
                             'listID': listSelection,
                             'bookID': searchParams.get('identifier')

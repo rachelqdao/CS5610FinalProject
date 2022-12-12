@@ -1,10 +1,15 @@
 import {useDispatch, useSelector} from "react-redux";
 import {logoutThunk} from "../users/users-thunks";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useSearchParams} from "react-router-dom";
 import ReadingListComponent from "../readinglists";
+import ReadingListsForm from "../readinglists/reading-lists-form";
+import {useEffect, useState} from "react";
+import {findReadingListsByUserIDThunk} from "../readinglists/services/reading-lists-thunks";
+import ReadingListItemComponent from "../readinglists/reading-lists-item";
 
 const ProfileComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
+    const [userID] = useSearchParams({id: ''})
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -12,6 +17,17 @@ const ProfileComponent = () => {
         dispatch(logoutThunk())
         navigate('/')
     }
+
+    useEffect(() => {
+        // TODO: finds reading list based on profile id in URL,
+        //  if NO params, it is the users own profile
+        //  otherwise, its another users profile
+        if (userID.get('id') === '' || userID.get('id') === currentUser._id) {
+            dispatch(findReadingListsByUserIDThunk(currentUser._id))
+        } else {
+            dispatch(findReadingListsByUserIDThunk(userID.get('id')))
+        }
+    }, [])
 
     return (
         <>
@@ -34,7 +50,8 @@ const ProfileComponent = () => {
             </div>
 
             <div>
-                <ReadingListComponent/>
+                <ReadingListsForm/>
+                <ReadingListItemComponent/>
             </div>
         </>
     )

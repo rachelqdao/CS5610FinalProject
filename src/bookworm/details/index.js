@@ -61,7 +61,6 @@ const DetailsComponent = () => {
                                 {/*reviews*/}
                                 <ReviewsFormComponent/>
 
-                                {/*TODO: NEED TO FIX -- display is bugged, will not update on review creation or deletion*/}
                                 <ReviewItemComponent/>
                             </div>
 
