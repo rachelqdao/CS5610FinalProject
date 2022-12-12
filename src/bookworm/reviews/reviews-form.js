@@ -2,8 +2,6 @@ import {createReviewThunk} from "./services/reviews-thunk";
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useSearchParams} from "react-router-dom";
-import ReviewItemComponent from "./review-item";
-
 
 const ReviewsFormComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -101,6 +99,8 @@ const ReviewsFormComponent = () => {
                             onClick={() => {
                                 dispatch(createReviewThunk(review))
                                 setCanLeaveReview(false)
+                                setReviewText('')
+                                setRating(3)
                             }
                             }
                         >

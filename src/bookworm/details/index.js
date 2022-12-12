@@ -1,15 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {findBookByIDThunk} from "./services/details-thunks";
-import ReviewsComponent from "../reviews";
-import {addBookToReadingListThunk, findReadingListsByUserIDThunk} from "../readinglists/services/reading-lists-thunks";
 import {findReviewsByBookIDThunk} from "../reviews/services/reviews-thunk";
 import DescriptionComponent from "./description";
 import DetailsInfoComponent from "./details-info";
+import ReviewsFormComponent from "../reviews/reviews-form";
+import ReviewItemComponent from "../reviews/review-item";
 
 const DetailsComponent = () => {
-    const {currentUser} = useSelector((state) => state.users)
     const {bookDetails, loading} = useSelector((state) => state.bookDetails)
     const [searchParams] = useSearchParams({identifier: ''})
 
@@ -17,7 +16,7 @@ const DetailsComponent = () => {
     useEffect(() => {
         dispatch(findBookByIDThunk(searchParams.get('identifier')))
         dispatch(findReviewsByBookIDThunk(searchParams.get('identifier')))
-    }, [searchParams, dispatch, currentUser])
+    }, [])
 
     return (
         <>
@@ -60,7 +59,10 @@ const DetailsComponent = () => {
                                 <hr/>
 
                                 {/*reviews*/}
-                                <ReviewsComponent/>
+                                <ReviewsFormComponent/>
+
+                                {/*TODO: NEED TO FIX -- display is bugged, will not update on review creation or deletion*/}
+                                <ReviewItemComponent/>
                             </div>
 
                             {/*right gutter column*/}

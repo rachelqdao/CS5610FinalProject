@@ -26,8 +26,8 @@ export const addBookToReadingList = async (update) => {
     return response.data
 }
 
-export const deleteBookFromReadingList = async (listID, bookID) => {
-
-
+export const deleteBookFromReadingList = async (update) => {
+    const response = await api.put(`${READING_LIST_API}/${update.listID}/${update.bookID}/delete`)
+    return response.data
 }
 

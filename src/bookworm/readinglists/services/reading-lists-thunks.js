@@ -1,7 +1,7 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
     addBookToReadingList,
-    createReadingList,
+    createReadingList, deleteBookFromReadingList,
     deleteReadingList,
     findReadingListsByUserID
 } from "./reading-lists-services";
@@ -16,12 +16,17 @@ export const findReadingListsByUserIDThunk = createAsyncThunk(
     async (userID) => findReadingListsByUserID(userID)
 )
 
+export const deleteReadingListThunk = createAsyncThunk(
+    'deleteReadingList',
+    async (listID) => deleteReadingList(listID)
+)
+
 export const addBookToReadingListThunk = createAsyncThunk(
     'addBookToReadingListThunk',
     async (update) => addBookToReadingList(update)
 )
 
-export const deleteReadingListThunk = createAsyncThunk(
-    'deleteReadingList',
-    async (listID) => deleteReadingList(listID)
+export const deleteBookFromReadingListThunk = createAsyncThunk(
+    'deleteBookFromReadingListThunk',
+    async (update) => deleteBookFromReadingList(update)
 )
