@@ -8,7 +8,12 @@ export const createUser = async () => {
 }
 
 export const findAllUsers = async () => {
-    const response = await axios.get(`${BASE_URL}/users`)
+    const response = await api.get(`${BASE_URL}/users`)
+    return response.data
+}
+
+export const findUserByID = async (userID) => {
+    const response = await api.get(`${BASE_URL}/users/${userID}`)
     return response.data
 }
 
@@ -20,13 +25,6 @@ export const register = async (user) => {
 export const login = async (user) => {
     const response = await api.post(`${BASE_URL}/login`, user)
     return response.data
-
-/*    try {
-        const response = await axios.post(`${BASE_URL}/login`, user)
-        return response.data
-    } catch (err) {
-        console.log(err.response.data)
-    }*/
 }
 
 export const profile = async () => {

@@ -4,7 +4,7 @@ import {useDispatch} from "react-redux";
 import {findBookByAuthorThunk, findBookByKeywordThunk} from "../search/services/search-thunks";
 import AuthorCarouselComponent from "./author-carousel";
 import KeywordCarouselComponent from "./keyword-carousel";
-import ReviewsComponent from "../reviews"
+import ReviewItemComponent from "../reviews/review-item";
 
 const HomeComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -33,19 +33,19 @@ const HomeComponent = () => {
             {
                 currentUser === null ?
                     <>
-                        <h1>Weekly Recommendations</h1>
+                        <h1 className={"fw-bold"}>Weekly Recommendations</h1>
                         <AuthorCarouselComponent/>
                     </>
                 :
                     <>
-                        <h1>Your Reviews</h1>
-                        <ReviewsComponent showBrowseToReview={true}/>
+                        <h1 className={"fw-bold"}>Your Reviews</h1>
+                        <ReviewItemComponent/>
                     </>
             }
 
             <hr/>
 
-            <h1>Season's Picks: {keyword}</h1>
+            <h1 className={"fw-bold"}>Season's Picks: {keyword}</h1>
             <KeywordCarouselComponent/>
         </>
     )

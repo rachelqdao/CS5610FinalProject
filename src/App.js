@@ -17,6 +17,7 @@ import DetailsReducer from "./bookworm/details/details-reducer";
 import UsersReducer from "./bookworm/users/users-reducer"
 import CurrentUser from "./bookworm/users/current-user";
 import reviewsReducer from "./bookworm/reviews/reviews-reducer";
+import readingListsReducer from "./bookworm/readinglists/reading-lists-reducer";
 
 const store = configureStore({
     reducer: {
@@ -25,7 +26,8 @@ const store = configureStore({
         booksByKeyword: SearchReducer,
         bookDetails: DetailsReducer,
         users: UsersReducer,
-        reviews: reviewsReducer
+        reviews: reviewsReducer,
+        readingLists: readingListsReducer
     }
 })
 

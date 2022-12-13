@@ -3,7 +3,6 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate, useSearchParams} from "react-router-dom";
 
-
 const ReviewsFormComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
     const {reviews} = useSelector((state) => state.reviews)
@@ -29,7 +28,7 @@ const ReviewsFormComponent = () => {
         }, [rating, reviewText, bookID]
     )
 
-    return (
+    return (<>
         <div>
             {/*show 'leave review' button if not clicked yet, disappear on click if user is logged in*/}
             {   (currentUser === null || currentUser.userType !== 'ADMIN') && !canLeaveReview &&
@@ -100,6 +99,8 @@ const ReviewsFormComponent = () => {
                             onClick={() => {
                                 dispatch(createReviewThunk(review))
                                 setCanLeaveReview(false)
+                                setReviewText('')
+                                setRating(3)
                             }
                             }
                         >
@@ -109,6 +110,7 @@ const ReviewsFormComponent = () => {
                 </div>
             }
         </div>
+        </>
     )
 }
 
