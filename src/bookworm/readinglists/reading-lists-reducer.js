@@ -18,12 +18,16 @@ const readingListsReducer = createSlice({
             state.readingLists = action.payload
         },
         [deleteReadingListThunk.fulfilled]: (state, action) => {
-
+            state.readingLists = state.readingLists.filter(readingList => readingList._id !== action.payload._id)
         },
         [addBookToReadingListThunk.fulfilled]: (state, action) => {
 
         },
         [deleteBookFromReadingListThunk.fulfilled]: (state, action) => {
+            const index = state.readingLists.findIndex((readingList) => readingList._id === action.payload.listID)
+            console.log(index)
+
+            state.readingLists[index].books = state.readingLists[index].books.filter((book) => book.id !== action.payload.bookInfo.id)
 
         }
     }

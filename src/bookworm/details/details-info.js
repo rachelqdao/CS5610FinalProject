@@ -102,7 +102,12 @@ const DetailsInfoComponent = () => {
 
                         const update = {
                             'listID': listSelection,
-                            'bookID': searchParams.get('identifier')
+                            'bookInfo': {
+                                id: bookDetails.id,
+                                bookCover: bookDetails.bookCover,
+                                title: bookDetails.volumeInfo.title,
+                                authors: bookDetails.volumeInfo.authors
+                            }
                         }
 
                         dispatch(addBookToReadingListThunk(update))
