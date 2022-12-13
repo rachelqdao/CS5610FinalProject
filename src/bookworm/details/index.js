@@ -7,9 +7,8 @@ import DescriptionComponent from "./description";
 import DetailsInfoComponent from "./details-info";
 import ReviewsFormComponent from "../reviews/reviews-form";
 import ReviewItemComponent from "../reviews/review-item";
-import BrowseToReview from "../reviews/browse-to-review";
 
-const DetailsComponent = ({showBrowseToReview = false}) => {
+const DetailsComponent = () => {
     const {bookDetails, loading} = useSelector((state) => state.bookDetails)
     const [searchParams] = useSearchParams({identifier: ''})
 

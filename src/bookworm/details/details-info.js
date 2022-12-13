@@ -94,7 +94,7 @@ const DetailsInfoComponent = () => {
                 </select>
 
                 <button
-                    className="btn btn-primary"
+                    className="btn wd-green-button"
                     type="button"
                     onClick={() => {
 

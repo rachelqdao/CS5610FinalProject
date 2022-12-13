@@ -30,7 +30,7 @@ const ReadingListsForm = () => {
 
                 {   !toggleForm &&
                     <button
-                        className={"btn btn-primary float-end"}
+                        className={"btn wd-green-button float-end"}
                         onClick={handleCreateListClick}
                     >
                         <i className="bi bi-bookmarks-fill"></i> Create a new Reading List
@@ -38,7 +38,7 @@ const ReadingListsForm = () => {
                 }
 
                 {/*user's reading lists*/}
-                <h4 className={"fw-bold m-0"}>Your Reading Lists</h4>
+                <h4 className={"fw-bold m-0"}>Reading Lists</h4>
             </div>
 
 

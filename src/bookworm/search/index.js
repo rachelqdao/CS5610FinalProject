@@ -3,6 +3,7 @@ import {useSearchParams} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {findBookBySearchTermThunk} from "./services/search-thunks";
 import ResultsComponent from "./results";
+import "./index.css"
 
 const SearchComponent = () => {
     const [searchTerms, setSearchTerms] = useState('')
@@ -35,7 +36,7 @@ const SearchComponent = () => {
                             }}
                             placeholder="The Great Gatsby"/>
                         <button
-                            className="btn btn-primary"
+                            className="btn wd-green-button"
                             onClick={() => {
                                 setSearchParams({'criteria': searchTerms})
                             }

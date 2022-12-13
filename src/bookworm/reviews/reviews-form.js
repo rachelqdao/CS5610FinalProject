@@ -34,7 +34,7 @@ const ReviewsFormComponent = () => {
             {   (currentUser === null || currentUser.userType !== 'ADMIN') && !canLeaveReview &&
                 <>
                     <button
-                        className={"btn btn-primary me-2 mb-2 float-end"}
+                        className={"btn wd-green-button me-2 mb-2 float-end"}
                         onClick={handleReviewBtnClick}
                     >
                         <i className="bi bi-chat-square-text"> </i>
@@ -95,7 +95,7 @@ const ReviewsFormComponent = () => {
                             </div>
                         </div>
                         <button
-                            className={"btn btn-primary float-end"}
+                            className={"btn wd-green-button float-end"}
                             onClick={() => {
                                 dispatch(createReviewThunk(review))
                                 setCanLeaveReview(false)

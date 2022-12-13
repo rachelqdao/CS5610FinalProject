@@ -31,7 +31,7 @@ const ReadingListItemComponent = () => {
                             {
                                 isCurrentUser &&
                                 <button
-                                    className={"btn btn-primary float-end"}
+                                    className={"btn wd-pink-button float-end"}
                                     onClick={() => {
                                         dispatch(deleteReadingListThunk(readingList._id))
                                     }
@@ -41,7 +41,7 @@ const ReadingListItemComponent = () => {
                                 </button>
                             }
                             <div className={"mb-4"}>
-                                <h5 className={"fw-bold"}>{readingList.listName}</h5>
+                                <h5 className={"fw-bold wd-green"}>{readingList.listName}</h5>
                                 <p className={"text-secondary"}>{readingList.description}</p>
                             </div>
                         </div>
@@ -54,18 +54,22 @@ const ReadingListItemComponent = () => {
                                 readingList.books &&
                                 readingList.books.map((book) =>
                                         <div className={"col-2"}>
-                                            <i
-                                                className="bi bi-x-square-fill wd-pink fs-4 float-end"
-                                                onClick={() => {
-                                                    const update = {
-                                                        listID: readingList._id,
-                                                        bookInfo: book
-                                                    }
 
-                                                    dispatch(deleteBookFromReadingListThunk(update))
-                                                }
-                                                }
-                                            ></i>
+                                            {
+                                                isCurrentUser &&
+                                                <i
+                                                    className="bi bi-x-square-fill wd-pink fs-4 float-end"
+                                                    onClick={() => {
+                                                        const update = {
+                                                            listID: readingList._id,
+                                                            bookInfo: book
+                                                        }
+
+                                                        dispatch(deleteBookFromReadingListThunk(update))
+                                                    }
+                                                    }
+                                                ></i>
+                                            }
                                             <Link to={`/details?identifier=${book.id}`}>
                                                 <img
                                                     src={book.bookCover}

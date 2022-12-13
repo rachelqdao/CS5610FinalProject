@@ -71,9 +71,8 @@ const ReviewItemComponent = () => {
                                         currentUser && currentUser.userType === 'ADMIN' &&
                                         <div>
 
-                                            {/*TODO: fix styling so button isn't green :(*/}
                                             <button
-                                                className="btn btn-primary float-end"
+                                                className="btn wd-pink-button float-end"
                                                 onClick={() => {
                                                     dispatch(deleteReviewThunk(review._id))
                                                 }}
@@ -87,6 +86,7 @@ const ReviewItemComponent = () => {
                             </div>
                         </div>
                     </div>
+
                 </>
             )
 

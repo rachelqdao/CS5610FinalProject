@@ -43,7 +43,7 @@ const ProfileComponent = () => {
                         <h5>Date Joined: {currentUser.dateJoined}</h5>
                     </>
                 }
-                <button className="btn btn-danger" onClick={handleLogout}>
+                <button className="btn wd-pink-button" onClick={handleLogout}>
                     Logout
                 </button>
 

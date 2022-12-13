@@ -26,7 +26,7 @@ export const findBookBySearchTerm = async (term) => {
 }
 
 // search by author of the week
-export const findBookByAuthor = async(author) => {
+export const findBookByAuthor = async (author) => {
     const booksByAuthor = []
 
     const response = await axios.get(`${SEARCH_URL}${author}+inauthor:${author}&maxResults=20`)
