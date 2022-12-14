@@ -12,7 +12,7 @@ const ReviewItemComponent = () => {
     return (
             reviews &&
             reviews.map((review) =>
-                <>
+                <div key={review._id}>
                     <div className={"mb-3"}>
                         <div className={"bg-white border border-dark border-2 border-opacity-10 rounded p-4 w-100"}>
 
@@ -87,7 +87,7 @@ const ReviewItemComponent = () => {
                         </div>
                     </div>
 
-                </>
+                </div>
             )
 
     )

@@ -22,7 +22,7 @@ const ReadingListItemComponent = () => {
     return (
         readingLists &&
         readingLists.map((readingList) =>
-            <div>
+            <div key={readingList._id}>
                 <div>
                     <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
 
@@ -49,16 +49,15 @@ const ReadingListItemComponent = () => {
                         <hr/>
 
                         {/*display books in reading list*/}
-                        <div className={"row d-flex align-items-end mb-2"}>
+                        <div className={"row row-cols-xl-6 row-cols-lg-5 row-cols-md-4 row-cols-1 d-flex"}>
                             {
                                 readingList.books &&
                                 readingList.books.map((book) =>
-                                        <div className={"col-2"}>
-
+                                        <div className={"col"}>
                                             {
                                                 isCurrentUser &&
-                                                <i
-                                                    className="bi bi-x-square-fill wd-pink fs-4 float-end"
+                                                <button
+                                                    className={"btn btn-sm wd-pink-button float-end mb-2"}
                                                     onClick={() => {
                                                         const update = {
                                                             listID: readingList._id,
@@ -66,38 +65,37 @@ const ReadingListItemComponent = () => {
                                                         }
 
                                                         dispatch(deleteBookFromReadingListThunk(update))
-                                                    }
-                                                    }
-                                                ></i>
+                                                    }}
+                                                >
+                                                    <i className={"bi bi-x-lg"}></i>
+                                                </button>
                                             }
                                             <Link to={`/details?identifier=${book.id}`}>
                                                 <img
                                                     src={book.bookCover}
-                                                    className={'img-fluid w-100 rounded'}
+                                                    className={'w-100 rounded mb-3 d-none d-md-block'}
                                                     alt={"Cover Thumbnail"}
                                                 />
                                             </Link>
+                                            <div>
+                                                <Link to={`/details?identifier=${book.id}`}>
+                                                    <div className={"mb-2"}>
+                                                        {
+                                                            book.title &&
+                                                            <p className={"fw-bold m-0"}>{book.title}</p>
+                                                        }
+
+                                                        {
+                                                            book.authors &&
+                                                            <p className={"text-secondary m-0"}>{book.authors.join(', ')}</p>
+                                                        }
+                                                    </div>
+                                                </Link>
+                                            </div>
                                         </div>
                                 )
                             }
                         </div>
-
-                        <div className={"row d-flex align-items-start"}>
-                            {
-                                readingList.books &&
-                                readingList.books.map((book) =>
-                                    <div className={"col-2"}>
-                                        <Link to={`/details?identifier=${book.id}`}>
-                                            <div className={"mb-2"}>
-                                                <p className={"fw-bold m-0"}>{book.title}</p>
-                                                <p className={"text-secondary m-0"}>{book.authors.join(', ')}</p>
-                                            </div>
-                                        </Link>
-                                    </div>
-                                )
-                            }
-                        </div>
-
                     </div>
                 </div>
             </div>

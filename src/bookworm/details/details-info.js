@@ -1,13 +1,12 @@
 import {addBookToReadingListThunk} from "../readinglists/services/reading-lists-thunks";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useSearchParams} from "react-router-dom";
 
 const DetailsInfoComponent = () => {
+    const {currentUser} = useSelector((state) => state.users)
     const {bookDetails} = useSelector((state) => state.bookDetails)
     const {readingLists} = useSelector((state) => state.readingLists)
     const [listSelection, setListSelection] = useState('')
-    const [searchParams] = useSearchParams({identifier: ''})
 
     const dispatch = useDispatch()
 
@@ -77,46 +76,74 @@ const DetailsInfoComponent = () => {
                 }
             </div>
 
-            {/*buttons*/}
-            <div className="input-group col-12 col-lg-6">
-                <select
-                    className="form-select"
-                    onChange={(e) => {
-                        setListSelection(e.target.value)
-                    }
-                    }
-                >
-                    <option>Select a Reading List</option>
-                    {
-                        readingLists &&
-                        readingLists.map(readingList => <option value={readingList._id}>{readingList.listName}</option>)
-                    }
-                </select>
+            <hr/>
 
-                <button
-                    className="btn wd-green-button"
-                    type="button"
-                    onClick={() => {
+            <div className={"row"}>
 
-                        console.log(bookDetails)
+                {/*buttons*/}
+                <div className="input-group col-12 mb-3">
+                    <select
+                        className="form-select"
+                        onChange={(e) => {
+                            setListSelection(e.target.value)
+                        }
+                        }
+                    >
+                        <option>Select a Reading List</option>
+                        {
+                            readingLists &&
+                            readingLists.map(readingList => <option value={readingList._id}>{readingList.listName}</option>)
+                        }
+                    </select>
 
-                        const update = {
-                            'listID': listSelection,
-                            'bookInfo': {
+                    <button
+                        className="btn wd-green-button"
+                        type="button"
+                        onClick={() => {
+
+                            const bookInfo = {
                                 id: bookDetails.id,
                                 bookCover: bookDetails.bookCover,
                                 title: bookDetails.volumeInfo.title,
                                 authors: bookDetails.volumeInfo.authors
                             }
-                        }
 
-                        dispatch(addBookToReadingListThunk(update))
+                            // find the selected reading list
+                            const list = readingLists.filter((readingList) => readingList._id === listSelection)[0]
+
+                            // find if the book is in the list
+                            const bookInList = list.books.find((book) => book.id === bookInfo.id)
+
+                            // add only if unique
+                            if (!bookInList) {
+                                const bookList = [...list.books, bookInfo]
+
+                                const update = {
+                                    'listID': listSelection,
+                                    'bookList': bookList
+                                }
+
+                                dispatch(addBookToReadingListThunk(update))
+                            }
+                        }
+                        }
+                    >
+                        <i className="bi bi-bookmark-plus"> </i>
+                        Add to Reading List
+                    </button>
+                </div>
+
+
+                {/*TODO: Set as Book Club's current book functionality*/}
+                <div className={"col-12"}>
+                    {
+                        currentUser && currentUser.userType === 'BOOK CLUB OWNER' &&
+                        <button className={"btn wd-green-button float-end"}>
+                            Set as Book Club's Current Book
+                        </button>
                     }
-                    }
-                >
-                    <i className="bi bi-bookmark-plus"> </i>
-                    Add to Reading List
-                </button>
+                </div>
+
             </div>
         </div>
     )

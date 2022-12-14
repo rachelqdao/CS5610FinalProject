@@ -81,7 +81,7 @@ const ReadingListsForm = () => {
                                 </div>
                             </div>
                             <button
-                                className={"btn btn-primary float-end"}
+                                className={"btn wd-green-button float-end"}
                                 onClick={() => {
                                     if (listName === '') {
                                         setError('Please enter a name for the Reading List')

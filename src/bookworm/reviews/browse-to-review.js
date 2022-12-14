@@ -11,7 +11,7 @@ const BrowseToReview = () => {
         <div>
             <>
                 <button
-                    className={"btn btn-primary me-2 mb-2 float-end"}
+                    className={"btn wd-green-button me-2 mb-2 float-end"}
                     onClick={handleBrowseToReviewBtnClick}
                 >
                     <i className="bi bi-search"> </i>
