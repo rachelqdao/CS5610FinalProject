@@ -25,29 +25,49 @@ const HomeComponent = () => {
 
     return (
         <>
-            {
-                currentUser &&
-                <h2>Welcome {currentUser.username}</h2>
-            }
+        <div className={"row"}>
+            {/*left gutter*/}
+            <div className={"d-none d-xl-flex col-1"}></div>
 
-            {
-                currentUser === null ?
-                    <>
-                        <h1 className={"fw-bold"}>Weekly Recommendations</h1>
-                        <AuthorCarouselComponent/>
-                    </>
-                :
-                    <>
-                        <h1 className={"fw-bold"}>Your Reviews</h1>
-                        <ReviewItemComponent/>
-                    </>
-            }
+            {/*main content*/}
+            <div className={"col-12 col-xl-10"}>
 
-            <hr/>
+                {
+                    currentUser &&
+                    <h4 className={"fw-bold wd-green"}>Welcome, {currentUser.username}!</h4>
+                }
 
-            <h1 className={"fw-bold"}>Season's Picks: {keyword}</h1>
-            <KeywordCarouselComponent/>
-        </>
+                {
+                    currentUser === null ?
+                        null
+                        :
+                        <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
+                            <h3 className={"fw-bold mb-1"}>📚 Your Reviews</h3>
+                            <ReviewItemComponent/>
+                        </div>
+                }
+
+                <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
+                    <h3 className={"fw-bold mb-1"}>📅 Weekly Recommendations</h3>
+                    <p className={"fw-bold m-0 text-secondary"}>{`Check out weekly recommendations from our featured author of the week!`}</p>
+                    <p className={"fw-bold m-0 text-secondary"}>{`This week's author: ${authorOfWeek}!`}</p>
+                    <hr/>
+                    <AuthorCarouselComponent/>
+                </div>
+
+                <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
+                    <h3 className={"fw-bold mb-1"}>🎄 Season's Picks: {keyword}</h3>
+                    <p className={"fw-bold m-0 text-secondary"}>The holiday season is here! Check out some of our favorite holiday reads.</p>
+                    <hr/>
+                    <KeywordCarouselComponent/>
+                </div>
+            </div>
+
+            {/*right gutter*/}
+            <div className={"d-none d-xl-flex col-1"}></div>
+
+        </div>
+            </>
     )
 };
 export default HomeComponent;

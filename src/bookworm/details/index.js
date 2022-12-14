@@ -7,9 +7,8 @@ import DescriptionComponent from "./description";
 import DetailsInfoComponent from "./details-info";
 import ReviewsFormComponent from "../reviews/reviews-form";
 import ReviewItemComponent from "../reviews/review-item";
-import BrowseToReview from "../reviews/browse-to-review";
 
-const DetailsComponent = ({showBrowseToReview = false}) => {
+const DetailsComponent = () => {
     const {bookDetails, loading} = useSelector((state) => state.bookDetails)
     const [searchParams] = useSearchParams({identifier: ''})
 
@@ -43,9 +42,83 @@ const DetailsComponent = ({showBrowseToReview = false}) => {
 
                                 {/*user / book club information*/}
                                 <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
-                                    <div className={"wd-pink mb-3"}>
-                                        This book is in <span className={"fw-bold"}>10 reading lists</span> and <span className={"fw-bold"}>10 Book Clubs</span>!
+                                    <div className={"wd-green fw-bold mb-2"}>
+                                        Community Reactions
                                     </div>
+
+
+                                    <div>
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-dark btn-sm me-2 mb-1"
+                                            data-bs-toggle="button"
+                                        >
+                                            <i className={"bi bi-hand-thumbs-up-fill"}></i>
+                                        </button>
+                                        <span className={"wd-pink"}>Nice </span>
+                                        <span>(10)</span>
+                                    </div>
+
+                                    <div>
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-dark btn-sm me-2 mb-1"
+                                            data-bs-toggle="button"
+                                        >
+                                            <i className={"bi bi-heart-fill"}></i>
+                                        </button>
+                                        <span className={"wd-pink"}>Loved it </span>
+                                        <span>(10)</span>
+                                    </div>
+
+                                    <div>
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-dark btn-sm me-2 mb-1"
+                                            data-bs-toggle="button"
+                                        >
+                                            <i className={"bi bi-pencil-fill"}></i>
+                                        </button>
+                                        <span className={"wd-pink"}>Well-written </span>
+                                        <span>(10)</span>
+                                    </div>
+
+                                    <div>
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-dark btn-sm me-2 mb-1"
+                                            data-bs-toggle="button"
+                                        >
+                                            <i className={"bi bi-question-lg"}></i>
+                                        </button>
+                                        <span className={"wd-pink"}>Confusing </span>
+                                        <span>(10)</span>
+                                    </div>
+
+                                    <div>
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-dark btn-sm me-2 mb-1"
+                                            data-bs-toggle="button"
+                                        >
+                                            <i className={"bi bi-lightbulb-fill"}></i>
+                                        </button>
+                                        <span className={"wd-pink"}>Informative </span>
+                                        <span>(10)</span>
+                                    </div>
+
+                                    <div>
+                                        <button
+                                            type="button"
+                                            className="btn btn-outline-dark btn-sm me-2 mb-1"
+                                            data-bs-toggle="button"
+                                        >
+                                            <i className={"bi bi-heartbreak-fill"}></i>
+                                        </button>
+                                        <span className={"wd-pink"}>Hated it </span>
+                                        <span>(10)</span>
+                                    </div>
+
                                 </div>
                             </div>
 

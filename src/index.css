@@ -5,9 +5,8 @@ body {
   font-family: 'Open Sans', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: rgb(250, 250, 250)
+  background-color: rgb(250, 250, 250) !important;
 }
-
 
 .wd-green {
   color: rgb(20, 145, 155);
@@ -19,20 +18,47 @@ body {
 
 a {
   text-decoration: none !important;
-  color: rgb(20, 145, 155) !important;
+  color: black !important;
 }
 
 a:hover {
   color: rgb(17, 121, 130) !important;
 }
 
-
-.btn, .btn-primary, .btn-primary:active, .btn-primary:visited, .btn-primary:focus {
-  background-color: rgb(20, 145, 155) !important;
+.form-check-input:focus {
   border-color: rgb(20, 145, 155) !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 0.25rem rgb(20 145 155 / 25%) !important;
 }
 
-.btn-primary:hover {
+.form-check-input:checked {
+  background-color: rgb(20, 145, 155) !important;
+  border-color: rgb(20, 145, 155)!important;
+}
+
+.form-control:focus {
+  border-color: rgb(20, 145, 155) !important;
+  box-shadow: 0 0 0 0.25rem rgb(20 145 155 / 25%) !important;
+}
+
+.form-select:focus {
+  border-color: rgb(20, 145, 155) !important;
+  box-shadow: 0 0 0 0.25rem rgb(20 145 155 / 25%) !important;
+}
+
+.navbar {
+  -webkit-box-shadow: 0 5px 6px -6px rgb(33, 37, 41) !important;
+  -moz-box-shadow: 0 5px 6px -6px #999 !important;
+  box-shadow: 0 5px 6px -6px #999 !important;
+}
+
+.wd-green-button {
+  background-color: rgb(20, 145, 155) !important;
+  border-color: rgb(20, 145, 155) !important;
+  color: white !important;
+}
+
+.wd-green-button:hover {
   background-color: rgb(17, 121, 130) !important;
   transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -41,24 +67,26 @@ a:hover {
   -ms-transition: all 0.5s ease;
 }
 
-.form-check-input:focus {
-  border-color: rgb(20, 145, 155);
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgb(20 145 155 / 25%)
+.wd-pink-button {
+  background-color: rgb(218, 18, 125) !important;
+  border-color: rgb(218, 18, 125) !important;
+  color: white !important;
 }
 
-.form-check-input:checked {
-  background-color: rgb(20, 145, 155);
-  border-color: rgb(20, 145, 155);
+.wd-pink-button:hover {
+  background-color: rgb(193, 16, 110) !important;
+  transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
 }
 
-.form-control:focus {
-  border-color: rgb(20, 145, 155);
-  box-shadow: 0 0 0 0.25rem rgb(20 145 155 / 25%);
+.wd-green-link {
+  text-decoration: none !important;
+  color: rgb(20, 145, 155) !important;
 }
 
-.navbar {
-  -webkit-box-shadow: 0 5px 6px -6px rgb(33, 37, 41);
-  -moz-box-shadow: 0 5px 6px -6px #999;
-  box-shadow: 0 5px 6px -6px #999;
+.wd-green-link:hover {
+  color: rgb(17, 121, 130) !important;
 }

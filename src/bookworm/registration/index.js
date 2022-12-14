@@ -210,7 +210,7 @@ const RegistrationComponent = () => {
 
                     <div className="pt-4 pb-3">
                         <button
-                            className="btn btn-primary w-100 rounded px-3 py-2"
+                            className="btn wd-green-button w-100 rounded px-3 py-2"
                             onClick={handleRegisterBtn}
                         >
                             <span className="text-white">Sign Up</span>
@@ -222,7 +222,7 @@ const RegistrationComponent = () => {
 
                 <span className="text-secondary">
                     {"Already have an account? "}
-                    <Link to={"/login"}>Log in here!</Link>
+                    <Link to={"/login"} className={"wd-green-link fw-bold"}>Log in here!</Link>
                 </span>
             </div>
         </div>

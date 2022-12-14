@@ -86,7 +86,7 @@ const LoginComponent = () => {
 
                     <div className="pt-4 pb-3">
                         <button
-                            className="btn btn-primary w-100 rounded px-3 py-2"
+                            className="btn wd-green-button w-100 rounded px-3 py-2"
                             onClick={() => {
                                 const loginUser = {username, password}
                                 dispatch(loginThunk(loginUser))
@@ -103,7 +103,7 @@ const LoginComponent = () => {
 
                 <span className="text-secondary">
                 {"Dont have an account? "}
-                    <Link to={"/registration"}>Sign up here!</Link>
+                    <Link to={"/registration"} className={"wd-green-link fw-bold"}>Sign up here!</Link>
                 </span>
             </div>
         </div>

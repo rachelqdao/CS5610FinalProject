@@ -2,6 +2,7 @@ import React from "react";
 import "bootstrap";
 import {Link, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
+import "./index.css"
 
 const NavigationBar = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -13,7 +14,7 @@ const NavigationBar = () => {
         <nav className="navbar navbar-expand-lg bg-light sticky-top p-3">
             <div className="container-fluid">
                 <Link to={"/"}>
-                    <h2 className={"navbar-brand fw-bold wd-green"}>Bookworm <i className="bi bi-book-fill"></i></h2>
+                    <h2 className={"navbar-brand fw-bold wd-brand-color"}>Bookworm <i className="bi bi-book-fill"></i></h2>
                 </Link>
 
                 <button
@@ -42,12 +43,12 @@ const NavigationBar = () => {
                                 Search
                             </Link>
                         </li>
-                        <li className="nav-item">
+                     {/*   <li className="nav-item">
                             <Link to={"/users"}
                                   className={`nav-link ${active === 'users' ? 'active fw-bold' : ''}`}>
                                 Users
                             </Link>
-                        </li>
+                        </li>*/}
                     </ul>
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         {

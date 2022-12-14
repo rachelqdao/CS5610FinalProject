@@ -12,7 +12,7 @@ const ReviewItemComponent = () => {
     return (
             reviews &&
             reviews.map((review) =>
-                <>
+                <div key={review._id}>
                     <div className={"mb-3"}>
                         <div className={"bg-white border border-dark border-2 border-opacity-10 rounded p-4 w-100"}>
 
@@ -71,9 +71,8 @@ const ReviewItemComponent = () => {
                                         currentUser && currentUser.userType === 'ADMIN' &&
                                         <div>
 
-                                            {/*TODO: fix styling so button isn't green :(*/}
                                             <button
-                                                className="btn btn-primary float-end"
+                                                className="btn wd-pink-button float-end"
                                                 onClick={() => {
                                                     dispatch(deleteReviewThunk(review._id))
                                                 }}
@@ -87,7 +86,8 @@ const ReviewItemComponent = () => {
                             </div>
                         </div>
                     </div>
-                </>
+
+                </div>
             )
 
     )
