@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
 import {findBookByAuthorThunk, findBookByKeywordThunk} from "../search/services/search-thunks";
@@ -28,11 +28,8 @@ const HomeComponent = () => {
     useEffect(() => {
         if (currentUser) {
             dispatch(findReviewsByUserIDThunk(currentUser._id))
-            console.log('finding reviews by user ID')
         } else {
             dispatch(findAllReviewsThunk())
-            console.log('finding all reviews')
-
         }
     },[currentUser])
 
@@ -65,7 +62,11 @@ const HomeComponent = () => {
                     </div>
 
                     <div className={"col-lg-6 mb-3 bg-white border border-2 border-dark border-opacity-10 p-4 rounded"}>
+
+
                         <LatestReviewComponent/>
+
+
                     </div>
                 </div>
 

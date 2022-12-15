@@ -1,136 +1,81 @@
 import React, {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {findBookByIDThunk} from "../details/services/details-thunks";
 
 const LatestReviewComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
     const {reviews} = useSelector((state) => state.reviews)
-    const [latestReview, setLatestReview] = useState(null)
+
     const [hasReviews, setHasReviews] = useState(false)
 
+    const dispatch = useDispatch()
     useEffect(() => {
-
+        // query reviews store, if undefined there are NO reviews at all
         if (reviews[reviews.length - 1] === undefined) {
-            console.log('no latest reviews')
             setHasReviews(false)
 
+        // otherwise, set the latest review to be the latest review in whatever is in the reviews store
+        // could be from either user reviews or from all reviews,
+            // doesn't matter bc we already dispatched the right one earlier based on if user was logged in
         } else {
             setHasReviews(true)
-            setLatestReview(reviews[reviews.length - 1])
+            console.log(reviews[reviews.length - 1].bookID)
         }
+    }, [reviews])
 
-    }, [reviews, latestReview])
+    useEffect(() => {
+        if (hasReviews) {
+            dispatch(findBookByIDThunk(reviews[reviews.length - 1].bookID))
+        }
+    }, [hasReviews, reviews, dispatch])
 
     return (
-        currentUser
-            ?
-            // TODO: show the USERS latest review
-            <div>
-                {/*header*/}
-                <h3 className={"fw-bold mb-1"}>📖 Jump Back In</h3>
-                <p className={"text-secondary"}>See what users are saying about this book you recently reviewed</p>
+        <>
+            {currentUser
+                ?
+                    <>
+                        <h3 className={"fw-bold mb-1"}>📖 Jump Back In</h3>
+                        <p className={"text-secondary"}>See what users are saying about this book you recently reviewed</p>
+                    </>
+                :
+                    <>
+                        <h3 className={"fw-bold mb-1"}>📖 Latest Reviews </h3>
+                        <p className={"text-secondary"}>See what users are saying about this book</p>
+                    </>
+            }
 
-                <div className={"mb-3"}>
-                    {/*book cover*/}
-                    <div className={"row"}>
-                        <div className={"col-3"}></div>
-                        <div className={"col-6"}>
-                            <img
-                                src={"https://books.google.com/books/publisher/content/images/frontcover/Tz_aCwAAQBAJ?fife=w400-h600&source=gbs_api"}
-                                className={'img-fluid w-100 rounded mb-3'}
-                                alt={"Cover Thumbnail"}
-                            />
+            {
+                hasReviews
+                ?
+                    <>
+                        {/*TODO: having trouble getting book details from id here*/}
+                        <hr/>
+                        <h5 className={"fw-bold wd-green"}>Your Review: </h5>
+                        <div>
+                            {JSON.stringify(reviews[reviews.length - 1])}
                         </div>
-                        <div className={"col-3"}></div>
-                    </div>
+                    </>
+                :
+                    currentUser
+                    ?
+                        <>
+                            <p className={"d-flex fw-bold wd-pink justify-content-center m-0 mb-2 px-3"}>
+                                You haven't made any reviews yet!
+                            </p>
+                        </>
+                    :
+                        <>
+                            <p className={"d-flex fw-bold wd-pink justify-content-center m-0 mb-0 px-3"}>
+                                There aren't any reviews yet!
+                            </p>
+                            <p className={"d-flex fw-bold wd-pink justify-content-center m-0 mb-2 px-3"}>
+                                Create an account and be the first to leave a review 🥳
+                            </p>
+                        </>
 
-                    {/*title and authors*/}
-                    <div>
-                        <h5 className={"d-flex justify-content-center fw-bold m-0"}>Book Title Here</h5>
-                        <h6 className={"d-flex justify-content-center fw-bold m-0 text-secondary"}>Authors Here</h6>
-                    </div>
-                </div>
+            }
 
-                <hr/>
-
-                <h5 className={"fw-bold wd-green"}>Your Review: </h5>
-
-                {
-                    hasReviews &&
-                    <div>
-                        <div className={"d-flex justify-content-center"}>
-                            {
-                                latestReview.rating === 1 &&
-                                <span>⭐</span>
-                            }
-
-                            {
-                                latestReview.rating === 2 &&
-                                <span>⭐⭐</span>
-                            }
-
-                            {
-                                latestReview.rating === 3 &&
-                                <span>⭐⭐⭐</span>
-                            }
-
-                            {
-                                latestReview.rating === 4 &&
-                                <span>⭐⭐⭐⭐</span>
-                            }
-
-                            {
-                                latestReview.rating === 5 &&
-                                <span>⭐⭐⭐⭐⭐</span>
-                            }
-                        </div>
-                        <h5 className={"d-flex justify-content-center m-0 mb-2 px-3 fst-italic text-secondary"}>
-                            {latestReview.reviewText}
-                        </h5>
-                        <h5 className={"d-flex justify-content-center fw-bold m-0 wd-green"}>
-                            <i className="bi bi-chat-square-quote-fill fs-3 wd-pink me-2"></i>
-                            {latestReview.userID.username}
-                        </h5>
-                    </div>
-                }
-            </div>
-        :
-            // TODO: show ANY latest review
-            <div>
-                {/*header*/}
-                <h3 className={"fw-bold mb-1"}>📖 Latest Reviews </h3>
-                <p className={"text-secondary"}>See what users are saying about this book</p>
-
-                <div className={"mb-3"}>
-                    {/*book cover*/}
-                    <div className={"row"}>
-                        <div className={"col-3"}></div>
-                        <div className={"col-6"}>
-                            <img
-                                src={"https://books.google.com/books/publisher/content/images/frontcover/Tz_aCwAAQBAJ?fife=w400-h600&source=gbs_api"}
-                                className={'img-fluid w-100 rounded mb-3'}
-                                alt={"Cover Thumbnail"}
-                            />
-                        </div>
-                        <div className={"col-3"}></div>
-                    </div>
-
-                    {/*title and authors*/}
-                    <div>
-                        <h5 className={"d-flex justify-content-center fw-bold m-0"}>Book Title Here</h5>
-                        <h6 className={"d-flex justify-content-center fw-bold m-0 text-secondary"}>Authors Here</h6>
-                    </div>
-                </div>
-
-                <hr/>
-
-                <h5 className={"d-flex justify-content-center m-0 px-3 fst-italic text-secondary"}>
-                    "I loved this book it was so cute :) Really long review typing test"
-                </h5>
-                <h5 className={"d-flex justify-content-center fw-bold m-0 wd-green"}>
-                    <i className="bi bi-chat-square-quote-fill fs-3 wd-pink me-2"></i>
-                    alice
-                </h5>
-            </div>
+        </>
     )
 }
 
