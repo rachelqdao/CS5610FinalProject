@@ -47,7 +47,7 @@ function App() {
                                 <Route path={'search'} element={<SearchComponent/>}/>
                                 <Route path={'details'} element = {<DetailsComponent/>}/>
                                 <Route path={'users'} element = {<UsersComponent/>}/>
-                                <Route path={'profile'} element = {
+                                <Route path={'profile/*'} element = {
                                     <ProtectedRoute>
                                         <ProfileComponent/>
                                     </ProtectedRoute>

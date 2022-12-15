@@ -17,7 +17,7 @@ const ReadingListItemComponent = () => {
         } else {
             setIsCurrentUser(false)
         }
-    }, [])
+    }, [currentUser._id, userID])
 
     return (
         readingLists &&
