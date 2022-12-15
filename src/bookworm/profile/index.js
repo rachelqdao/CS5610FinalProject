@@ -20,6 +20,7 @@ const ProfileComponent = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/')
     const uid = paths[2];
+
     // const isBookClub = currentUser.userType === "BOOK CLUB OWNER";
     // const isAdmin = currentUser.userType === "ADMIN";
 
