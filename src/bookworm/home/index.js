@@ -4,8 +4,9 @@ import {useDispatch} from "react-redux";
 import {findBookByAuthorThunk, findBookByKeywordThunk} from "../search/services/search-thunks";
 import AuthorCarouselComponent from "./author-carousel";
 import KeywordCarouselComponent from "./keyword-carousel";
-import ReviewItemComponent from "../reviews/review-item";
 import BrowseToReview from "../reviews/browse-to-review";
+import LatestReviewComponent from "./latest-review";
+import {findAllReviewsThunk, findReviewsByUserIDThunk} from "../reviews/services/reviews-thunk";
 
 const HomeComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -24,6 +25,17 @@ const HomeComponent = () => {
         dispatch(findBookByKeywordThunk(keyword))
     }, [keyword, dispatch])
 
+    useEffect(() => {
+        if (currentUser) {
+            dispatch(findReviewsByUserIDThunk(currentUser._id))
+            console.log('finding reviews by user ID')
+        } else {
+            dispatch(findAllReviewsThunk())
+            console.log('finding all reviews')
+
+        }
+    },[currentUser])
+
     return (
         <>
         <div className={"row"}>
@@ -32,7 +44,6 @@ const HomeComponent = () => {
 
             {/*main content*/}
             <div className={"col-12 col-xl-10"}>
-
                 <div className={"row m-0"}>
                     <div className={"col-lg-6 mb-3 p-3"}>
                         <img
@@ -54,54 +65,7 @@ const HomeComponent = () => {
                     </div>
 
                     <div className={"col-lg-6 mb-3 bg-white border border-2 border-dark border-opacity-10 p-4 rounded"}>
-                        {
-                            currentUser === null ?
-                                // TODO: find ANY latest user review here
-                                <div>
-                                    {/*header*/}
-                                    <h3 className={"fw-bold mb-1"}>📖 Latest Reviews</h3>
-                                    <p className={"text-secondary"}>See what users are saying about this book</p>
-
-                                    <div className={"mb-3"}>
-                                        {/*book cover*/}
-                                        <div className={"row"}>
-                                            <div className={"col-3"}></div>
-                                            <div className={"col-6"}>
-                                                <img
-                                                    src={"https://books.google.com/books/publisher/content/images/frontcover/Tz_aCwAAQBAJ?fife=w400-h600&source=gbs_api"}
-                                                    className={'img-fluid w-100 rounded mb-3'}
-                                                    alt={"Cover Thumbnail"}
-                                                />
-                                            </div>
-                                            <div className={"col-3"}></div>
-                                        </div>
-
-                                        {/*title and authors*/}
-                                        <div>
-                                            <h5 className={"d-flex justify-content-center fw-bold m-0"}>Book Title Here</h5>
-                                            <h6 className={"d-flex justify-content-center fw-bold m-0 text-secondary"}>Authors Here</h6>
-                                        </div>
-                                    </div>
-
-                                    <hr/>
-
-                                    <h5 className={"d-flex justify-content-center m-0 px-3 fst-italic text-secondary"}>
-                                        "I loved this book it was so cute :) Really long review typing test"
-                                    </h5>
-                                    <h5 className={"d-flex justify-content-center fw-bold m-0 wd-green"}>
-                                        <i className="bi bi-chat-square-quote-fill fs-3 wd-pink me-2"></i>
-                                        alice
-                                    </h5>
-
-                                </div>
-                                :
-
-                                // TODO: find the user's LATEST review here
-                                <div>
-                                    <h3 className={"fw-bold mb-1"}>📖 Jump back in</h3>
-                                    <ReviewItemComponent/>
-                                </div>
-                        }
+                        <LatestReviewComponent/>
                     </div>
                 </div>
 
