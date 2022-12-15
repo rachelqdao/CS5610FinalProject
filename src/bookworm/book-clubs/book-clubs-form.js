@@ -1,7 +1,7 @@
 import React, {useState} from "react";
-import {createReadingListThunk} from "../../readinglists/services/reading-lists-thunks";
+import {createReadingListThunk} from "../readinglists/services/reading-lists-thunks";
 import {useDispatch, useSelector} from "react-redux";
-import {createBookClubThunk} from "./book-clubs-thunks";
+import {createBookClubThunk} from "./services/book-clubs-thunks";
 import {useNavigate} from "react-router-dom";
 
 const BookClubsForm = (oid) => {

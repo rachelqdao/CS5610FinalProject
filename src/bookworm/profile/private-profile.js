@@ -6,9 +6,9 @@ import React, {useEffect, useState} from "react";
 import {findReadingListsByUserIDThunk} from "../readinglists/services/reading-lists-thunks";
 import ReadingListItemComponent from "../readinglists/reading-lists-item";
 import ReviewItemComponent from "../reviews/review-item";
-import BookClubMembersComponent from "../book-clubs/book-club-members";
-import BookClubsForm from "../book-clubs/services/book-clubs-form";
-import {findAllBookClubsThunk, findBookClubByOwnerIDThunk} from "../book-clubs/services/book-clubs-thunks";
+import BookClubsForm from "../book-clubs/book-clubs-form";
+import {findAllBookClubsThunk} from "../book-clubs/services/book-clubs-thunks";
+import BookClubComponent from "../book-clubs/book-club";
 // import HomeCarouselItemComponent from "../home/home-carousel-item";
 
 const PrivateProfileComponent = (uid) => {
@@ -30,31 +30,21 @@ const PrivateProfileComponent = (uid) => {
     useEffect(() => {
         console.log(JSON.stringify(currentUser))
         dispatch(findReadingListsByUserIDThunk(currentUser._id))
-    })
+    }, [])
 
     useEffect(() => {
         dispatch(findAllBookClubsThunk());
-    })
+    }, [])
 
     // useEffect(() => {
     //     setShowCreateForm(false);
     // }, [bookClubs])
 
-    // useEffect(() => {
-    //     dispatch(findBookClubByOwnerIDThunk(currentUser._id))
-    // })
-
-    const openBookClubForm = () => {
-        setShowCreateForm(true)
-    }
-
-    console.log("book clubs: " + bookClubs);
+    // console.log("book clubs: " + bookClubs);
     const bookClub = bookClubs.filter(bc => bc.ownerID === currentUser._id);
-    console.log(bookClub);
-    // const currentBook = dispatch(findBookByKeywordThunk("adventure"))[0]
+    // console.log("book club: " + bookClub);
 
     return (
-
         <>
             <div className={"mb-3"}>
                 <div className={"row"}>
@@ -90,20 +80,17 @@ const PrivateProfileComponent = (uid) => {
                         <ReviewItemComponent/>
                     </div>
                 }
-
                 {
                     isBCO &&
                     <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
-
                         {
                             bookClub.length === 0 &&
                             // only show this stuff if we do not yet have a book club
                             <>
-
-                                <p>eventually only show this stuff if we do not yet have a book club</p>
                                 {
                                     !showCreateForm &&
-                                    <button className='btn wd-green-button' onClick={openBookClubForm}>
+                                    <button className='btn wd-green-button' onClick={
+                                        () => setShowCreateForm(true)}>
                                         Create a Book Club
                                     </button>
                                 }
@@ -113,23 +100,18 @@ const PrivateProfileComponent = (uid) => {
                                 }
                             </>
                         }
-
-
                         {
                             bookClub.length !== 0 &&
                             // only show this stuff if we already have a book club
                             <>
-                                <h1>THERE IS A BOOK CLUB</h1>
-                                <p> eventually only show this stuff if we already have a book club</p>
-                                <h5>Current Book</h5>
-                                <br/><br/>
-                                <h5>Members</h5>
-                                <BookClubMembersComponent/>
+                                <BookClubComponent/>
                             </>
                         }
 
                     </div>
                 }
+
+                {/*<BookClubMembersComponent/>*/}
 
                     <button className="btn wd-pink-button" onClick={handleLogout}>
                         Logout

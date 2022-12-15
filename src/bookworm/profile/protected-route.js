@@ -10,4 +10,4 @@ const ProtectedRoute = ({children}) => {
         return (<Navigate to={'/login'}/>)
     }
 }
-export default ProtectedRoute
+export default ProtectedRoute;

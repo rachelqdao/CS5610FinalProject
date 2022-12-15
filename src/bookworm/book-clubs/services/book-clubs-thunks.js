@@ -1,5 +1,11 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {createBookClub, findAllBookClubs, findBookClubByOwnerID} from "./book-clubs-service";
+import {
+    addMemberToBookClub,
+    createBookClub,
+    findAllBookClubs,
+    findBookClubByOwnerID,
+    findMembersByBCID
+} from "./book-clubs-service";
 
 export const createBookClubThunk = createAsyncThunk(
     "createBookClub",
@@ -16,3 +22,17 @@ export const findAllBookClubsThunk = createAsyncThunk(
     async () => findAllBookClubs()
 )
 
+export const findMembersByBCIDThunk = createAsyncThunk(
+    "findMembersByBCID",
+    async (bcID) => findMembersByBCID(bcID)
+)
+
+export const addMemberToBookClubThunk = createAsyncThunk(
+    'addMemberToBookClub',
+    async ({bcID, mid, username}) => addMemberToBookClub(bcID, mid, username)
+)
+
+// export const addMemberToBookClubThunk = createAsyncThunk(
+//     "addMemberToBookClub",
+//     async (bcID, mid, username) => addMemberToBookClub(bcID, mid, username)
+// )

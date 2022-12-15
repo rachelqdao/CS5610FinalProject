@@ -19,11 +19,12 @@ import reviewsReducer from "./bookworm/reviews/reviews-reducer";
 import readingListsReducer from "./bookworm/readinglists/reading-lists-reducer";
 import bookReactionsReducer from "./bookworm/reactions/reactions-reducer.js"
 import EditProfileComponent from "./bookworm/profile/edit-profile";
-import BookClubsReducer from "./bookworm/book-clubs/services/book-clubs-reducer";
+import BookClubsReducer from "./bookworm/book-clubs/book-clubs-reducer";
 
 const store = configureStore({
     reducer: {
         bookClubs: BookClubsReducer,
+        currentBookClub: BookClubsReducer,
         books: SearchReducer,
         booksByAuthor: SearchReducer,
         booksByKeyword: SearchReducer,

@@ -18,3 +18,17 @@ export const findAllBookClubs = async () => {
     const response = await api.get(BOOK_CLUB_API);
     return response.data;
 }
+
+export const findMembersByBCID = async (bcID) => {
+    const response = await api.get(`${BOOK_CLUB_API}/${bcID}/members`)
+    console.log(`in findMembersByBCID service`)
+    return response.data;
+}
+
+export const addMemberToBookClub = async (bcID, mid, username) => {
+    console.log(`SERVICE bcid: ${bcID}`)
+    console.log(`SERVICE mid: ${mid}`)
+    console.log(`SERVICE member username: ${username}`)
+    const response = await api.put(`${BOOK_CLUB_API}/${bcID}/${mid}/${username}`)
+    return response.data;
+}
