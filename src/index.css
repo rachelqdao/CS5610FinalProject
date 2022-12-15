@@ -60,6 +60,7 @@ a:hover {
 
 .wd-green-button:hover {
   background-color: rgb(17, 121, 130) !important;
+  color: white;
   transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -90,3 +91,13 @@ a:hover {
 .wd-green-link:hover {
   color: rgb(17, 121, 130) !important;
 }
+
+/*.wd-white-link {*/
+/*  text-decoration: none !important;*/
+/*  color: white !important;*/
+/*  z-index: 0;*/
+/*}*/
+
+/*.wd-green-link:hover {*/
+/*  color: white !important;*/
+/*}*/

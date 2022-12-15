@@ -18,6 +18,7 @@ import UsersReducer from "./bookworm/users/users-reducer"
 import CurrentUser from "./bookworm/users/current-user";
 import reviewsReducer from "./bookworm/reviews/reviews-reducer";
 import readingListsReducer from "./bookworm/readinglists/reading-lists-reducer";
+import EditProfileComponent from "./bookworm/profile/edit-profile";
 
 const store = configureStore({
     reducer: {
@@ -51,6 +52,7 @@ function App() {
                                         <ProfileComponent/>
                                     </ProtectedRoute>
                                 }/>
+                                <Route path={'edit-profile'} element = {<EditProfileComponent/>}/>
                             </Routes>
                         </div>
                     </BrowserRouter>
