@@ -14,14 +14,9 @@ import PublicProfileComponent from "./public-profile";
 import {useLocation} from "react-router-dom";
 
 const ProfileComponent = () => {
-    // const {currentUser} = useSelector((state) => state.users)
-    // const [userID] = useSearchParams({id: ''})
     const {pathname} = useLocation();
     const paths = pathname.split('/')
     const uid = paths[2];
-
-    // const isBookClub = currentUser.userType === "BOOK CLUB OWNER";
-    // const isAdmin = currentUser.userType === "ADMIN";
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -29,45 +24,13 @@ const ProfileComponent = () => {
         dispatch(logoutThunk())
         navigate('/')
     }
-    // console.log(currentUser);
 
-    // return (
-    //     <>
-    //
-    //
-    //         {
-    //             currentUser &&
-    //             <>
-    //                 <h2>Welcome {currentUser.firstName} {currentUser.lastName}</h2>
-    //                 <h5>Username: {currentUser.username}</h5>
-    //                 <h5>Email: {currentUser.email}</h5>
-    //                 <h5>User Type: {currentUser.userType}</h5>
-    //                 <h5>Date Joined: {currentUser.dateJoined}</h5>
-    //             </>
-    //         }
-    //
-    //         <div>
-    //             <h5>My Reviews</h5>
-    //             {/*<ReviewsComponent showBrowseToReview={true}/>*/}
-    //         </div>
-    //
-    //         <div>
-    //             <ReadingListsForm/>
-    //             <ReadingListItemComponent/>
-    //         </div>
-    //
-    //         <button className="btn wd-pink-button" onClick={handleLogout}>
-    //             Logout
-    //         </button>
-    // </>
-    // )
     return(
         <>
             <Routes>
                 <Route index element={<PrivateProfileComponent/>}/>
                 <Route path="/*" element={<PublicProfileComponent uid={uid}/>}/>
             </Routes>
-
         </>
     )
 }

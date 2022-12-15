@@ -19,7 +19,8 @@ const UsersComponent = () => {
                     users.map((user) =>
                         <li key={user._id} className={"list-group-item"}>
                             {user.username}
-                        </li>)
+                        </li>
+                    )
                 }
             </ul>
         </>

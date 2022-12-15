@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {logoutThunk} from "../users/users-thunks";
-import {Link, useNavigate, useSearchParams} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import ReadingListsForm from "../readinglists/reading-lists-form";
 import React, {useEffect} from "react";
 import {findReadingListsByUserIDThunk} from "../readinglists/services/reading-lists-thunks";
@@ -8,11 +8,12 @@ import ReadingListItemComponent from "../readinglists/reading-lists-item";
 import ReviewItemComponent from "../reviews/review-item";
 import BookClubMembersComponent from "./book-club-members";
 import {findBookByKeywordThunk} from "../search/services/search-thunks";
-import HomeCarouselItemComponent from "../home/home-carousel-item";
+// import HomeCarouselItemComponent from "../home/home-carousel-item";
 
 const PrivateProfileComponent = (uid) => {
     const {currentUser, users} = useSelector((state) => state.users)
     const isAdmin = currentUser.userType === "ADMIN";
+    console.log(isAdmin);
     const isBCO = currentUser.userType === "BOOK CLUB OWNER";
 
     const dispatch = useDispatch()
@@ -54,24 +55,28 @@ const PrivateProfileComponent = (uid) => {
                         <h5>Date Joined: {currentUser.dateJoined}</h5>
                     </>
                 }
-                <div>
+                <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
                     <ReadingListsForm/>
                     <ReadingListItemComponent/>
                 </div>
                 {
                     !isAdmin && !isBCO &&
-                    <ReviewItemComponent/>
+                    <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
+                        <h4 className="fw-bolder">Your Reviews</h4>
+                        <ReviewItemComponent/>
+                    </div>
                 }
 
                 {
                     isBCO &&
-                    <>
+                    <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
+
                         <h5>Current Book</h5>
                         {/*<HomeCarouselItemComponent book={{currentBook}}/>*/}
                         <br/><br/>
                         <h5>Members</h5>
                         <BookClubMembersComponent/>
-                    </>
+                    </div>
                 }
 
                     <button className="btn wd-pink-button" onClick={handleLogout}>

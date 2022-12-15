@@ -41,15 +41,13 @@ const PublicProfileComponent = (uid) => {
             <h2>{publicUser.firstName} {publicUser.lastName}</h2>
             <h5>Username: {publicUser.username}</h5>
             <h5>User Type: {publicUser.userType}</h5>
-
+            <br/><br/>
             {
                 !isAdmin && !isBCO &&
-                <>
-                    <br/><br/>
+                <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
                     <h5>User Reviews</h5>
                     <ReviewItemComponent/>
-
-                </>
+                </div>
             }
 
             {/*user reading lists should show*/}
