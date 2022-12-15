@@ -8,7 +8,7 @@ const UsersComponent = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findAllUsersThunk())
-    }, [])
+    })
 
     return (
         <>

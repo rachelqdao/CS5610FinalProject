@@ -4,7 +4,6 @@ import {Link, useNavigate, useSearchParams} from "react-router-dom";
 import ReadingListsForm from "../readinglists/reading-lists-form";
 import React, {useEffect} from "react";
 import {findReadingListsByUserIDThunk} from "../readinglists/services/reading-lists-thunks";
-import ReadingListItemComponent from "../readinglists/reading-lists-item";
 import ReviewItemComponent from "../reviews/review-item";
 import BookClubMembersComponent from "./book-club-members";
 import {findBookByKeywordThunk} from "../search/services/search-thunks";
@@ -34,18 +33,7 @@ const ProfileComponent = () => {
 
     // return (
     //     <>
-    //         <div className={"row"}>
-    //             <div className='col-10'>
-    //                 <h1>Profile</h1>
-    //             </div>
-    //             <div className="col-2">
-    //                 <button className="btn wd-green-button float-end" >
-    //                     <Link to="/edit-profile" className="text-decoration-none text-white">
-    //                         Edit Profile
-    //                     </Link>
-    //                 </button>
-    //             </div>
-    //         </div>
+    //
     //
     //         {
     //             currentUser &&

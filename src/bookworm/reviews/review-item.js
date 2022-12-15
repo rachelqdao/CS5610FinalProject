@@ -25,7 +25,7 @@ const ReviewItemComponent = () => {
                             <div>
                                 <div className={"mb-3"}>
                                     {/*username*/}
-                                    <Link to={`/profile?id=${review.userID._id}`}>
+                                    <Link to={`/profile/${review.userID._id}`}>
                                         <h5 className={"fw-bold wd-green m-1 ms-0"}>{review.userID.username}</h5>
                                     </Link>
 
@@ -93,4 +93,4 @@ const ReviewItemComponent = () => {
     )
 }
 
-export default ReviewItemComponent
+export default ReviewItemComponent;
