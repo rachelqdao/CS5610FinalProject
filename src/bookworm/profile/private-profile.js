@@ -2,12 +2,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {logoutThunk} from "../users/users-thunks";
 import {Link, useNavigate} from "react-router-dom";
 import ReadingListsForm from "../readinglists/reading-lists-form";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {findReadingListsByUserIDThunk} from "../readinglists/services/reading-lists-thunks";
 import ReadingListItemComponent from "../readinglists/reading-lists-item";
 import ReviewItemComponent from "../reviews/review-item";
-import BookClubMembersComponent from "./book-club-members";
+import BookClubMembersComponent from "../book-clubs/book-club-members";
 import {findBookByKeywordThunk} from "../search/services/search-thunks";
+import BookClubsForm from "../book-clubs/services/book-clubs-form";
 // import HomeCarouselItemComponent from "../home/home-carousel-item";
 
 const PrivateProfileComponent = (uid) => {
@@ -16,6 +17,7 @@ const PrivateProfileComponent = (uid) => {
     /*console.log(isAdmin);*/
     console.log(JSON.stringify(currentUser))
     const isBCO = currentUser.userType === "BOOK CLUB OWNER";
+    const [showCreateForm, setShowCreateForm] = useState(false);
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -29,6 +31,9 @@ const PrivateProfileComponent = (uid) => {
         dispatch(findReadingListsByUserIDThunk(currentUser._id))
     }, [])
 
+    const openBookClubForm = () => {
+        setShowCreateForm(true)
+    }
     // const currentBook = dispatch(findBookByKeywordThunk("adventure"))[0]
 
     return (
@@ -73,11 +78,33 @@ const PrivateProfileComponent = (uid) => {
                     isBCO &&
                     <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
 
-                        <h5>Current Book</h5>
-                        {/*<HomeCarouselItemComponent book={{currentBook}}/>*/}
-                        <br/><br/>
-                        <h5>Members</h5>
-                        <BookClubMembersComponent/>
+                        {
+                            // only show this stuff if we do not yet have a book club
+                            <>
+                                <p>eventually only show this stuff if we do not yet have a book club</p>
+                                <button className='btn wd-green-button' onClick={openBookClubForm}>
+                                    Create a Book Club
+                                </button>
+
+                                {
+                                    showCreateForm &&
+                                    <BookClubsForm ownerID={currentUser._id}/>
+                                }
+                            </>
+                        }
+
+
+                        {
+                            // only show this stuff if we already have a book club
+                            <>
+                                <p> eventually only show this stuff if we already have a book club</p>
+                                <h5>Current Book</h5>
+                                <br/><br/>
+                                <h5>Members</h5>
+                                <BookClubMembersComponent/>
+                            </>
+                        }
+
                     </div>
                 }
 

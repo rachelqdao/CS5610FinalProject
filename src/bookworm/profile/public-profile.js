@@ -5,7 +5,7 @@ import {useEffect} from "react";
 import {findReadingListsByUserIDThunk} from "../readinglists/services/reading-lists-thunks";
 // import ReadingListItemComponent from "../readinglists/reading-lists-item";
 import ReviewItemComponent from "../reviews/review-item";
-import BookClubMembersComponent from "./book-club-members";
+import BookClubMembersComponent from "../book-clubs/book-club-members";
 // import HomeCarouselItemComponent from "../home/home-carousel-item";
 
 const PublicProfileComponent = (uid) => {
