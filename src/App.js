@@ -18,6 +18,7 @@ import UsersReducer from "./bookworm/users/users-reducer"
 import CurrentUser from "./bookworm/users/current-user";
 import reviewsReducer from "./bookworm/reviews/reviews-reducer";
 import readingListsReducer from "./bookworm/readinglists/reading-lists-reducer";
+import bookReactionsReducer from "./bookworm/reactions/reactions-reducer.js"
 import EditProfileComponent from "./bookworm/profile/edit-profile";
 
 const store = configureStore({
@@ -28,7 +29,8 @@ const store = configureStore({
         bookDetails: DetailsReducer,
         users: UsersReducer,
         reviews: reviewsReducer,
-        readingLists: readingListsReducer
+        readingLists: readingListsReducer,
+        reactions: bookReactionsReducer
     }
 })
 
