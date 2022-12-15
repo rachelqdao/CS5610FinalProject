@@ -8,3 +8,13 @@ export const createBookClub = async (bookClub) => {
     const response = await api.post(BOOK_CLUB_API, bookClub);
     return response.data;
 }
+
+export const findBookClubByOwnerID = async (oid) => {
+    const response = await api.get(`${BOOK_CLUB_API}/${oid}`);
+    return response.data;
+}
+
+export const findAllBookClubs = async () => {
+    const response = await api.get(BOOK_CLUB_API);
+    return response.data;
+}
