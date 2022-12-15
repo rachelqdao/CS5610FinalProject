@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {logoutThunk} from "../users/users-thunks";
-import {useNavigate, useSearchParams} from "react-router-dom";
+import {Link, useNavigate, useSearchParams} from "react-router-dom";
 import ReadingListsForm from "../readinglists/reading-lists-form";
 import React, {useEffect} from "react";
 import {findReadingListsByUserIDThunk} from "../readinglists/services/reading-lists-thunks";
@@ -9,6 +9,8 @@ import ReadingListItemComponent from "../readinglists/reading-lists-item";
 const ProfileComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
     const [userID] = useSearchParams({id: ''})
+    // const isBookClub = currentUser.userType === "BOOK CLUB OWNER";
+    // const isAdmin = currentUser.userType === "ADMIN";
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -16,6 +18,7 @@ const ProfileComponent = () => {
         dispatch(logoutThunk())
         navigate('/')
     }
+    // console.log(currentUser);
 
     useEffect(() => {
         // TODO: finds reading list based on profile id in URL,
@@ -29,36 +32,68 @@ const ProfileComponent = () => {
     }, [])
 
     return (
-        <div className={"row"}>
-            <div className={"d-none d-xl-flex col-1"}></div>
-            <div className={"col-12 col-xl-10"}>
-                <div className={"mb-3"}>
+        <>
+            <div className={"row"}>
+                <div className='col-10'>
                     <h1>Profile</h1>
-                    {
-                        currentUser &&
-                        <>
-                            <h2>Welcome {currentUser.firstName} {currentUser.lastName}</h2>
-                            <h5>Username: {currentUser.username}</h5>
-                            <h5>Email: {currentUser.email}</h5>
-                            <h5>User Type: {currentUser.userType}</h5>
-                            <h5>Date Joined: {currentUser.dateJoined}</h5>
-                        </>
-                    }
-                    <button className="btn wd-pink-button" onClick={handleLogout}>
-                        Logout
-                    </button>
-
                 </div>
-
-                <div>
-                    <ReadingListsForm/>
-                    <ReadingListItemComponent/>
+                <div className="col-2">
+                    <button className="btn wd-green-button float-end" >
+                        <Link to="/edit-profile" className="text-decoration-none text-white">
+                            Edit Profile
+                        </Link>
+                    </button>
                 </div>
             </div>
-            <div className={"d-none d-xl-flex col-1"}></div>
 
-        </div>
+            {
+                currentUser &&
+                <>
+                    <h2>Welcome {currentUser.firstName} {currentUser.lastName}</h2>
+                    <h5>Username: {currentUser.username}</h5>
+                    <h5>Email: {currentUser.email}</h5>
+                    <h5>User Type: {currentUser.userType}</h5>
+                    <h5>Date Joined: {currentUser.dateJoined}</h5>
+                </>
+            }
+
+            <div>
+                <h5>My Reviews</h5>
+                {/*<ReviewsComponent showBrowseToReview={true}/>*/}
+            </div>
+
+            <div>
+                <ReadingListsForm/>
+                <ReadingListItemComponent/>
+            </div>
+
+            <button className="btn wd-pink-button" onClick={handleLogout}>
+                Logout
+            </button>
+    </>
     )
 }
 
-export default ProfileComponent
+export default ProfileComponent;
+
+// flexibility
+//         <div className={"row"}>
+//             <div className={"col-12 col-xl-10"}>
+//                 <div className={"mb-3"}>
+//                     <h1>Profile</h1>
+//
+//                     <button className="btn wd-pink-button" onClick={handleLogout}>
+//                         Logout
+//                     </button>
+//
+//                 </div>
+//
+//                 <div>
+//                     <ReadingListsForm/>
+//                     <ReadingListItemComponent/>
+//                 </div>
+//             </div>
+//             <div className={"d-none d-xl-flex col-1"}></div>
+//         </div>
+//     )
+// }

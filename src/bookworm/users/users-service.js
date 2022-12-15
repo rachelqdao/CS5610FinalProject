@@ -42,6 +42,9 @@ export const deleteUser = async (uid) => {
 
 }
 
-export const updateUser = async (uid, userUpdates) => {
-
+//  MAY NEED TO REMOVE COMMENTS
+export const updateUser = async (userUpdates) => {
+    console.log(`Trying to update at: ${BASE_URL}/users/${userUpdates._id}`)
+    await axios.put(`${BASE_URL}/users/${userUpdates._id}`, userUpdates);
+    return userUpdates;
 }
