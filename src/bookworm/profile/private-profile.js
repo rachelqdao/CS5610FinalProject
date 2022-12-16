@@ -9,6 +9,7 @@ import ReviewItemComponent from "../reviews/review-item";
 import BookClubsForm from "../book-clubs/book-clubs-form";
 import {findAllBookClubsThunk} from "../book-clubs/services/book-clubs-thunks";
 import BookClubComponent from "../book-clubs/book-club";
+import UsersComponent from "../users";
 // import HomeCarouselItemComponent from "../home/home-carousel-item";
 
 const PrivateProfileComponent = (uid) => {
@@ -29,7 +30,6 @@ const PrivateProfileComponent = (uid) => {
     }
 
     useEffect(() => {
-        console.log(JSON.stringify(currentUser))
         dispatch(findReadingListsByUserIDThunk(currentUser._id))
     }, [])
 
@@ -111,10 +111,9 @@ const PrivateProfileComponent = (uid) => {
 
                     </div>
                 }
-
-                    <button className="btn wd-pink-button" onClick={handleLogout}>
-                        Logout
-                    </button>
+                <button className="btn wd-pink-button" onClick={handleLogout}>
+                    Logout
+                </button>
             </div>
         </>
     )

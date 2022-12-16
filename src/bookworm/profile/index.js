@@ -35,25 +35,3 @@ const ProfileComponent = () => {
 }
 
 export default ProfileComponent;
-
-// flexibility
-//         <div className={"row"}>
-//             <div className={"col-12 col-xl-10"}>
-//                 <div className={"mb-3"}>
-//                     <h1>Profile</h1>
-//
-//                     <button className="btn wd-pink-button" onClick={handleLogout}>
-//                         Logout
-//                     </button>
-//
-//                 </div>
-//
-//                 <div>
-//                     <ReadingListsForm/>
-//                     <ReadingListItemComponent/>
-//                 </div>
-//             </div>
-//             <div className={"d-none d-xl-flex col-1"}></div>
-//         </div>
-//     )
-// }

@@ -1,120 +1,155 @@
 import {useDispatch, useSelector} from "react-redux";
-import {useNavigate} from "react-router-dom";
-// import ReadingListsForm from "../readinglists/reading-lists-form";
+import {Link, useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {findReadingListsByUserIDThunk} from "../readinglists/services/reading-lists-thunks";
-// import ReadingListItemComponent from "../readinglists/reading-lists-item";
 import ReviewItemComponent from "../reviews/review-item";
 import {addMemberToBookClubThunk, findAllBookClubsThunk} from "../book-clubs/services/book-clubs-thunks";
 import {findAllUsersThunk} from "../users/users-thunks";
 import ReadingListsItem from "../readinglists/reading-lists-item";
-// import HomeCarouselItemComponent from "../home/home-carousel-item";
 
 const PublicProfileComponent = (uid) => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {users, currentUser} = useSelector(state => state.users);
     const {bookClubs} = useSelector((state) => state.bookClubs);
-    console.log("in public profile 1 " + users);
+    const {readingLists} = useSelector((state) => state.readingLists);
+    const {reviews} = useSelector((state) => state.reviews);
 
-    const [publicUser, setPublicUser] = useState(users.filter(x => x._id === uid.uid)[0]);
-    const [isAdmin, setIsAdmin] = useState(publicUser.userType === 'ADMIN');
-    const [isBCO, setIsBCO] = useState(publicUser.userType === "BOOK CLUB OWNER");
-    const [joinBookClub, setJoinBookClub] = useState(currentUser.userType === "USER" && isBCO);
-    const [bookClub, setBookClub] = useState(bookClubs.filter(bc => bc.ownerID === publicUser._id));
-
-
-    // useEffect(() => {
-    //     console.log("in use effect")
-    //     setPublicUser(users.filter(x => x._id === uid.uid)[0]);
-    //     setIsAdmin(publicUser.userType === 'ADMIN');
-    //     setIsBCO(publicUser.userType === "BOOK CLUB OWNER");
-    //     setJoinBookClub(currentUser.userType === "USER" && isBCO);
-    //     setBookClub(bookClubs.filter(bc => bc.ownerID === publicUser._id));
-    // }, [users, bookClubs, currentUser, isBCO, isAdmin,
-    //     publicUser._id, joinBookClub, bookClub, publicUser.userType, uid.uid]);
-
-    // useEffect(() => {
-    //     // dispatch(findAllUsersThunk());
-    // }, [dispatch, isAdmin, isBCO, joinBookClub, publicUser])
-
-    useEffect(() => {
-        dispatch(findAllBookClubsThunk());
-    }, [dispatch])
+    const [publicUser, setPublicUser] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(null);
+    const [isBCO, setIsBCO] = useState(null);
+    const [joinBookClub, setJoinBookClub] = useState(null);
+    const [bookClubArray, setBookClubArray] = useState(null);
+    const [bookClub, setBookClub] = useState(null);
+    const [publicUserHasBookClub, setPublicUserHasBookClub] = useState(null);
+    // const [bookClubMembers, setBookClubMembers] = useState(null);
 
     useEffect(() => {
         dispatch(findAllUsersThunk());
     }, [])
     
     const handleJoinBookClub = () => {
-        const bcID = bookClub[0]._id;
+        const bcID = bookClub._id;
         const mid = currentUser._id;
         const username = currentUser.username;
         dispatch(addMemberToBookClubThunk({bcID, mid, username}));
     }
 
     useEffect(() => {
-        dispatch(findReadingListsByUserIDThunk(currentUser._id))
-    }, [currentUser._id, dispatch])
+        if (currentUser && currentUser._id === uid.uid) {
+            navigate('/profile')
+        }
+    }, [])
+
 
     useEffect(() => {
-        if (currentUser._id === uid.uid) {
-            navigate('/profile')
-            return
+        if (users.length !== 0) {
+            setPublicUser(users.filter(x => x._id === uid.uid)[0])
         }
-    }, [currentUser._id, uid.uid, navigate])
+    }, [users])
 
+
+    useEffect(() => {
+        if (publicUser) {
+            setIsAdmin(publicUser.userType === "ADMIN");
+            setIsBCO(publicUser.userType === "BOOK CLUB OWNER");
+        }
+    }, [publicUser])
+
+    useEffect(() => {
+        if (bookClubs && publicUser) {
+            setBookClubArray(bookClubs.filter(bc => bc.ownerID === publicUser._id))
+        }
+    }, [bookClubs, publicUser])
+
+    useEffect(() => {
+        if (bookClubArray) {
+            setPublicUserHasBookClub(bookClubArray.length > 0)
+        }
+    }, [bookClubArray])
+
+    useEffect(() => {
+        if (publicUserHasBookClub) {
+            setBookClub(bookClubArray[0])
+        }
+    }, [publicUserHasBookClub])
+
+    // useEffect(() => {
+    //     if (bookClub) {
+    //         setBookClubMembers(bookClub.members)
+    //     }
+    // }, [bookClub])
+
+    useEffect(() => {
+        if (publicUser && currentUser && bookClub) {
+            if (currentUser.userType === "USER" && isBCO) {
+                // see if the current user is already part of this book club
+                const membersArray = bookClub.members.filter(x => x._id === currentUser._id);
+                setJoinBookClub(membersArray.length === 0);
+            }
+        }
+    }, [publicUser, bookClub])
 
     return(
         <>
             {
-                currentUser && publicUser && users &&
+                !publicUser && <>loading...</>
+            }
+            {
+                publicUser &&
                 <>
-                    {console.log("in public profile 2 " + users)}
-                    {
-                        currentUser && users &&
-                        <>
-                            <h2>{publicUser.firstName} {publicUser.lastName}</h2>
-                            <h5>Username: {publicUser.username}</h5>
-                            <h5>User Type: {publicUser.userType}</h5>
-                            <br/><br/>
-                        </>
-                    }
+                    <h2>{publicUser.firstName} {publicUser.lastName}</h2>
+                    <h5>Username: {publicUser.username}</h5>
+                    <h5>User Type: {publicUser.userType}</h5>
+                    <br/><br/>
+
+                    <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
+                        <h3 className="fw-bold mb-1">User Reading Lists</h3>
+                        {
+                            readingLists &&
+                            <ReadingListsItem/>
+                        }
+                    </div>
+                    <br/>
 
                     {
                         publicUser.userType === "USER" &&
                         <>
                             <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
                                 <h3 className="fw-bold mb-1">User Reviews</h3>
-                                <ReviewItemComponent/>
+                                {
+                                    reviews &&
+                                    <ReviewItemComponent/>
+                                }
                             </div>
-
                             <br/>
-
-                            <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
-
-                                <h3 className="fw-bold mb-1">User Reading Lists</h3>
-                                <ReadingListsItem/>
-                            </div>
                         </>
                     }
+
                     {
-                        isBCO && bookClub.length > 0 &&
+                        isBCO && !publicUserHasBookClub &&
+                        <h3>This user does not have a book club yet!</h3>
+                    }
+
+                    {
+                        bookClub && isBCO && publicUserHasBookClub &&
                         <>
-                            <h1>{`Name: ${bookClub[0].name}`}</h1>
+                            <h2>{`Book Club Name: ${bookClub.name}`}</h2>
+                            <br/>
                             <h5>Members</h5>
-                            {/*<ul className="list-group">*/}
-                            {/*    {*/}
-                            {/*        bookClubs[0].members.map((member) => {*/}
-                            {/*            return(*/}
-                            {/*                <li className="list-group-item">{member.username}</li>*/}
-                            {/*            )*/}
-                            {/*        })*/}
-                            {/*    }*/}
-                            {/*</ul>*/}
-
-
-                            {/*// need to query for the current book*/}
+                            <ul className="list-group">
+                                {
+                                    bookClub.members.map((member) => {
+                                        return(
+                                            <li className="list-group-item" key={member._id}>
+                                                <Link to={`/profile/${member._id}`}>{member.username}</Link>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                            <br/>
+                            {/*need to query for current book*/}
 
                             {
                                 joinBookClub &&
@@ -124,9 +159,9 @@ const PublicProfileComponent = (uid) => {
                             }
                         </>
                     }
+
                 </>
             }
-
         </>
         )
 }

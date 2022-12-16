@@ -65,7 +65,6 @@ const HomeComponent = () => {
     }, [hasReviews, toggleVariable])
 
     useEffect(() => {
-        console.log(bookDetails)
     }, [bookDetails, toggleVariable])
 
 

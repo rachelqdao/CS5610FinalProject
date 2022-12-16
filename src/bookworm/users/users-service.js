@@ -29,10 +29,10 @@ export const login = async (user) => {
 }
 
 
-/*export const profile = async () => {
-    const response = await api.post(`${BASE_URL}/profile`)
-    return response.data
-}*/
+// export const profile = async () => {
+//     const response = await api.post(`${BASE_URL}/profile`)
+//     return response.data
+// }
 
 
 export const logout = async () => {

@@ -43,12 +43,12 @@ const NavigationBar = () => {
                                 Search
                             </Link>
                         </li>
-                     {/*   <li className="nav-item">
-                            <Link to={"/users"}
-                                  className={`nav-link ${active === 'users' ? 'active fw-bold' : ''}`}>
-                                Users
-                            </Link>
-                        </li>*/}
+                     {/*<li className="nav-item">*/}
+                     {/*       <Link to={"/users"}*/}
+                     {/*             className={`nav-link ${active === 'users' ? 'active fw-bold' : ''}`}>*/}
+                     {/*           Users*/}
+                     {/*       </Link>*/}
+                     {/*   </li>*/}
                     </ul>
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
                         {

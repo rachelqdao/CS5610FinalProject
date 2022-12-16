@@ -1,6 +1,7 @@
 import React, {useEffect} from "react"
 import {findAllUsersThunk} from "./users-thunks";
 import {useDispatch, useSelector} from "react-redux";
+import {Link} from "react-router-dom";
 
 const UsersComponent = () => {
     const {users, loading} = useSelector((state) => state.users)
@@ -18,7 +19,7 @@ const UsersComponent = () => {
                 {
                     users.map((user) =>
                         <li key={user._id} className={"list-group-item"}>
-                            {user.username}
+                            <Link to={`/profile/${user._id}`}>{user.name}</Link>
                         </li>
                     )
                 }
