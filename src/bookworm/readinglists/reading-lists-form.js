@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {createReadingListThunk} from "./services/reading-lists-thunks";
 
-const ReadingListsForm = () => {
+const ReadingListsForm = (isCurrentUser) => {
     const [toggleForm, setToggleForm] = useState(false)
     const [listName, setListName] = useState('')
     const [description, setDescription] = useState('')
@@ -22,13 +22,14 @@ const ReadingListsForm = () => {
         setReadingList({'listName': listName, 'description': description})
     }, [listName, description])
 
+
     return (
         <>
             {/*header*/}
             <div className={"mb-3"}>
                 {/*create new reading list */}
 
-                {   !toggleForm &&
+                {   !toggleForm && isCurrentUser.isCurrentUser &&
                     <button
                         className={"btn wd-green-button float-end"}
                         onClick={handleCreateListClick}

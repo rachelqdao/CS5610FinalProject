@@ -12,12 +12,14 @@ const ReadingListItemComponent = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        if (userID.get('id') === '' || userID.get('id') === currentUser._id) {
-            setIsCurrentUser(true)
-        } else {
-            setIsCurrentUser(false)
+        if (currentUser) {
+            if (userID.get('id') === '' || userID.get('id') === currentUser._id) {
+                setIsCurrentUser(true)
+            } else {
+                setIsCurrentUser(false)
+            }
         }
-    }, [currentUser._id, userID])
+    }, [currentUser, userID])
 
     return (
         readingLists &&

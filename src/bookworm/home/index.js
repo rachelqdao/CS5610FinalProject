@@ -24,6 +24,7 @@ const HomeComponent = () => {
 
     const dispatch = useDispatch()
 
+    // useEffects for carousels
     useEffect(() => {
         dispatch(findBookByAuthorThunk(authorOfWeek))
     }, [authorOfWeek, dispatch])
@@ -32,6 +33,8 @@ const HomeComponent = () => {
         dispatch(findBookByKeywordThunk(keyword))
     }, [keyword, dispatch])
 
+
+    // useEffects for latest reviews
     useEffect(() => {
         if (currentUser) {
             dispatch(findReviewsByUserIDThunk(currentUser._id))
@@ -68,9 +71,11 @@ const HomeComponent = () => {
     }, [bookDetails, toggleVariable])
 
 
+    // useEffect for book clubs
     useEffect(() => {
-        dispatch(findAllBookClubsThunk)
+        dispatch(findAllBookClubsThunk())
     }, [])
+
 
     return (
         <>
@@ -242,14 +247,16 @@ const HomeComponent = () => {
                     <p className={"fw-bold m-0 text-secondary"}>Find a book club!</p>
                     <hr/>
                     <ul className="list-group">
-                        {
-                            bookClubs.map((bc) => {
+                        {   bookClubs &&
+
+                            JSON.stringify(bookClubs)
+                       /*     bookClubs.map((bc) => {
                                 return(
                                     <li className="list-group-item" key={bc._id}>
-                                        <Link to={`/profile/${bc.ownerID}`}>{bc.name}</Link>
+                                        <Link to={`/profile?id=${bc.ownerID}`}>{bc.name}</Link>
                                     </li>
                                 )
-                            })
+                            })*/
                         }
                     </ul>
                 </div>

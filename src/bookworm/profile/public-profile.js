@@ -39,14 +39,14 @@ const PublicProfileComponent = (uid) => {
         if (currentUser && currentUser._id === uid.uid) {
             navigate('/profile')
         }
-    }, [])
+    }, [uid.uid])
 
 
     useEffect(() => {
         if (users.length !== 0) {
             setPublicUser(users.filter(x => x._id === uid.uid)[0])
         }
-    }, [users])
+    }, [users, uid.uid])
 
 
     useEffect(() => {

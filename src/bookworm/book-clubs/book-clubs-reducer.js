@@ -33,7 +33,7 @@ const bookClubsReducer = createSlice({
                 _id: action.payload.mid,
                 username: action.payload.username
             }
-            state.bookClubs[index].members.push(newMember);
+            state.bookClubs[index] = state.bookClubs[index].members.push(newMember);
         },
 
     }
