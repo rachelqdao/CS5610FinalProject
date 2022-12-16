@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useSearchParams} from "react-router-dom";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {findBookBySearchTermThunk} from "./services/search-thunks";
 import ResultsComponent from "./results";
 import "./index.css"

@@ -19,7 +19,6 @@ const reviewsReducer = createSlice({
             state.reviews = action.payload
         },
         [findReviewsByUserIDThunk.fulfilled]: (state, action) => {
-            console.log(action.payload)
             state.reviews = action.payload
         },
         [deleteReviewThunk.fulfilled]: (state, action) => {

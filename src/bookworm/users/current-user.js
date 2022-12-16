@@ -1,3 +1,4 @@
+/*
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {profileThunk} from "./users-thunks";
@@ -7,7 +8,6 @@ const CurrentUser = ({children}) => {
     useEffect(() => {
         dispatch(profileThunk())
     })
-
     return (children)
 }
-export default CurrentUser
+export default CurrentUser*/

@@ -2,8 +2,69 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findBookByIDThunk} from "../details/services/details-thunks";
 
-const LatestReviewComponent = () => {
-    const {currentUser} = useSelector((state) => state.users)
+const LatestReviewComponent = (hasReviews) => {
+    const currentUser = useSelector((state) => state.users)
+    const reviews = useSelector((state) => state.reviews)
+    const bookDetails = useSelector((state) => state.bookDetails)
+
+    /*return(
+        <>
+            {JSON.stringify(bookDetails)}
+        </>
+    )*/
+
+    return (
+        <>
+            {currentUser
+                ?
+                <>
+                    <h3 className={"fw-bold mb-1"}>📖 Jump Back In</h3>
+                    <p className={"text-secondary"}>See what users are saying about this book you recently reviewed</p>
+                </>
+                :
+                <>
+                    <h3 className={"fw-bold mb-1"}>📖 Latest Reviews </h3>
+                    <p className={"text-secondary"}>See what users are saying about this book</p>
+                </>
+            }
+
+            {
+                hasReviews
+                    ?
+                    <>
+                        {/!*TODO: having trouble getting book details from id here*!/}
+                        <hr/>
+                        <h5 className={"fw-bold wd-green"}>Your Review: </h5>
+                        <div>
+                            {JSON.stringify(reviews[reviews.length - 1])}
+                        </div>
+                    </>
+                    :
+                    currentUser
+                        ?
+                        <>
+                            <p className={"d-flex fw-bold wd-pink justify-content-center m-0 mb-2 px-3"}>
+                                You haven't made any reviews yet!
+                            </p>
+                        </>
+                        :
+                        <>
+                            <p className={"d-flex fw-bold wd-pink justify-content-center m-0 mb-0 px-3"}>
+                                There aren't any reviews yet!
+                            </p>
+                            <p className={"d-flex fw-bold wd-pink justify-content-center m-0 mb-2 px-3"}>
+                                Create an account and be the first to leave a review 🥳
+                            </p>
+                        </>
+
+            }
+
+        </>
+    )
+
+
+
+/*    const {currentUser} = useSelector((state) => state.users)
     const {reviews} = useSelector((state) => state.reviews)
 
     const [hasReviews, setHasReviews] = useState(false)
@@ -48,7 +109,7 @@ const LatestReviewComponent = () => {
                 hasReviews
                 ?
                     <>
-                        {/*TODO: having trouble getting book details from id here*/}
+                        {/!*TODO: having trouble getting book details from id here*!/}
                         <hr/>
                         <h5 className={"fw-bold wd-green"}>Your Review: </h5>
                         <div>
@@ -76,7 +137,7 @@ const LatestReviewComponent = () => {
             }
 
         </>
-    )
+    )*/
 }
 
 export default LatestReviewComponent

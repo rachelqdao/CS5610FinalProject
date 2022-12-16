@@ -5,11 +5,17 @@ import {findBookByAuthorThunk, findBookByKeywordThunk} from "../search/services/
 import AuthorCarouselComponent from "./author-carousel";
 import KeywordCarouselComponent from "./keyword-carousel";
 import BrowseToReview from "../reviews/browse-to-review";
-import LatestReviewComponent from "./latest-review";
 import {findAllReviewsThunk, findReviewsByUserIDThunk} from "../reviews/services/reviews-thunk";
+import {findBookByIDThunk} from "../details/services/details-thunks";
+import {Link} from "react-router-dom";
 
 const HomeComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
+    const {reviews} = useSelector((state) => state.reviews)
+    const {bookDetails} = useSelector((state) => state.bookDetails)
+
+    const [hasReviews, setHasReviews] = useState(false)
+    const [toggleVariable, setToggleVariable] = useState(false)
 
     // dispatch apis to get book content
     const authorOfWeek = "Steven King"
@@ -28,10 +34,39 @@ const HomeComponent = () => {
     useEffect(() => {
         if (currentUser) {
             dispatch(findReviewsByUserIDThunk(currentUser._id))
-        } else {
-            dispatch(findAllReviewsThunk())
         }
     },[currentUser])
+
+    useEffect(() => {
+        if (!currentUser) {
+            dispatch(findAllReviewsThunk())
+        }
+    }, [currentUser])
+
+    useEffect(() => {
+        if (reviews[reviews.length - 1] === undefined || reviews[reviews.length - 1] === null) {
+            setHasReviews(false)
+            setToggleVariable(!toggleVariable)
+        }
+    }, [reviews])
+
+    useEffect(() => {
+        if (reviews[reviews.length - 1]) {
+            setHasReviews(true)
+            setToggleVariable(!toggleVariable)
+        }
+    }, [reviews])
+
+    useEffect(() => {
+        if (hasReviews) {
+            dispatch(findBookByIDThunk(reviews[reviews.length - 1].bookID))
+        }
+    }, [hasReviews, toggleVariable])
+
+    useEffect(() => {
+        console.log(bookDetails)
+    }, [bookDetails, toggleVariable])
+
 
     return (
         <>
@@ -48,6 +83,7 @@ const HomeComponent = () => {
                             width={200}
                             height={200}
                             className={"mx-auto d-block mb-3"}
+                            alt={"Book Cover"}
                         />
 
                         {
@@ -61,11 +97,123 @@ const HomeComponent = () => {
 
                     </div>
 
+                    {/*latest reviews*/}
                     <div className={"col-lg-6 mb-3 bg-white border border-2 border-dark border-opacity-10 p-4 rounded"}>
 
+                        {currentUser
+                            ?
+                            <div>
+                                <h3 className={"fw-bold mb-1"}>📖 Jump Back In</h3>
+                                <p className={"text-secondary"}>See what users are saying about this book you recently reviewed</p>
+                            </div>
+                            :
+                            <div>
+                                <h3 className={"fw-bold mb-1"}>📖 Latest Reviews </h3>
+                                <p className={"text-secondary"}>See what users are saying about this book</p>
+                            </div>
+                        }
 
-                        <LatestReviewComponent/>
+                        {
+                            hasReviews
+                                ?
+                                <div>
+                                    {
+                                        bookDetails && reviews[reviews.length - 1] &&
+                                        <Link to={`/details?identifier=${reviews[reviews.length - 1].bookID}`}>
+                                            <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 text-secondary"}>
+                                                <div className={"row"}>
+                                                    <div className={"col-4"}></div>
+                                                    <div className={"col-4"}>
+                                                        <img
+                                                            src={bookDetails.bookCover}
+                                                            className={'img-fluid w-100 rounded'}
+                                                            alt={"Cover Thumbnail"}
+                                                        />
+                                                    </div>
+                                                    <div className={"col-4"}></div>
+                                                </div>
+                                            </h5>
 
+                                            <h5 className={"d-flex fw-bold justify-content-center m-0 px-3"}>
+                                                {   bookDetails.volumeInfo.title
+                                                    ? bookDetails.volumeInfo.title
+                                                    : "No title available"
+                                                }
+                                            </h5>
+
+                                            <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 text-secondary"}>
+                                                {   bookDetails.volumeInfo.authors
+                                                    ? bookDetails.volumeInfo.authors.join(', ')
+                                                    : "No authors available"
+                                                }
+                                            </h5>
+                                        </Link>
+                                    }
+                                    <hr/>
+                                    <h5 className={"fw-bold wd-green"}>Your Review: </h5>
+                                    <div>
+                                        {
+                                            reviews[reviews.length - 1] &&
+                                            <>
+                                                <div className={"d-flex justify-content-center m-0 mb-2"}>
+                                                    {
+                                                        reviews[reviews.length - 1].rating === 1 &&
+                                                        <span className={"text-secondary"}>⭐</span>
+                                                    }
+
+                                                    {
+                                                        reviews[reviews.length - 1].rating === 2 &&
+                                                        <span className={"text-secondary"}>⭐⭐</span>
+                                                    }
+
+                                                    {
+                                                        reviews[reviews.length - 1].rating === 3 &&
+                                                        <span className={"text-secondary"}>⭐⭐⭐</span>
+                                                    }
+
+                                                    {
+                                                        reviews[reviews.length - 1].rating === 4 &&
+                                                        <span className={"text-secondary"}>⭐⭐⭐⭐</span>
+                                                    }
+
+                                                    {
+                                                        reviews[reviews.length - 1].rating === 5 &&
+                                                        <span className={"text-secondary"}>⭐⭐⭐⭐⭐</span>
+                                                    }
+                                                </div>
+
+                                                <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 text-secondary"}>
+                                                    {reviews[reviews.length - 1].reviewText}
+                                                </h5>
+                                                <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 wd-pink"}>
+                                                    <i className="bi bi-chat-left-quote-fill wd-pink me-2"></i>
+                                                    <span className={"wd-green"}>{reviews[reviews.length -1].userID.username}</span>
+                                                </h5>
+                                            </>
+                                        }
+
+
+                                    </div>
+                                </div>
+                                :
+                                currentUser
+                                    ?
+                                    <div>
+                                        <p className={"d-flex fw-bold wd-pink justify-content-center m-0 mb-2 px-3"}>
+                                            You haven't made any reviews yet!
+                                        </p>
+                                    </div>
+                                    :
+                                    <div>
+                                        <p className={"d-flex fw-bold wd-pink justify-content-center m-0 mb-0 px-3"}>
+                                            There aren't any reviews yet!
+                                        </p>
+                                        <p className={"d-flex fw-bold wd-pink justify-content-center m-0 mb-2 px-3"}>
+                                            Create an account and be the first to leave a review 🥳
+                                        </p>
+                                    </div>
+
+                        }
 
                     </div>
                 </div>
