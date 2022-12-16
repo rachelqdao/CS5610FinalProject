@@ -36,7 +36,7 @@ const ReviewItemComponent = () => {
                                     {
                                         pathname === '/profile' &&
                                         <Link to={`/details?identifier=${review.bookID}`}>
-                                            <h5 className={"fw-bold wd-green m-1 ms-0"}>{review.bookID}</h5>
+                                            <h5 className={"fw-bold wd-green m-1 ms-0"}>{review.title}</h5>
                                         </Link>
                                     }
 

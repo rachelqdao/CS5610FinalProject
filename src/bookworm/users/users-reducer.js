@@ -30,7 +30,6 @@ const UsersReducer = createSlice({
 
         [registerThunk.fulfilled]: (state, action) => {
             state.currentUser = action.payload
-            console.log(state.currentUser)
         },
         [registerThunk.rejected]: (state, action) => {
             state.error = action.payload
@@ -70,8 +69,6 @@ const UsersReducer = createSlice({
 
         [findUserByIDThunk.fulfilled]: (state, action) => {
             state.currentProfileInfo = action.payload
-            console.log('umm should not be 10')
-            console.log(state.currentProfileInfo)
         }
     }
 })

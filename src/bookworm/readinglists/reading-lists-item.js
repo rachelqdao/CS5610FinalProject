@@ -7,8 +7,6 @@ const ReadingListItemComponent = (isCurrentUser, isAnon) => {
     const {readingLists} = useSelector((state) => state.readingLists)
     const dispatch = useDispatch()
 
-    console.log(readingLists)
-
     return (
         readingLists.length !== 0 ?
         readingLists.map((readingList) =>

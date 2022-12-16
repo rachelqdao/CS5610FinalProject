@@ -13,14 +13,22 @@ import {findBookClubByOwnerIDThunk} from "../book-clubs/services/book-clubs-thun
 
 
 const ProfileComponent = () => {
-    const {currentUser, currentProfileInfo} = useSelector((state) => state.users)
+    const {currentUser, currentProfileInfo, users} = useSelector((state) => state.users)
     const [userID] = useSearchParams({id: ''})
     const [profileInfo, setProfileInfo] = useState()
     const [isCurrentUser, setIsCurrentUser] = useState(false)
     const [isAnon, setIsAnon] = useState(true)
+    const [publicUser, setPublicUser] = useState(null);
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (users.length !== 0) {
+            setPublicUser(users.filter(x => x._id === userID)[0])
+            console.log("PUBLIC USER " + publicUser)
+        }
+    }, [users, userID])
 
     const handleLogout = () => {
         dispatch(logoutThunk())
@@ -172,13 +180,30 @@ const ProfileComponent = () => {
                     </div>
                 }
 
+
+                <br/><br/>
+
+                {/*<BookClubsForm/>*/}
+                {/*<BookClubsItemComponent/>*/}
+                {/*{*/}
+                {/*    (publicUser && publicUser.userType === "BOOK CLUB OWNER") &&*/}
+                {/*    <div>*/}
+                {/*        <BookClubsForm/>*/}
+                {/*        <BookClubsItemComponent uid={userID}/>*/}
+                {/*    </div>*/}
+                {/*}*/}
+                {/*{console.log("current user " + currentUser)}*/}
+                {/*{*/}
                 {
-                    (profileInfo && profileInfo.userType === "BOOK CLUB OWNER") &&
+                    ((currentUser && currentUser.userType === "BOOK CLUB OWNER") ||
+                    (profileInfo && profileInfo.userType === "BOOK CLUB OWNER")) &&
                     <div>
-                        <BookClubsForm/>
-                        <BookClubsItemComponent/>
+                        {console.log("current user is a bco")}
+                        <BookClubsForm uid={userID}/>
+                        <BookClubsItemComponent uid={""}/>
                     </div>
                 }
+
             </div>
 
             {/*right gutter*/}
@@ -188,38 +213,4 @@ const ProfileComponent = () => {
     )
 }
 
-export default ProfileComponent
-
-
-/*    const {currentUser} = useSelector((state) => state.users)
-    const {pathname} = useLocation();
-    const paths = pathname.split('/')
-    let uid = paths[2];
-
-    const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    const handleLogout = () => {
-        dispatch(logoutThunk())
-        navigate('/')
-    }
-
-    if (uid === undefined) {
-        uid = currentUser._id
-    }
-
-    useEffect(() => {
-        dispatch(findReadingListsByUserIDThunk(uid))
-        dispatch(findReviewsByUserIDThunk(uid))
-    }, [uid])
-
-    return(
-        <>
-            <Routes>
-                <Route index element={<PrivateProfileComponent/>}/>
-                <Route path="/!*" element={<PublicProfileComponent uid={uid}/>}/>
-            </Routes>
-        </>
-    )*/
-
-
+export default ProfileComponent;

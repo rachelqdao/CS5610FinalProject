@@ -1,16 +1,35 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {createBookClubThunk} from "./services/book-clubs-thunks";
+import {createBookClubThunk, findBookClubByOwnerIDThunk} from "./services/book-clubs-thunks";
+import {current} from "@reduxjs/toolkit";
+import {findAllUsersThunk} from "../users/users-thunks";
 
-const BookClubsForm = () => {
-    const {bookClubs} = useSelector((state) => state.bookClubs)
+const BookClubsForm = (uid) => {
+    const {bookClubs, currentBookClub} = useSelector((state) => state.bookClubs)
     const [hasBookClub, setHasBookClub] = useState(false)
     const [name, setName] = useState('')
     const [error, setError] = useState(null)
     const [bookClub, setBookClub] = useState(null)
     const [toggleForm, setToggleForm] = useState(false)
+    const {users, currentUser} = useSelector((state)=>state.users);
+    const [publicUser, setPublicUser] = useState(null);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (uid) {
+            dispatch(findBookClubByOwnerIDThunk(uid))
+        }
+    }, uid)
+
+    useEffect(() => {
+        dispatch(findAllUsersThunk())
+    }, [])
+
+    useEffect(() => {
+        console.log("current book club is updated")
+    }, [currentBookClub])
+
     const handleCreateBookClubClick = () => {
         if (toggleForm) {
             setToggleForm(false)
@@ -26,19 +45,24 @@ const BookClubsForm = () => {
     }, [name])
 
     useEffect(() => {
-        console.log(bookClubs)
+        // console.log(bookClubs)
         if (bookClubs.length !== 0) {
             setHasBookClub(true)
         } else {
             setHasBookClub(false)
         }
-        console.log(hasBookClub)
+        // console.log(hasBookClub)
     }, [bookClubs])
 
     return (
         <>
             {/*header*/}
             <div className={"mb-3"}>
+
+                {/*{*/}
+                {/*    currentUser && currentUser.userType === "USER" &&*/}
+                {/*    B*/}
+                {/*}*/}
                 {/*create new Book Club */}
                 {/*TODO: need handling to not show button if user already has book club*/}
                 {!toggleForm && !hasBookClub &&
