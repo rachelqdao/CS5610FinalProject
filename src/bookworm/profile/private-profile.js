@@ -13,7 +13,8 @@ import {findBookByKeywordThunk} from "../search/services/search-thunks";
 const PrivateProfileComponent = (uid) => {
     const {currentUser, users} = useSelector((state) => state.users)
     const isAdmin = currentUser.userType === "ADMIN";
-    console.log(isAdmin);
+    /*console.log(isAdmin);*/
+    console.log(JSON.stringify(currentUser))
     const isBCO = currentUser.userType === "BOOK CLUB OWNER";
 
     const dispatch = useDispatch()
@@ -24,6 +25,7 @@ const PrivateProfileComponent = (uid) => {
     }
 
     useEffect(() => {
+        console.log(JSON.stringify(currentUser))
         dispatch(findReadingListsByUserIDThunk(currentUser._id))
     }, [])
 

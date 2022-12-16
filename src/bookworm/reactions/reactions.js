@@ -40,11 +40,7 @@ const ReactionsComponent = () => {
         const currentReaction = userReactions[reaction]
 
         if (currentReaction) {
-            console.log('should call undo react to thunk')
-            console.log(update)
-
             dispatch(undoReactToBookThunk(update))
-
             setUserReactions({
                 ...userReactions,
                 reaction: false,

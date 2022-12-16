@@ -15,7 +15,6 @@ import {configureStore} from "@reduxjs/toolkit";
 import SearchReducer from "./bookworm/search/search-reducer";
 import DetailsReducer from "./bookworm/details/details-reducer";
 import UsersReducer from "./bookworm/users/users-reducer"
-import CurrentUser from "./bookworm/users/current-user";
 import reviewsReducer from "./bookworm/reviews/reviews-reducer";
 import readingListsReducer from "./bookworm/readinglists/reading-lists-reducer";
 import bookReactionsReducer from "./bookworm/reactions/reactions-reducer.js"
@@ -38,7 +37,7 @@ function App() {
     return (
         <div>
             <Provider store={store}>
-                <CurrentUser>
+                {/*<CurrentUser>*/}
                     <BrowserRouter>
                         <NavigationBar/>
                         <div className={'container'}>
@@ -58,7 +57,7 @@ function App() {
                             </Routes>
                         </div>
                     </BrowserRouter>
-                </CurrentUser>
+                {/*</CurrentUser>*/}
             </Provider>
         </div>
     );

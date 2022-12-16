@@ -30,3 +30,8 @@ export const deleteReview = async (reviewID) => {
     const response = await api.delete(`${REVIEW_API}/${reviewID}`)
     return response.data
 }
+
+export const findAllReviews = async () => {
+    const response = await api.get(REVIEW_API)
+    return response.data
+}
