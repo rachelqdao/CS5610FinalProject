@@ -260,8 +260,6 @@ const HomeComponent = () => {
                         }
                     </ul>
                 </div>
-
-
             </div>
 
             {/*right gutter*/}

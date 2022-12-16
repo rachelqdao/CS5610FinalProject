@@ -63,7 +63,7 @@ const PrivateProfileComponent = (uid) => {
                 {
                     currentUser &&
                     <>
-                        <h2>Welcome {currentUser.firstName} {currentUser.lastName}</h2>
+                        <h2>Welcome, {currentUser.firstName} {currentUser.lastName}</h2>
                         <h5>Username: {currentUser.username}</h5>
                         <h5>Email: {currentUser.email}</h5>
                         <h5>User Type: {currentUser.userType}</h5>
@@ -103,7 +103,6 @@ const PrivateProfileComponent = (uid) => {
                         }
                         {
                             bookClub.length !== 0 &&
-                            // only show this stuff if we already have a book club
                             <>
                                 <BookClubComponent/>
                             </>

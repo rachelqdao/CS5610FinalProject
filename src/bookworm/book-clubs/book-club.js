@@ -23,12 +23,12 @@ const BookClubComponent = () => {
 
     return(
         <>
-            <h1>THERE IS A BOOK CLUB</h1>
-            <h1>{`Name: ${name}`}</h1>
-            <h5>Current Book</h5>
-            // need to query for the book
-            <h5>Members</h5>
 
+            <h4 className="fw-bold m-0">{`Book Club Name: ${name}`}</h4>
+            {/*<h5>Current Book</h5>*/}
+            {/* need to query for the book*/}
+            <br/>
+            <h5>Members</h5>
 
             <ul className='list-group'>
                 {

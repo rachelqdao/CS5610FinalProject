@@ -142,7 +142,9 @@ const PublicProfileComponent = (uid) => {
                                     bookClub.members.map((member) => {
                                         return(
                                             <li className="list-group-item" key={member._id}>
-                                                <Link to={`/profile/${member._id}`}>{member.username}</Link>
+                                                <Link to={`/profile/${member._id}`}>
+                                                    {member.username}
+                                                </Link>
                                             </li>
                                         )
                                     })
