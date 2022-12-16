@@ -9,7 +9,6 @@ import DetailsComponent from "./bookworm/details";
 import UsersComponent from "./bookworm/users";
 import ProfileComponent from "./bookworm/profile/index.js";
 import ProtectedRoute from "./bookworm/profile/protected-route";
-
 import {Provider} from "react-redux"
 import {configureStore} from "@reduxjs/toolkit";
 import SearchReducer from "./bookworm/search/search-reducer";
@@ -40,7 +39,7 @@ function App() {
     return (
         <div>
             <Provider store={store}>
-                {/*<CurrentUser>*/}
+                <>
                     <BrowserRouter>
                         <NavigationBar/>
                         <div className={'container'}>
@@ -60,7 +59,7 @@ function App() {
                             </Routes>
                         </div>
                     </BrowserRouter>
-                {/*</CurrentUser>*/}
+                </>
             </Provider>
         </div>
     );

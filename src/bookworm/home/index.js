@@ -247,7 +247,6 @@ const HomeComponent = () => {
                             bookClubs.map((bc) => {
                                 return(
                                     <li className="list-group-item" key={bc._id}>
-                                        {/*{bc.name}*/}
                                         <Link to={`/profile/${bc.ownerID}`}>{bc.name}</Link>
                                     </li>
                                 )

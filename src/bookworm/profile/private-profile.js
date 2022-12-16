@@ -19,6 +19,7 @@ const PrivateProfileComponent = (uid) => {
     console.log(JSON.stringify(currentUser))
     const isBCO = currentUser.userType === "BOOK CLUB OWNER";
     const [showCreateForm, setShowCreateForm] = useState(false);
+    console.log("in private profile " + currentUser);
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -110,8 +111,6 @@ const PrivateProfileComponent = (uid) => {
 
                     </div>
                 }
-
-                {/*<BookClubMembersComponent/>*/}
 
                     <button className="btn wd-pink-button" onClick={handleLogout}>
                         Logout
