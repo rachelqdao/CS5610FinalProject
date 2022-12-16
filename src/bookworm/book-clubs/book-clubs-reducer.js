@@ -18,22 +18,22 @@ const bookClubsReducer = createSlice({
             state.bookClubs.push(action.payload)
         },
         [findBookClubByOwnerIDThunk.fulfilled]: (state, action) => {
-            state.bookClubs = action.payload
+            state.currentBookClub = action.payload;
         },
         [findAllBookClubsThunk.fulfilled]: (state, action) => {
             state.loading = false;
             state.bookClubs = action.payload;
         },
-        [findMembersByBCIDThunk.fulfilled]: (state, action) => {
-            state.currentBookClub = action.payload
-        },
+        // [findMembersByBCIDThunk.fulfilled]: (state, action) => {
+        //     state.currentBookClub = action.payload
+        // },
         [addMemberToBookClubThunk.fulfilled]: (state, action) => {
             const index = state.bookClubs.findIndex((bc) => bc._id === action.payload.bcID)
             const newMember = {
                 _id: action.payload.mid,
                 username: action.payload.username
             }
-            state.bookClubs[index].members.push(newMember);
+            state.bookClubs[index] = state.bookClubs[index].members.push(newMember);
         },
 
     }

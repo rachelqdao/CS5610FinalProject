@@ -9,6 +9,7 @@ import BrowseToReview from "../reviews/browse-to-review";
 import {findAllReviewsThunk, findReviewsByUserIDThunk} from "../reviews/services/reviews-thunk";
 import {findBookByIDThunk} from "../details/services/details-thunks";
 import {Link} from "react-router-dom";
+import FindBookClubsComponent from "./find-book-clubs";
 
 const HomeComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -24,6 +25,7 @@ const HomeComponent = () => {
 
     const dispatch = useDispatch()
 
+    // useEffects for carousels
     useEffect(() => {
         dispatch(findBookByAuthorThunk(authorOfWeek))
     }, [authorOfWeek, dispatch])
@@ -32,6 +34,8 @@ const HomeComponent = () => {
         dispatch(findBookByKeywordThunk(keyword))
     }, [keyword, dispatch])
 
+
+    // useEffects for latest reviews
     useEffect(() => {
         if (currentUser) {
             dispatch(findReviewsByUserIDThunk(currentUser._id))
@@ -68,9 +72,14 @@ const HomeComponent = () => {
     }, [bookDetails, toggleVariable])
 
 
+    // useEffect for book clubs
     useEffect(() => {
-        dispatch(findAllBookClubsThunk)
+        dispatch(findAllBookClubsThunk())
     }, [])
+
+    useEffect(() => {
+    }, [bookClubs])
+
 
     return (
         <>
@@ -189,10 +198,14 @@ const HomeComponent = () => {
                                                 <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 text-secondary"}>
                                                     {reviews[reviews.length - 1].reviewText}
                                                 </h5>
-                                                <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 wd-pink"}>
-                                                    <i className="bi bi-chat-left-quote-fill wd-pink me-2"></i>
-                                                    <span className={"wd-green"}>{reviews[reviews.length -1].userID.username}</span>
-                                                </h5>
+
+                                                <Link to={`profile?id=${reviews[reviews.length -1].userID._id}`}
+                                                      className="wd-green-link">
+                                                    <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 wd-pink"}>
+                                                        <i className="bi bi-chat-left-quote-fill wd-pink me-2"></i>
+                                                        <span className={"wd-green"}>{reviews[reviews.length -1].userID.username}</span>
+                                                    </h5>
+                                                </Link>
                                             </>
                                         }
 
@@ -238,20 +251,14 @@ const HomeComponent = () => {
                 </div>
 
                 <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
-                    <h3 className={"fw-bold mb-1"}>Book Clubs to Join</h3>
-                    <p className={"fw-bold m-0 text-secondary"}>Find a book club!</p>
+                    <h3 className={"fw-bold mb-1"}>📔 Book Clubs</h3>
+                    <p className={"m-0 text-secondary"}>Join a book club and read with others!</p>
                     <hr/>
-                    <ul className="list-group">
-                        {
-                            bookClubs.map((bc) => {
-                                return(
-                                    <li className="list-group-item" key={bc._id}>
-                                        <Link to={`/profile/${bc.ownerID}`}>{bc.name}</Link>
-                                    </li>
-                                )
-                            })
-                        }
+
+                    <ul className={"list-group"}>
+                        <FindBookClubsComponent/>
                     </ul>
+
                 </div>
 
 

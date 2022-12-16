@@ -19,6 +19,7 @@ import readingListsReducer from "./bookworm/readinglists/reading-lists-reducer";
 import bookReactionsReducer from "./bookworm/reactions/reactions-reducer.js"
 import EditProfileComponent from "./bookworm/profile/edit-profile";
 import BookClubsReducer from "./bookworm/book-clubs/book-clubs-reducer";
+import Profile from "./bookworm/profile/index.js";
 
 const store = configureStore({
     reducer: {
@@ -50,10 +51,10 @@ function App() {
                                 <Route path={'search'} element={<SearchComponent/>}/>
                                 <Route path={'details'} element = {<DetailsComponent/>}/>
                                 <Route path={'users'} element = {<UsersComponent/>}/>
-                                <Route path={'profile/*'} element = {
-                                    <ProtectedRoute>
-                                        <ProfileComponent/>
-                                    </ProtectedRoute>
+                                <Route path={'profile'} element = {<ProfileComponent/>
+/*                                <ProtectedRoute>
+                                    <ProfileComponent/>
+                                </ProtectedRoute>*/
                                 }/>
                                 <Route path={'edit-profile'} element = {<EditProfileComponent/>}/>
                             </Routes>

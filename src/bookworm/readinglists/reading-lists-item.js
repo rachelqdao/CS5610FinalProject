@@ -1,26 +1,14 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Link, useSearchParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {deleteBookFromReadingListThunk, deleteReadingListThunk} from "./services/reading-lists-thunks";
 
-const ReadingListItemComponent = () => {
-    const {currentUser} = useSelector((state) => state.users)
+const ReadingListItemComponent = (isCurrentUser, isAnon) => {
     const {readingLists} = useSelector((state) => state.readingLists)
-    const [isCurrentUser, setIsCurrentUser] = useState(false)
-
-    const [userID] = useSearchParams({id: ''})
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        if (userID.get('id') === '' || userID.get('id') === currentUser._id) {
-            setIsCurrentUser(true)
-        } else {
-            setIsCurrentUser(false)
-        }
-    }, [currentUser._id, userID])
-
     return (
-        readingLists &&
+        readingLists.length !== 0 ?
         readingLists.map((readingList) =>
             <div key={readingList._id}>
                 <div>
@@ -29,7 +17,7 @@ const ReadingListItemComponent = () => {
                         {/*reading list header*/}
                         <div>
                             {
-                                isCurrentUser &&
+                                isCurrentUser && !isAnon &&
                                 <button
                                     className={"btn wd-pink-button float-end"}
                                     onClick={() => {
@@ -49,7 +37,7 @@ const ReadingListItemComponent = () => {
                         <hr/>
 
                         {/*display books in reading list*/}
-                        <div className={"row row-cols-xl-6 row-cols-lg-5 row-cols-md-4 row-cols-1 d-flex"}>
+                        <div className={"row row-cols-xl-5 row-cols-lg-4 row-cols-md-4 row-cols-1 d-flex"}>
                             {
                                 readingList.books &&
                                 readingList.books.map((book) =>
@@ -99,7 +87,7 @@ const ReadingListItemComponent = () => {
                     </div>
                 </div>
             </div>
-        )
+        ) : <h5 className={"text-secondary"}>No reading lists found</h5>
     )
 }
 export default ReadingListItemComponent

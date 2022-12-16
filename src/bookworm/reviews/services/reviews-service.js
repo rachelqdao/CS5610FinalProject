@@ -4,10 +4,13 @@ import {findUserByID} from "../../users/users-service";
 const REVIEW_API = 'http://localhost:4000/reviews'
 const BOOK_REVIEWS_API = 'http://localhost:4000/reviews/books'
 const USER_REVIEWS_API = 'http://localhost:4000/reviews/users'
+const SEARCH_URL = 'https://www.googleapis.com/books/v1/volumes/'
 
 const api = axios.create({withCredentials: true})
 
 export const createReview = async (review) => {
+    const bookInfo = await axios.get(`${SEARCH_URL}${review.bookID}`)
+    review = {...review, title: bookInfo.data.volumeInfo.title}
     const response = await api.post(REVIEW_API, review)
 
     /*stimulate populating object right after creation for display purposes*/
