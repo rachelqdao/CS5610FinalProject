@@ -9,6 +9,7 @@ import ReviewItemComponent from "../reviews/review-item";
 import BookClubsForm from "../book-clubs/book-clubs-form";
 import {findAllBookClubsThunk} from "../book-clubs/services/book-clubs-thunks";
 import BookClubComponent from "../book-clubs/book-club";
+import BookClubsItemComponent from "../book-clubs/book-clubs-item";
 // import HomeCarouselItemComponent from "../home/home-carousel-item";
 
 const PrivateProfileComponent = (uid) => {
@@ -23,6 +24,7 @@ const PrivateProfileComponent = (uid) => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
     const handleLogout = () => {
         dispatch(logoutThunk())
         navigate('/')
@@ -46,34 +48,65 @@ const PrivateProfileComponent = (uid) => {
     // console.log("book club: " + bookClub);
 
     return (
-        <>
-            <div className={"mb-3"}>
-                <div className={"row"}>
-                    <div className='col-10'>
-                        <h1>Profile</h1>
-                    </div>
-                    <div className="col-2">
-                        <button className="btn wd-green-button float-end" >
-                            <Link to="/edit-profile" className="text-decoration-none text-white">
-                                Edit Profile
-                            </Link>
-                        </button>
-                    </div>
-                </div>
+        <div className={"row"}>
+
+            {/*left gutter*/}
+            <div className={"d-none d-xl-flex col-1"}></div>
+
+            {/*left column*/}
+            <div className={"d-none d-lg-block col-4 col-xl-3 pe-4"}>
+                <img
+                    src={"https://www.svgrepo.com/show/2340/user-bubble.svg"}
+                    className={"img-fluid mb-2 mx-auto d-block"}
+                    width={150}
+                    height={150}
+                />
+
                 {
                     currentUser &&
-                    <>
-                        <h2>Welcome {currentUser.firstName} {currentUser.lastName}</h2>
-                        <h5>Username: {currentUser.username}</h5>
-                        <h5>Email: {currentUser.email}</h5>
-                        <h5>User Type: {currentUser.userType}</h5>
-                        <h5>Date Joined: {currentUser.dateJoined}</h5>
-                    </>
+                    <div className={"mb-3"}>
+                        <h3 className={"wd-green fw-bold"}>Welcome, {currentUser.firstName}!</h3>
+
+                        {/*user sidebar*/}
+                        <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
+
+                            {/*TODO: hide some of this information for anonymous users*/}
+                            {/*user information*/}
+                            <div className={"mb-3"}>
+                                <p className={"m-0"}> <span className={"fw-bold"}>Username:</span> {currentUser.username}</p>
+                                <p className={"m-0"}> <span className={"fw-bold"}>Email:</span> {currentUser.email}</p>
+                                <p className={"m-0"}> <span className={"fw-bold"}>User Type:</span> {currentUser.userType}</p>
+                                <p className={"m-0"}> <span className={"fw-bold"}>Date Joined:</span> {currentUser.dateJoined}</p>
+                            </div>
+
+                            {/*edit profile button*/}
+                            <Link to="/edit-profile" className={"d-block mb-2"}>
+                                <button className="btn wd-green-button">
+                                    Edit Profile
+                                </button>
+                            </Link>
+
+                            {/*log out button*/}
+                            <button className="btn wd-pink-button" onClick={handleLogout}>
+                                Logout
+                            </button>
+                        </div>
+                    </div>
                 }
-                <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
+
+
+            </div>
+
+            {/*right column*/}
+            <div className={"col-12 col-lg-8 col-xl-7"}>
+
+                <div className={"my-4"}>
                     <ReadingListsForm/>
                     <ReadingListItemComponent/>
                 </div>
+
+
+                {/*TODO: look at this later -- show reviews component depending on user type */}
                 {
                     !isAdmin && !isBCO &&
                     <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
@@ -81,6 +114,13 @@ const PrivateProfileComponent = (uid) => {
                         <ReviewItemComponent/>
                     </div>
                 }
+
+                {/*TODO: move below content into separate components*/}
+                <div>
+                    <BookClubsForm/>
+                    <BookClubsItemComponent/>
+                </div>
+
                 {
                     isBCO &&
                     <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
@@ -111,12 +151,12 @@ const PrivateProfileComponent = (uid) => {
 
                     </div>
                 }
-
-                    <button className="btn wd-pink-button" onClick={handleLogout}>
-                        Logout
-                    </button>
             </div>
-        </>
+
+            {/*right gutter*/}
+            <div className={"d-none d-xl-flex col-1"}></div>
+
+        </div>
     )
 }
 export default PrivateProfileComponent;

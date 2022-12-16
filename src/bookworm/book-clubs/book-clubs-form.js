@@ -6,10 +6,17 @@ import {useNavigate} from "react-router-dom";
 
 const BookClubsForm = (oid) => {
     // const {currentUser} = useSelector((state) => state.currentUser);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
+
+    const [toggleForm, setToggleForm] = useState(false);
     const [name, setName] = useState('');
     const [error, setError] = useState(null);
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleCreateBookClubClick = () => {
+        setToggleForm(!toggleForm)
+    }
 
     const createBookClub = () => {
         if (name === '') {
@@ -59,7 +66,9 @@ const BookClubsForm = (oid) => {
                     </div>
                     <button
                         className={"btn wd-green-button float-end"}
-                        onClick={createBookClub}>
+                        onClick={
+                            createBookClub
+                            }>
                         Submit
                     </button>
                 </div>

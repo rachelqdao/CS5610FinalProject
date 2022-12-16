@@ -38,7 +38,7 @@ const ReadingListsForm = () => {
                 }
 
                 {/*user's reading lists*/}
-                <h4 className={"fw-bold m-0"}>Reading Lists</h4>
+                <h3 className={"fw-bold m-0"}>Reading Lists</h3>
             </div>
 
 
