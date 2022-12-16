@@ -41,7 +41,6 @@ const PublicProfileComponent = (uid) => {
         }
     }, [uid.uid])
 
-
     useEffect(() => {
         if (users.length !== 0) {
             setPublicUser(users.filter(x => x._id === uid.uid)[0])

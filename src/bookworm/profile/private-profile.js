@@ -16,11 +16,8 @@ const PrivateProfileComponent = (uid) => {
     const {currentUser} = useSelector((state) => state.users);
     const {bookClubs} = useSelector((state) => state.bookClubs);
     const isAdmin = currentUser.userType === "ADMIN";
-    /*console.log(isAdmin);*/
-    console.log(JSON.stringify(currentUser))
     const isBCO = currentUser.userType === "BOOK CLUB OWNER";
-    const [showCreateForm, setShowCreateForm] = useState(false);
-    console.log("in private profile " + currentUser);
+    // const [bookClub, setBookClub] = useState(null);
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -37,13 +34,13 @@ const PrivateProfileComponent = (uid) => {
         dispatch(findAllBookClubsThunk());
     }, [])
 
-    // useEffect(() => {
-    //     setShowCreateForm(false);
-    // }, [bookClubs])
-
-    // console.log("book clubs: " + bookClubs);
     const bookClub = bookClubs.filter(bc => bc.ownerID === currentUser._id);
-    // console.log("book club: " + bookClub);
+
+    // useEffect(() => {
+    //     if (bookClubs) {
+    //         setBookClub(bookClubs.filter(bc => bc.ownerID === currentUser._id))
+    //     }
+    // }, [bookClubs])
 
     return (
         <>
@@ -85,24 +82,12 @@ const PrivateProfileComponent = (uid) => {
                     isBCO &&
                     <div className="bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3">
                         {
-                            bookClub.length === 0 &&
-                            // only show this stuff if we do not yet have a book club
-                            <>
-                                {
-                                    !showCreateForm &&
-                                    <button className='btn wd-green-button' onClick={
-                                        () => setShowCreateForm(true)}>
-                                        Create a Book Club
-                                    </button>
-                                }
-                                {
-                                    showCreateForm &&
-                                    <BookClubsForm ownerID={currentUser._id}/>
-                                }
-                            </>
+                            bookClub && bookClub.length === 0 &&
+
+                            <BookClubsForm ownerID={currentUser._id}/>
                         }
                         {
-                            bookClub.length !== 0 &&
+                            bookClub && bookClub.length !== 0 &&
                             <>
                                 <BookClubComponent/>
                             </>

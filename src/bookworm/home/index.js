@@ -159,7 +159,12 @@ const HomeComponent = () => {
                                         </Link>
                                     }
                                     <hr/>
-                                    <h5 className={"fw-bold wd-green"}>Your Review: </h5>
+                                    {
+                                        currentUser ?
+                                            <h5 className={"fw-bold wd-green"}>Your Review: </h5> :
+                                            <h5 className={"fw-bold wd-green"}>Recent Review: </h5>
+                                    }
+
                                     <div>
                                         {
                                             reviews[reviews.length - 1] &&
@@ -196,7 +201,12 @@ const HomeComponent = () => {
                                                 </h5>
                                                 <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 wd-pink"}>
                                                     <i className="bi bi-chat-left-quote-fill wd-pink me-2"></i>
-                                                    <span className={"wd-green"}>{reviews[reviews.length -1].userID.username}</span>
+                                                    <span className={"wd-green"}>
+                                                        <Link to={`profile/${reviews[reviews.length -1].userID._id}`}
+                                                        className="wd-green-link">
+                                                            {reviews[reviews.length -1].userID.username}
+                                                        </Link>
+                                                    </span>
                                                 </h5>
                                             </>
                                         }

@@ -126,7 +126,7 @@ export default BookClubsForm;
         }
 
         dispatch(createBookClubThunk(bookClub));
-        navigate('/profile');
+        // navigate('/profile');
     }
 
     return (

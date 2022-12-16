@@ -38,7 +38,6 @@ const BookClubComponent = () => {
                                 <Link to={`/profile/${member._id}`}>{member.username}</Link>
                             </li>
                         )
-
                     })
                 }
             </ul>
