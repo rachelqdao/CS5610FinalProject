@@ -198,10 +198,14 @@ const HomeComponent = () => {
                                                 <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 text-secondary"}>
                                                     {reviews[reviews.length - 1].reviewText}
                                                 </h5>
-                                                <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 wd-pink"}>
-                                                    <i className="bi bi-chat-left-quote-fill wd-pink me-2"></i>
-                                                    <span className={"wd-green"}>{reviews[reviews.length -1].userID.username}</span>
-                                                </h5>
+
+                                                <Link to={`profile?id=${reviews[reviews.length -1].userID._id}`}
+                                                      className="wd-green-link">
+                                                    <h5 className={"d-flex fw-bold justify-content-center m-0 mb-2 px-3 wd-pink"}>
+                                                        <i className="bi bi-chat-left-quote-fill wd-pink me-2"></i>
+                                                        <span className={"wd-green"}>{reviews[reviews.length -1].userID.username}</span>
+                                                    </h5>
+                                                </Link>
                                             </>
                                         }
 

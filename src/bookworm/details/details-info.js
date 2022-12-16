@@ -132,18 +132,6 @@ const DetailsInfoComponent = () => {
                         Add to Reading List
                     </button>
                 </div>
-
-
-                {/*TODO: Set as Book Club's current book functionality*/}
-                <div className={"col-12"}>
-                    {
-                        currentUser && currentUser.userType === 'BOOK CLUB OWNER' &&
-                        <button className={"btn wd-green-button float-end"}>
-                            Set as Book Club's Current Book
-                        </button>
-                    }
-                </div>
-
             </div>
         </div>
     )

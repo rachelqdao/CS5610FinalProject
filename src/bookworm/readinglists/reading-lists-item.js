@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Link, useSearchParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {deleteBookFromReadingListThunk, deleteReadingListThunk} from "./services/reading-lists-thunks";
 
 const ReadingListItemComponent = (isCurrentUser, isAnon) => {
     const {readingLists} = useSelector((state) => state.readingLists)
     const dispatch = useDispatch()
 
+    console.log(readingLists)
+
     return (
-        readingLists &&
+        readingLists.length !== 0 ?
         readingLists.map((readingList) =>
             <div key={readingList._id}>
                 <div>
@@ -37,7 +39,7 @@ const ReadingListItemComponent = (isCurrentUser, isAnon) => {
                         <hr/>
 
                         {/*display books in reading list*/}
-                        <div className={"row row-cols-xl-6 row-cols-lg-5 row-cols-md-4 row-cols-1 d-flex"}>
+                        <div className={"row row-cols-xl-5 row-cols-lg-4 row-cols-md-4 row-cols-1 d-flex"}>
                             {
                                 readingList.books &&
                                 readingList.books.map((book) =>
@@ -87,7 +89,7 @@ const ReadingListItemComponent = (isCurrentUser, isAnon) => {
                     </div>
                 </div>
             </div>
-        )
+        ) : <h5 className={"text-secondary"}>No reading lists found</h5>
     )
 }
 export default ReadingListItemComponent

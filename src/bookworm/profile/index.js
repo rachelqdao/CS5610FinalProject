@@ -56,12 +56,16 @@ const ProfileComponent = () => {
 
         // and if anonymous user, also just find the user info
         } else {
-            dispatch(findReadingListsByUserIDThunk(userID.get('id')))
-            dispatch(findReviewsByUserIDThunk(userID.get('id')))
-            dispatch(findBookClubByOwnerIDThunk(userID.get('id')))
-            dispatch(findUserByIDThunk(userID.get('id')))
-            setIsCurrentUser(false)
-            setIsAnon(true)
+            if (userID.get('id') === '') {
+                navigate('/login')
+            } else {
+                dispatch(findReadingListsByUserIDThunk(userID.get('id')))
+                dispatch(findReviewsByUserIDThunk(userID.get('id')))
+                dispatch(findBookClubByOwnerIDThunk(userID.get('id')))
+                dispatch(findUserByIDThunk(userID.get('id')))
+                setIsCurrentUser(false)
+                setIsAnon(true)
+            }
         }
     }, [currentUser, userID])
 
@@ -77,12 +81,11 @@ const ProfileComponent = () => {
 
     return (
         <div className={"row"}>
-
             {/*left gutter*/}
             <div className={"d-none d-xl-flex col-1"}></div>
 
             {/*left column*/}
-            <div className={"d-none d-lg-block col-4 col-xl-3 pe-4"}>
+            <div className={"d-lg-block col-12 col-lg-4 col-xl-3 pe-4"}>
                 <img
                     src={"https://www.svgrepo.com/show/2340/user-bubble.svg"}
                     className={"img-fluid mb-2 mx-auto d-block"}
@@ -134,9 +137,9 @@ const ProfileComponent = () => {
 
                             {
                                 isCurrentUser &&
-                                <>
+                                <div className={"mt-3 d-flex justify-content-around"}>
                                     {/*edit profile button*/}
-                                    <Link to="/edit-profile" className={"d-block mb-2"}>
+                                    <Link to="/edit-profile" className={"me-3"}>
                                         <button className="btn wd-green-button">
                                             Edit Profile
                                         </button>
@@ -146,7 +149,7 @@ const ProfileComponent = () => {
                                     <button className="btn wd-pink-button" onClick={handleLogout}>
                                         Logout
                                     </button>
-                                </>
+                                </div>
                             }
                         </div>
                     </div>
@@ -155,7 +158,7 @@ const ProfileComponent = () => {
 
             {/*right column*/}
             <div className={"col-12 col-lg-8 col-xl-7"}>
-                <div className={"my-4"}>
+                <div className={"mt-4"}>
                     <ReadingListsForm isCurrentUser={isCurrentUser} isAnon={isAnon}/>
                     <ReadingListItemComponent isCurrentUser={isCurrentUser}/>
                 </div>
@@ -164,7 +167,7 @@ const ProfileComponent = () => {
                 {
                     (currentUser && (currentUser.userType === "USER" || currentUser.userType === "BOOK CLUB OWNER") || isAnon) &&
                     <div>
-                        <h4 className="fw-bold my-4">Reviews</h4>
+                        <h4 className="fw-bold mt-4">Reviews</h4>
                         <ReviewItemComponent/>
                     </div>
                 }

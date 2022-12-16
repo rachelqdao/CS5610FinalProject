@@ -1,16 +1,17 @@
 import React from "react";
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {deleteReviewThunk} from "./services/reviews-thunk";
 import {useDispatch, useSelector} from "react-redux";
 
-const ReviewItemComponent = (isCurrentUser, isAnon) => {
+const ReviewItemComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
     const {reviews} = useSelector((state) => state.reviews)
 
+    const {pathname} = useLocation()
     const dispatch = useDispatch()
 
     return (
-            reviews &&
+            reviews.length !== 0 ?
             reviews.map((review) =>
                 <div key={review._id}>
                     <div className={"mb-3"}>
@@ -25,9 +26,19 @@ const ReviewItemComponent = (isCurrentUser, isAnon) => {
                             <div>
                                 <div className={"mb-3"}>
                                     {/*username*/}
-                                    <Link to={`/profile?id=${review.userID._id}`}>
-                                        <h5 className={"fw-bold wd-green m-1 ms-0"}>{review.userID.username}</h5>
-                                    </Link>
+                                    {
+                                        pathname === '/details' &&
+                                        <Link to={`/profile?id=${review.userID._id}`}>
+                                            <h5 className={"fw-bold wd-green m-1 ms-0"}>{review.userID.username}</h5>
+                                        </Link>
+                                    }
+
+                                    {
+                                        pathname === '/profile' &&
+                                        <Link to={`/details?identifier=${review.bookID}`}>
+                                            <h5 className={"fw-bold wd-green m-1 ms-0"}>{review.bookID}</h5>
+                                        </Link>
+                                    }
 
                                     {/*user rating*/}
                                     <div>
@@ -89,7 +100,7 @@ const ReviewItemComponent = (isCurrentUser, isAnon) => {
 
                 </div>
             )
-
+            : <h5 className={"text-secondary m-0"}>No reviews found</h5>
     )
 }
 
