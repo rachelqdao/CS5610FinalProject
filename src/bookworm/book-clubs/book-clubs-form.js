@@ -50,7 +50,7 @@ const BookClubsForm = () => {
                     </button>
                 }
 
-                {/*user's reading lists*/}
+                {/*user's Book Clubs*/}
                 <h4 className={"fw-bold m-0"}>Book Clubs</h4>
             </div>
 

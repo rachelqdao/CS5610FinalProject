@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import {createReadingListThunk} from "./services/reading-lists-thunks";
 
-const ReadingListsForm = (isCurrentUser) => {
+const ReadingListsForm = (isCurrentUser, isAnon) => {
     const [toggleForm, setToggleForm] = useState(false)
     const [listName, setListName] = useState('')
     const [description, setDescription] = useState('')

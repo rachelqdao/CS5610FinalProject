@@ -18,7 +18,7 @@ const bookClubsReducer = createSlice({
             state.bookClubs.push(action.payload)
         },
         [findBookClubByOwnerIDThunk.fulfilled]: (state, action) => {
-            state.bookClubs = action.payload
+            state.bookClubs.push(action.payload)
         },
         [findAllBookClubsThunk.fulfilled]: (state, action) => {
             state.loading = false;

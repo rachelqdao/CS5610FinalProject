@@ -17,6 +17,7 @@ const ProfileComponent = () => {
     const [userID] = useSearchParams({id: ''})
     const [profileInfo, setProfileInfo] = useState()
     const [isCurrentUser, setIsCurrentUser] = useState(false)
+    const [isAnon, setIsAnon] = useState(true)
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -41,6 +42,7 @@ const ProfileComponent = () => {
                 dispatch(findBookClubByOwnerIDThunk(currentUser._id))
                 dispatch(findUserByIDThunk(currentUser._id))
                 setIsCurrentUser(true)
+                setIsAnon(false)
 
             // otherwise just find whose profile it is
             } else {
@@ -49,6 +51,7 @@ const ProfileComponent = () => {
                 dispatch(findBookClubByOwnerIDThunk(userID.get('id')))
                 dispatch(findUserByIDThunk(userID.get('id')))
                 setIsCurrentUser(false)
+                setIsAnon(true)
             }
 
         // and if anonymous user, also just find the user info
@@ -58,6 +61,7 @@ const ProfileComponent = () => {
             dispatch(findBookClubByOwnerIDThunk(userID.get('id')))
             dispatch(findUserByIDThunk(userID.get('id')))
             setIsCurrentUser(false)
+            setIsAnon(true)
         }
     }, [currentUser, userID])
 
@@ -152,21 +156,21 @@ const ProfileComponent = () => {
             {/*right column*/}
             <div className={"col-12 col-lg-8 col-xl-7"}>
                 <div className={"my-4"}>
-                    <ReadingListsForm isCurrentUser={isCurrentUser}/>
-                    <ReadingListItemComponent/>
+                    <ReadingListsForm isCurrentUser={isCurrentUser} isAnon={isAnon}/>
+                    <ReadingListItemComponent isCurrentUser={isCurrentUser}/>
                 </div>
 
                 {/*TODO: get book details and link back to books that the user reviewed*/}
                 {
-                    currentUser && (currentUser.userType === "USER" || currentUser.userType === "BOOK CLUB OWNER") &&
+                    (currentUser && (currentUser.userType === "USER" || currentUser.userType === "BOOK CLUB OWNER") || isAnon) &&
                     <div>
-                        <h4 className="fw-bolder">Your Reviews</h4>
+                        <h4 className="fw-bold my-4">Reviews</h4>
                         <ReviewItemComponent/>
                     </div>
                 }
 
                 {
-                    currentUser && currentUser.userType === "BOOK CLUB OWNER" &&
+                    (profileInfo && profileInfo.userType === "BOOK CLUB OWNER") &&
                     <div>
                         <BookClubsForm/>
                         <BookClubsItemComponent/>

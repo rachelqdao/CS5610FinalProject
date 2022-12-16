@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {deleteReviewThunk} from "./services/reviews-thunk";
 import {useDispatch, useSelector} from "react-redux";
 
-const ReviewItemComponent = () => {
+const ReviewItemComponent = (isCurrentUser, isAnon) => {
     const {currentUser} = useSelector((state) => state.users)
     const {reviews} = useSelector((state) => state.reviews)
 

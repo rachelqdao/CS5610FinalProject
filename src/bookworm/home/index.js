@@ -9,6 +9,7 @@ import BrowseToReview from "../reviews/browse-to-review";
 import {findAllReviewsThunk, findReviewsByUserIDThunk} from "../reviews/services/reviews-thunk";
 import {findBookByIDThunk} from "../details/services/details-thunks";
 import {Link} from "react-router-dom";
+import FindBookClubsComponent from "./find-book-clubs";
 
 const HomeComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
@@ -75,6 +76,9 @@ const HomeComponent = () => {
     useEffect(() => {
         dispatch(findAllBookClubsThunk())
     }, [])
+
+    useEffect(() => {
+    }, [bookClubs])
 
 
     return (
@@ -243,22 +247,14 @@ const HomeComponent = () => {
                 </div>
 
                 <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
-                    <h3 className={"fw-bold mb-1"}>Book Clubs to Join</h3>
-                    <p className={"fw-bold m-0 text-secondary"}>Find a book club!</p>
+                    <h3 className={"fw-bold mb-1"}>📔 Book Clubs</h3>
+                    <p className={"m-0 text-secondary"}>Join a book club and read with others!</p>
                     <hr/>
-                    <ul className="list-group">
-                        {   bookClubs &&
 
-                            JSON.stringify(bookClubs)
-                       /*     bookClubs.map((bc) => {
-                                return(
-                                    <li className="list-group-item" key={bc._id}>
-                                        <Link to={`/profile?id=${bc.ownerID}`}>{bc.name}</Link>
-                                    </li>
-                                )
-                            })*/
-                        }
+                    <ul className={"list-group"}>
+                        <FindBookClubsComponent/>
                     </ul>
+
                 </div>
 
 

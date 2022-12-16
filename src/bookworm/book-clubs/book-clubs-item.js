@@ -4,9 +4,12 @@ import React from "react";
 
 const BookClubsItemComponent = () => {
     const {bookClubs} = useSelector((state) => state.bookClubs)
+
+    const currentBookClub = bookClubs[0]
+
     return (
         <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
-            <h5 className={"wd-green fw-bold"}>{`${bookClubs.name}`}</h5>
+            <h5 className={"wd-green fw-bold"}>{`${currentBookClub.name}`}</h5>
             <h5 className={"wd-pink fw-bold"}>Current Book:</h5>
 
             {/*TODO: PLACEHOLDER FROM HOME PAGE*/}
@@ -40,8 +43,8 @@ const BookClubsItemComponent = () => {
             <h5 className={"wd-pink fw-bold"}>Members:</h5>
             <ul className='list-group'>
                 {
-                    bookClubs.members &&
-                    bookClubs.members.map((member) => {
+                    currentBookClub.members &&
+                    currentBookClub.members.map((member) => {
                         return (
                             <li key={member._id} className={"list-group-item"}>
                                 <Link to={`/profile?id=${member._id}`}>{member.username}</Link>

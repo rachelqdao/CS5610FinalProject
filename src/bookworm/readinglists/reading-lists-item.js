@@ -3,23 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link, useSearchParams} from "react-router-dom";
 import {deleteBookFromReadingListThunk, deleteReadingListThunk} from "./services/reading-lists-thunks";
 
-const ReadingListItemComponent = () => {
-    const {currentUser} = useSelector((state) => state.users)
+const ReadingListItemComponent = (isCurrentUser, isAnon) => {
     const {readingLists} = useSelector((state) => state.readingLists)
-    const [isCurrentUser, setIsCurrentUser] = useState(false)
-
-    const [userID] = useSearchParams({id: ''})
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        if (currentUser) {
-            if (userID.get('id') === '' || userID.get('id') === currentUser._id) {
-                setIsCurrentUser(true)
-            } else {
-                setIsCurrentUser(false)
-            }
-        }
-    }, [currentUser, userID])
 
     return (
         readingLists &&
@@ -31,7 +17,7 @@ const ReadingListItemComponent = () => {
                         {/*reading list header*/}
                         <div>
                             {
-                                isCurrentUser &&
+                                isCurrentUser && !isAnon &&
                                 <button
                                     className={"btn wd-pink-button float-end"}
                                     onClick={() => {
