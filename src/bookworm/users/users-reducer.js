@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
-import {findAllUsersThunk, loginThunk, registerThunk, logoutThunk, updateUserThunk} from "./users-thunks";
+import {findAllUsersThunk, loginThunk, registerThunk, logoutThunk, updateUserThunk, profileThunk} from "./users-thunks";
 
 const initialState = {
     users: [],
@@ -8,7 +8,7 @@ const initialState = {
     error: null
 }
 
-const usersReducer = createSlice({
+const UsersReducer = createSlice({
     name: 'users',
     initialState,
     extraReducers: {
@@ -41,14 +41,13 @@ const usersReducer = createSlice({
         [logoutThunk.fulfilled]: (state, action) => {
             state.currentUser = null
         },
-/*
-        [profileThunk.fulfilled]: (state, action) => {
-            state.currentUser = action.payload
-        },
-        [profileThunk.rejected]: (state, action) => {
-            state.error = action.payload
-            state.currentUser = null
-        },*/
+        // [profileThunk.fulfilled]: (state, action) => {
+        //     state.currentUser = action.payload
+        // },
+        // [profileThunk.rejected]: (state, action) => {
+        //     state.error = action.payload
+        //     state.currentUser = null
+        // },
         [updateUserThunk.fulfilled]: (state, action) => {
             state.currentUser = {...state.currentUser, ...action.payload} // doesn't do anything?
         }
@@ -63,4 +62,4 @@ const usersReducer = createSlice({
     }
 })
 
-export default usersReducer.reducer
+export default UsersReducer.reducer;

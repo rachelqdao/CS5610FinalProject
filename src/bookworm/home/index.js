@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {findBookByAuthorThunk, findBookByKeywordThunk} from "../search/services/search-thunks";
 import AuthorCarouselComponent from "./author-carousel";
 import KeywordCarouselComponent from "./keyword-carousel";
+import {findAllBookClubsThunk} from "../book-clubs/services/book-clubs-thunks";
 import BrowseToReview from "../reviews/browse-to-review";
 import {findAllReviewsThunk, findReviewsByUserIDThunk} from "../reviews/services/reviews-thunk";
 import {findBookByIDThunk} from "../details/services/details-thunks";
@@ -13,9 +14,9 @@ const HomeComponent = () => {
     const {currentUser} = useSelector((state) => state.users)
     const {reviews} = useSelector((state) => state.reviews)
     const {bookDetails} = useSelector((state) => state.bookDetails)
-
     const [hasReviews, setHasReviews] = useState(false)
     const [toggleVariable, setToggleVariable] = useState(false)
+    const {bookClubs} = useSelector((state) => state.bookClubs);
 
     // dispatch apis to get book content
     const authorOfWeek = "Steven King"
@@ -64,9 +65,12 @@ const HomeComponent = () => {
     }, [hasReviews, toggleVariable])
 
     useEffect(() => {
-        console.log(bookDetails)
     }, [bookDetails, toggleVariable])
 
+
+    useEffect(() => {
+        dispatch(findAllBookClubsThunk)
+    }, [])
 
     return (
         <>
@@ -232,6 +236,25 @@ const HomeComponent = () => {
                     <hr/>
                     <KeywordCarouselComponent/>
                 </div>
+
+                <div className={"bg-white border border-2 border-dark border-opacity-10 p-4 rounded mb-3"}>
+                    <h3 className={"fw-bold mb-1"}>Book Clubs to Join</h3>
+                    <p className={"fw-bold m-0 text-secondary"}>Find a book club!</p>
+                    <hr/>
+                    <ul className="list-group">
+                        {
+                            bookClubs.map((bc) => {
+                                return(
+                                    <li className="list-group-item" key={bc._id}>
+                                        <Link to={`/profile/${bc.ownerID}`}>{bc.name}</Link>
+                                    </li>
+                                )
+                            })
+                        }
+                    </ul>
+                </div>
+
+
             </div>
 
             {/*right gutter*/}

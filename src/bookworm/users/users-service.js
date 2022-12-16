@@ -28,10 +28,12 @@ export const login = async (user) => {
     return response.data
 }
 
-/*export const profile = async () => {
-    const response = await api.post(`${BASE_URL}/profile`)
-    return response.data
-}*/
+
+// export const profile = async () => {
+//     const response = await api.post(`${BASE_URL}/profile`)
+//     return response.data
+// }
+
 
 export const logout = async () => {
     const response = await api.post(`${BASE_URL}/logout`)
@@ -43,9 +45,7 @@ export const deleteUser = async (uid) => {
 
 }
 
-//  MAY NEED TO REMOVE COMMENTS
 export const updateUser = async (userUpdates) => {
-    console.log(`Trying to update at: ${BASE_URL}/users/${userUpdates._id}`)
     await axios.put(`${BASE_URL}/users/${userUpdates._id}`, userUpdates);
     return userUpdates;
 }
